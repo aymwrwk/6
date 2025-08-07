@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ㅤ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+
+    body{ 
+    background-image: url("img/");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    }
+
+    .video-bg {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: -1;
+      width: 500px;
+      height: auto;
+      opacity: 0.3;
+      pointer-events: none; 
+    }
+
+    .form-wrapper {
+      position: relative;
+      width: 100%;
+      max-width: 400px;
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .form-overlay {
+      position: relative;
+      z-index: 1;
+     
+      padding: 1.5rem;
+    }
+  </style>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-black text-white">
+
+  
+
+  <div class="form-wrapper rounded-lg p-8 ">
+    
+    <form id="loginForm" class="form-overlay space-y-4 ">
+      <input
+        type="password"
+        id="senha"
+        required
+        placeholder=""
+        class="w-full p-2 text-black rounded-sm border border-white/20 
+        placeholder-white focus:outline-none focus:ring-2 focus:ring-red-500"
+      />
+
+      <div id="mensagemErro" class="hidden bg-red-500/80 text-white text-sm p-2 px-3 flex items-center gap-2 animate-pulse">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white" viewBox="0 0 24 24">
+          <path d="M1 21h22L12 2 1 21zm13-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+        </svg>
+        Senha incorreta. Tente Novamente.
+      </div>
+
+      <div class="flex justify-center items-center">
+        <button type="submit" class="w-16 text-black font-medium p-5 rounded-full hover:bg-red-500 transition">
+          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff">
+            <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
+          </svg>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const senhaDigitada = document.getElementById("senha").value;
+      const senhaCorreta = atob("MzM=");
+
+      const mensagemErro = document.getElementById("mensagemErro");
+
+      if (senhaDigitada === senhaCorreta) {
+        window.location.href = "TwxjE5olVBc.html";
+      } else {
+        mensagemErro.classList.remove("hidden");
+        mensagemErro.classList.add("animate-shake");
+
+        setTimeout(() => {
+          mensagemErro.classList.remove("animate-shake");
+        }, 500);
+      }
+    });
+  </script>
+</body>
+</html>

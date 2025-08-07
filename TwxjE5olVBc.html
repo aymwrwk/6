@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="img/card02.jpg">
+  <title>ㅤ</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { darkMode: 'class' }</script>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet" />
+</head>
+  <style>
+
+    @media (max-width: 768px) {
+    main {
+    background-image: none !important;
+    }
+    }
+
+    html { display: block; }
+
+   main {   
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+    .card-bg {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('./img/cardbgwhite.jpg');
+    }
+
+    .card-bg02 {
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-image: url('./img/bgwhite.jpg');
+    }
+
+    .dark .card-bg02 {
+    background-image: url('./img/ahha.jpg');
+    }
+
+    .dark .card-bg {
+    background-image: url('./img/card02.jpg');
+    }
+
+    .span01 { padding: 1px; background-color: white; }
+
+    .bg-discord { background-color: #8C9EFF; }
+
+    .imgbody {
+      position: absolute;
+      top: 30%;
+      width: 400px;
+      height: 340px;
+    }
+
+    @media (max-width: 768px) {
+      .imgbody { display: none; }
+    }
+  </style>
+  
+
+<body class="flex flex-col min-h-screen">
+<header class="flex dark:bg-black dark:border-black items-center px-4 border-b py-3 bg-white">
+  <h1 class="flex-1 text-center text-neutral-800 font-semibold"></h1>
+  <div class="flex gap-2">
+    <button id="toggleDark" class="dark:text-gray-100 p-4 text-neutral-600 rounded-full">
+    <span class="material-icons">dark_mode</span>
+    </button>
+    <button onclick="salvo()" class="p-2 dark:text-gray-100 text-neutral-600 rounded-full">
+    <span class="material-icons dark:text-gray-100"><a href="index.html">logout</a></span>
+    </button>
+  </div>
+</header>
+<!--MAIN-->
+  <main class="dark:bg-black flex-1 overflow-auto px-4 pb-24 bg-white">
+    <div id="openSection1" class="flex items-center justify-between mb-4 cursor-pointer">
+      <button class="p-1 text-neutral-500 hover:text-neutral-700 rounded-full">
+      </button>
+    </div>
+    
+  <!-- Grade vertical em colunas com 4 cards cada -->
+<div class="grid grid-rows-4 auto-cols-max grid-flow-col overflow-x-auto p-0 gap-0 w-full">
+
+
+  <!-- 01 -->
+  <a href="farmadas/farmada01.html">
+    <div class="w-64">
+      <div id="card1" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+        <h4 class="text-sm font-medium text-neutral-800 text-center mt-5">EMILY (MIE, <br> EMI, EMIZYH)</h4>
+        <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+          <span class="material-icons text-xs mr-1">add</span>
+          <span>Nota 2.5</span>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <!-- 02 -->
+  <div class="w-64">
+    <div id="card2" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3">MARIA MAYSA<br>(AIKA)</h4>
+      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 1.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03 -->
+  <div class="w-64">
+    <div id="card3" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5">ALICE <br> (SILLY)</h4>
+      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 4.5</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 04 -->
+  <div class="w-64">
+    <div id="card4" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5">NICOLE <br> (NINI)</h4>
+      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 4.2</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05 -->
+  <div class="w-64">
+    <div id="card5" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3">KIARA<br>(KIE)</h4>
+      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 4.0</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06 -->
+  <div class="w-64">
+    <div id="card5" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3">SARA STEFANY<br>(STEF)</h4>
+      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 0.0</span>
+      </div>
+    </div>
+  </div>
+
+   <!-- 07 -->
+  <div class="w-64">
+    <div id="card5" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3">LETÍCIA<br>(LETTY)</h4>
+      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 1.0</span>
+      </div>
+    </div>
+  </div>
+
+     <!-- 08 -->
+  <div class="w-64">
+    <div id="card5" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3"><br>()</h4>
+      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 0.0</span>
+      </div>
+    </div>
+  </div>
+  <!-- Adicione mais cards se quiser, eles automaticamente entram em novas colunas -->
+</div>
+
+
+<script>
+
+  document.querySelectorAll('.closeFullscreen').forEach(button => {
+    button.addEventListener('click', () => {
+      const fullscreenDiv = button.closest('div');
+
+      if (fullscreenDiv) {
+        const videos = fullscreenDiv.querySelectorAll('video');
+        videos.forEach(video => {
+          video.pause();
+          video.currentTime = 0;
+        });
+        fullscreenDiv.classList.add('hidden');
+      }
+    });
+  });
+</script>
+<script>
+  const discordBtn = document.getElementById('discordBtn');
+  const customAlert = document.getElementById('customAlert');
+
+  discordBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    customAlert.classList.remove('hidden');
+    customAlert.classList.remove('opacity-0');
+    customAlert.classList.add('opacity-100');
+
+    setTimeout(() => {
+      customAlert.classList.remove('opacity-100');
+      customAlert.classList.add('opacity-0');
+      setTimeout(() => customAlert.classList.add('hidden'), 300);
+    }, 2500);
+  });
+</script>
+
+  <script>
+const toggleDark = document.getElementById('toggleDark');
+  const main = document.querySelector('main');
+
+  function atualizarImagemDeFundo() {
+    const isDark = document.documentElement.classList.contains('dark');
+    if (isDark) {
+      main.style.backgroundImage = "url('./img/wallpaper.jpg')"; // Imagem para modo escuro
+    } else {
+      main.style.backgroundImage = "url('./img/wallpaper2.jpg')"; // Imagem para modo claro
+    }
+  }
+
+  toggleDark?.addEventListener('click', () => {
+    document.documentElement.classList.toggle('dark');
+    atualizarImagemDeFundo();
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    atualizarImagemDeFundo();
+  });
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const cards = [1, 2, 3, 4];
+    cards.forEach((num) => {
+      const card = document.getElementById(`card${num}`);
+      const fullscreenDiv = document.getElementById(`divFullscreen${num}`);
+      const openBtn = document.getElementById(`openSection${num}`);
+      const closeBtn = document.getElementById(`closeSection${num}`);
+      if (card && fullscreenDiv) {
+        card.addEventListener('click', () => {
+          fullscreenDiv.classList.remove('hidden');
+        });
+      }
+
+      if (openBtn && fullscreenDiv) {
+        openBtn.addEventListener('click', () => {
+          fullscreenDiv.classList.remove('hidden');
+        });
+      }
+
+      if (closeBtn && fullscreenDiv) {
+        closeBtn.addEventListener('click', () => {
+          fullscreenDiv.classList.add('hidden');
+        });
+      }
+    });
+
+    const audio = document.getElementById('audioPlayer');
+    const playBtn = document.getElementById('playBtn');
+    let isPlaying = false;
+
+    if (audio && playBtn) {
+      playBtn.addEventListener('click', () => {
+        if (!isPlaying) {
+          audio.play();
+          isPlaying = true;
+          playBtn.innerHTML = '<span class="material-icons text-lg">pause</span>';
+        } else {
+          audio.pause();
+          isPlaying = false;
+          playBtn.innerHTML = '<span class="material-icons text-lg">play_arrow</span>';
+        }
+      });
+
+      audio.addEventListener('ended', () => {
+        isPlaying = false;
+        playBtn.innerHTML = '<span class="material-icons text-lg">play_arrow</span>';
+      });
+    }
+  });
+
+</script>
+
+
+</body>
+</html>
