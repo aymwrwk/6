@@ -20,10 +20,10 @@
     html { display: block; }
 
    main {   
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
     .card-bg {
@@ -66,7 +66,8 @@
   
 
 <body class="flex flex-col min-h-screen">
-<header class="flex dark:bg-black dark:border-black items-center px-4 border-b py-3 bg-white">
+<header class="fixed top-0 w-full z-50 flex dark:bg-black dark:border-black items-center px-4 border-b py-3 bg-white">
+
   <h1 class="flex-1 text-center text-neutral-800 font-semibold"></h1>
   <div class="flex gap-2">
     <button id="toggleDark" class="dark:text-gray-100 p-4 text-neutral-600 rounded-full">
@@ -77,6 +78,7 @@
     </button>
   </div>
 </header>
+
 <!--MAIN-->
   <main class="dark:bg-black flex-1 overflow-auto px-4 pb-24 bg-white">
     <div id="openSection1" class="flex items-center justify-between mb-4 cursor-pointer">
@@ -84,88 +86,117 @@
       </button>
     </div>
     
-  <!-- Grade vertical em colunas com 4 cards cada -->
-<div class="grid grid-rows-4 auto-cols-max grid-flow-col overflow-x-auto p-0 gap-0 w-full">
+<section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-16 gap-8 mt-8">
+  <!-- Card 1 -->
+  <div class="w-full md:w-1/2  dark:bg-black p-6 flex flex-col sm:flex-row items-center gap-6 bg-[url('./img/')] bg-cover bg-center bg-no-repeat">
+    <div class="flex flex-col items-center">
+      <img src="./gif/c04d13ea0e96a92cced072c9541a18dc.gif" alt="Perfil 1" class="w-40 h-40 object-cover rounded-full shadow-md" />
+      
+    </div>
+
+    <div class="text-left dark:text-white text-black">
+      <h1 class="text-white dark:text-white text-black">***</h1>
+        <a class="text-white underline" href="">Discord </a>
+        <br>
+        <a class="text-white underline" href="">Instagram</a>
+    </div>
+  </div>
+
+  <!-- 
+   <div class="w-full md:w-1/2 bg-white dark:bg-black shadow-lg p-6 flex flex-col sm:flex-row items-center gap-6 bg-[url('./img/ahha.jpg')] bg-cover bg-center bg-no-repeat">
+    <div class="flex flex-col items-center">
+      <img src="./img/by.jpg" alt="Perfil 1" class="w-40 h-40 object-cover rounded-full shadow-md" />
+      <h3 class="mt-4 text-xl font-semibold text-neutral-800 dark:text-white">Nome 1</h3>
+    </div>
+
+    <div class="text-left">
+      <p class="text-sm text-neutral-600 dark:text-neutral-300">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam scelerisque aliquam odio nec cursus.
+      </p>
+    </div>
+  </div>-->
+</section>
 
 
-  <!-- 01 -->
-  <a href="farmadas/farmada01.html">
-    <div class="w-64">
-      <div id="card1" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
-        <h4 class="text-sm font-medium text-neutral-800 text-center mt-5">EMILY (MIE, <br> EMI, EMIZYH)</h4>
-        <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
-          <span class="material-icons text-xs mr-1">add</span>
-          <span>Nota 2.5</span>
+
+
+  <section class="px-6 pb-16 flex-1 ">
+    <div class="cursor-pointer grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-5xl mx-auto">
+      <div class="border border-white p-2 bg-black shadow-lg">
+        <div class=" bg-white h-6 flex items-center px-2 border-b border-gray-300">
+          <span class="text-xs text-black "></span>
         </div>
-      </div>
-    </div>
-  </a>
-
-  <!-- 02 -->
-  <div class="w-64">
-    <div id="card2" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
-      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3">MARIA MAYSA<br>(AIKA)</h4>
-      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
-        <span class="material-icons text-xs mr-1">add</span>
-        <span>Nota 1.0</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 03 -->
-  <div class="w-64">
-    <div id="card3" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
-      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5">ALICE <br> (SILLY)</h4>
-      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
-        <span class="material-icons text-xs mr-1">add</span>
-        <span>Nota 4.5</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 04 -->
-  <div class="w-64">
-    <div id="card4" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
-      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5">NICOLE <br> (NINI)</h4>
-      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
-        <span class="material-icons text-xs mr-1">add</span>
-        <span>Nota 4.2</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 05 -->
-  <div class="w-64">
-    <div id="card5" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
-      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3">KIARA<br>(KIE)</h4>
-      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
-        <span class="material-icons text-xs mr-1">add</span>
-        <span>Nota 4.0</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- 06 -->
-  <div class="w-64">
-    <div id="card5" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
-      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3">SARA STEFANY<br>(STEF)</h4>
-      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <img src="./img/card02.jpg" alt="Thumb 1" class="block w-full mt-2" />
+         <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
         <span class="material-icons text-xs mr-1">add</span>
         <span>Nota 0.0</span>
       </div>
-    </div>
-  </div>
-
-   <!-- 07 -->
-  <div class="w-64">
-    <div id="card5" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
-      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3">LETÍCIA<br>(LETTY)</h4>
-      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
-        <span class="material-icons text-xs mr-1">add</span>
-        <span>Nota 1.0</span>
       </div>
+
+      <div class="cursor-pointer border border-white p-2 bg-black shadow-lg">
+        <div class="bg-white h-6 flex items-center px-2 border-b border-gray-300">
+          <span class="text-xs text-black"></span>
+        </div>
+        <img src="./img/card02.jpg" alt="Thumb 1" class="block w-full mt-2" />
+         <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 0.0</span>
+      </div>
+      </div>
+
+     <div class="cursor-pointer border border-white p-2 bg-black shadow-lg">
+        <div class="bg-white h-6 flex items-center px-2 border-b border-gray-300">
+          <span class="text-xs text-black"></span>
+        </div>
+        <img src="./img/card02.jpg" alt="Thumb 1" class="block w-full mt-2" />
+         <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 0.0</span>
+      </div>
+      </div>
+
+      <div class="cursor-pointer border border-white p-2 bg-black shadow-lg">
+        <div class="bg-white h-6 flex items-center px-2 border-b border-gray-300">
+          <span class="text-xs text-black"></span>
+        </div>
+        <img src="./img/card02.jpg" alt="Thumb 1" class="block w-full mt-2" />
+         <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 0.0</span>
+      </div>
+      </div>
+
+      <div class="cursor-pointer border border-white p-2 bg-black shadow-lg">
+        <div class="bg-white h-6 flex items-center px-2 border-b border-gray-300">
+          <span class="text-xs text-black"></span>
+        </div>
+        <img src="./img/card02.jpg" alt="Thumb 1" class="block w-full mt-2" />
+         <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 0.0</span>
+      </div>
+      </div>
+
+      <div class="cursor-pointer border border-white p-2 bg-black shadow-lg">
+        <div class="bg-white h-6 flex items-center px-2 border-b border-gray-300">
+          <span class="text-xs text-black"></span>
+        </div>
+        <img src="./img/card02.jpg" alt="Thumb 1" class="block w-full mt-2" />
+         <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 0.0</span>
+      </div>
+      </div>
+
+      <!-- Adicione mais janelas conforme quiser -->
     </div>
-  </div>
+  </section>
+
+
+<div class="grid grid-rows-2 auto-cols-max grid-flow-col overflow-x-auto p-0 gap-0 w-full">
+
+
+
 
      <!-- 08 -->
   <div class="w-64">
@@ -178,6 +209,16 @@
     </div>
   </div>
   <!-- Adicione mais cards se quiser, eles automaticamente entram em novas colunas -->
+      <!-- 08 -->
+  <div class="w-64">
+    <div id="card5" class="card-bg dark:bg-neutral-900 rounded-sm cursor-pointer bg-white p-8 flex flex-col items-center justify-center w-full hover:shadow-md transition">
+      <h4 class="text-sm font-medium text-neutral-800 text-center mt-5 ml-3"><br>()</h4>
+      <div class="flex items-center text-xs text-neutral-400 mt-1 justify-center">
+        <span class="material-icons text-xs mr-1">add</span>
+        <span>Nota 0.0</span>
+      </div>
+    </div>
+  </div>
 </div>
 
 
