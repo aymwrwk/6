@@ -1,100 +1,28 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="dark">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Portfolio | Seu Nome</title>
-
-  <!-- Tailwind CSS via CDN -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeria com Carrossel</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    video{
+      width: 400px;
+    }
 
-  <!-- Fonte serifada elegante para o título -->
-  <link href="https://fonts.googleapis.com/css2?family=Parisienne&display=swap" rel="stylesheet" />
+    main{
+      justify-items: center;
+      align-items: center;
+      text-align: center;
+      margin-top: 100px;
+    }
+  </style>
+  
 </head>
-<body class="bg-black text-white flex flex-col min-h-screen">
+<body class="bg-black text-gray-100">
+  <main >
+    <video src="../lilly/lily.mp4" controls poster=""></video>
 
-  <!-- HERO -->
-  <section class="flex flex-col md:flex-row items-center justify-between min-h-screen px-6">
-    <!-- Imagem à esquerda -->
-    <div class="w-full md:w-1/2 h-80 md:h-auto bg-center bg-cover rounded-lg shadow-lg"
-         style="background-image: url('./img/hero.jpg')">
-    </div>
-
-    <!-- Texto + botão à direita -->
-    <div class="w-full md:w-1/2 mt-8 md:mt-0 flex flex-col items-start">
-      <h1 class="font-serif text-5xl md:text-7xl mb-4" style="font-family: 'Parisienne', cursive;">
-        SEU NOME AQUI
-      </h1>
-      <p class="mb-8 uppercase tracking-widest">Makeup Artist | Stylist | Photographer</p>
-      <button class="px-8 py-3 bg-white text-black rounded-full uppercase font-medium hover:opacity-90 transition">
-        Let’s Create
-      </button>
-    </div>
-  </section>
-
-  <!-- PROJECTS -->
-  <section class="px-6 py-16">
-    <h2 class="text-center text-xl mb-12">PROJECTS</h2>
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-8 max-w-4xl mx-auto">
-      <!-- Exemplo de um projeto -->
-      <a href="#" class="flex flex-col items-center group">
-        <div class="w-20 h-20 bg-no-repeat bg-center bg-contain"
-             style="background-image: url('./img/folder-icon.svg')">
-        </div>
-        <span class="mt-2 text-sm group-hover:underline">Music Artists</span>
-      </a>
-      <a href="#" class="flex flex-col items-center group">
-        <div class="w-20 h-20 bg-no-repeat bg-center bg-contain"
-             style="background-image: url('./img/folder-icon.svg')">
-        </div>
-        <span class="mt-2 text-sm group-hover:underline">Fashion Editorials</span>
-      </a>
-      <a href="#" class="flex flex-col items-center group">
-        <div class="w-20 h-20 bg-no-repeat bg-center bg-contain"
-             style="background-image: url('./img/folder-icon.svg')">
-        </div>
-        <span class="mt-2 text-sm group-hover:underline">Beauty Looks</span>
-      </a>
-      <a href="#" class="flex flex-col items-center group">
-        <div class="w-20 h-20 bg-no-repeat bg-center bg-contain"
-             style="background-image: url('./img/folder-icon.svg')">
-        </div>
-        <span class="mt-2 text-sm group-hover:underline">Backstage</span>
-      </a>
-      <!-- Repita para os demais -->
-    </div>
-  </section>
-
-  <!-- GALLERY “WINDOWS” -->
-  <section class="px-6 pb-16 flex-1">
-    <div class="grid grid-cols-1 sm:grid-cols-3 gap-12 max-w-5xl mx-auto">
-      <!-- Janela estilo Win98 -->
-      <div class="border border-white p-2 bg-black shadow-lg">
-        <!-- barra de título -->
-        <div class="bg-white h-6 flex items-center px-2 border-b border-gray-300">
-          <span class="text-xs text-black">thumb01.jpg</span>
-        </div>
-        <!-- imagem -->
-        <img src="./img/thumb01.jpg" alt="Thumb 1" class="block w-full mt-2" />
-      </div>
-
-      <div class="border border-white p-2 bg-black shadow-lg">
-        <div class="bg-white h-6 flex items-center px-2 border-b border-gray-300">
-          <span class="text-xs text-black">thumb02.jpg</span>
-        </div>
-        <img src="./img/thumb02.jpg" alt="Thumb 2" class="block w-full mt-2" />
-      </div>
-
-      <div class="border border-white p-2 bg-black shadow-lg">
-        <div class="bg-white h-6 flex items-center px-2 border-b border-gray-300">
-          <span class="text-xs text-black">thumb03.jpg</span>
-        </div>
-        <img src="./img/thumb03.jpg" alt="Thumb 3" class="block w-full mt-2" />
-      </div>
-
-      <!-- Adicione mais janelas conforme quiser -->
-    </div>
-  </section>
-
+  </main>
 </body>
 </html>
