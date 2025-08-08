@@ -3,11 +3,17 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Galeria com Carrossel</title>
+  <title>Silly</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     video{
-      width: 400px;
+      width: 500px;
+      height: 500px;
+    }
+
+    img{
+       width: 500px;
+      height: 500px;
     }
 
     main{
@@ -16,13 +22,27 @@
       text-align: center;
       margin-top: 100px;
     }
+
+    .videolow{
+      height: 400px;
+      width: 400px;
+    }
   </style>
   
 </head>
 <body class="bg-black text-gray-100">
-  <main >
-    <video src="../lilly/lily.mp4" controls poster=""></video>
 
+  <main>
+    <br>
+    <img src="../silly/silly04.png" alt="">
+    <br>
+    <br>
+    <video src="../silly/silly.mp4" controls poster="../thumb.png"></video>
+    <br>
+    <img src="../silly/silly02.png" alt="">
+    <br>
+    <video class="videolow" src="../silly/silly03.mp4" controls poster="../thumb.png"></video>
+   
   </main>
 </body>
 </html>
