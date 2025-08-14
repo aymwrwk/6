@@ -1,11 +1,133 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aika</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galeria Maria Maysa</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+ #lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+  justify-content: center;
+  align-items: flex-start; /* Alinha no topo */
+  padding-top: 10vh; /* Ajuste a altura do topo */
+}
+
+#lightbox-content {
+  max-width: 70%;
+  max-height: 70%;
+}
+
+#lightbox video, #lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+  </style>
 </head>
-<body>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo vel quisquam voluptas error enim praesentium ex sapiente numquam voluptatum commodi fugit cumque non magni, deserunt provident id! Consequuntur, adipisci provident!</p>
+<body class="bg-black text-gray-100 font-sans">
+  <br>
+  <br>
+  <br>
+  <br>
+  <main class="max-w-5xl mx-auto px-4 py-12">
+    <div class="relative overflow-hidden">
+      <div id="carousel" class="flex transition-transform duration-500">
+        <!-- Item 1 -->
+        <div class="min-w-full flex justify-center">
+          <img src="../aika/aika01.webp" alt="Silly 1" class="max-h-[500px] object-contain cursor-pointer lightbox-trigger">
+        </div>
+        <!-- Item 2 -->
+        <div class="min-w-full flex justify-center">
+          <video src="../aika/aika02.mp4" controls poster="../aika/aikathumb02.webp" class="max-h-[500px] object-contain cursor-pointer lightbox-trigger"></video>
+        </div>
+        <!-- Item 3 -->
+        <div class="min-w-full flex justify-center">
+         <video src="../aika/aika03.mp4" controls poster="../aika/aikathumb03.webp" class="max-h-[500px] object-contain cursor-pointer lightbox-trigger"></video>
+        </div> 
+      </div>
+
+      <!-- Botões -->
+      <button id="prev" class="absolute top-1/2 left-2 -translate-y-1/2 bg-gray-700 px-3 py-2 rounded-full hover:bg-gray-600">&#10094;</button>
+      <button id="next" class="absolute top-1/2 right-2 -translate-y-1/2 bg-gray-700 px-3 py-2 rounded-full hover:bg-gray-600">&#10095;</button>
+    </div>
+  </main>
+
+  <!-- Lightbox -->
+  <div id="lightbox" class="flex">
+    <span id="close-lightbox" class="absolute top-6 right-8 text-white text-4xl cursor-pointer">&times;</span>
+    <div id="lightbox-content"></div>
+  </div>
+
+  <script>
+    const carousel = document.getElementById("carousel");
+    const items = document.querySelectorAll("#carousel > div");
+    let index = 0;
+
+    document.getElementById("next").addEventListener("click", () => {
+      index = (index + 1) % items.length;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      document.querySelectorAll("video").forEach(v => v.pause());
+    });
+
+    document.getElementById("prev").addEventListener("click", () => {
+      index = (index - 1 + items.length) % items.length;
+      carousel.style.transform = `translateX(-${index * 100}%)`;
+      document.querySelectorAll("video").forEach(v => v.pause());
+    });
+
+    // Arrastar no celular
+    let startX = 0;
+    carousel.addEventListener("touchstart", e => startX = e.touches[0].clientX);
+    carousel.addEventListener("touchend", e => {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) document.getElementById("next").click();
+      if (endX - startX > 50) document.getElementById("prev").click();
+    });
+
+    // Lightbox
+    const lightbox = document.getElementById("lightbox");
+    const lightboxContent = document.getElementById("lightbox-content");
+    const closeBtn = document.getElementById("close-lightbox");
+
+    document.querySelectorAll(".lightbox-trigger").forEach(item => {
+      item.addEventListener("click", () => {
+        document.querySelectorAll("video").forEach(v => v.pause());
+        lightbox.style.display = "flex";
+        if (item.tagName.toLowerCase() === "img") {
+          lightboxContent.innerHTML = `<img src="${item.src}" alt="" />`;
+        } else {
+          lightboxContent.innerHTML = `<video src="${item.src}" controls autoplay poster="${item.poster || ''}"></video>`;
+        }
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      lightbox.style.display = "none";
+      lightboxContent.innerHTML = "";
+    });
+
+    lightbox.addEventListener("click", e => {
+      if (e.target === lightbox) {
+        lightbox.style.display = "none";
+        lightboxContent.innerHTML = "";
+      }
+    });
+
+    // Pausar vídeos ao iniciar outro
+    document.addEventListener("play", e => {
+      if (e.target.tagName.toLowerCase() === "video") {
+        document.querySelectorAll("video").forEach(v => {
+          if (v !== e.target) v.pause();
+        });
+      }
+    }, true);
+  </script>
+
 </body>
 </html>
