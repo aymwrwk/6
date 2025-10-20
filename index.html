@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>ㅤ</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Script do Google reCAPTCHA -->
   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <style>
     body { 
@@ -55,7 +54,6 @@
         placeholder-white focus:outline-none focus:ring-2 focus:ring-red-500"
       />
 
-      <!-- Mensagem de erro -->
       <div id="mensagemErro" class="hidden bg-red-500/80 text-white text-sm p-2 px-3 flex items-center gap-2 animate-pulse">
         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white" viewBox="0 0 24 24">
           <path d="M1 21h22L12 2 1 21zm13-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
@@ -63,12 +61,10 @@
         Senha incorreta ou CAPTCHA inválido.
       </div>
 
-      <!-- Google reCAPTCHA -->
       <div class="flex justify-center">
         <div class="g-recaptcha" data-sitekey="6Le9OaUrAAAAADJBJxNHSEvLgILXi_wLnjlm6sys"></div>
       </div>
 
-      <!-- Botão -->
       <div class="flex justify-center items-center">
         <button type="submit" class="w-16 text-black font-medium p-5 rounded-full hover:bg-red-500 transition">
           <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff">
