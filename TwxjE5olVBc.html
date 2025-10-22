@@ -87,12 +87,33 @@
       </button>
     </div>
     
+<div class="absolute top-[85px] left-80 z-40 
+          
+            p-6 w-96 flex justify-center items-center 
+           custom-absolute">
+  <p class="text-sm text-neutral-800 dark:text-gray-200 font-medium">
+  <img src="gif/c04d13ea0e96a92cced072c9541a18dc.gif" alt="">
+  </p>
+</div>
+
+<style>
+  @media (max-width: 768px) {
+    .custom-absolute {
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+    }
+  }
+</style>
+
+
+
 <section class="flex flex-col md:flex-row items-center justify-between px-8 md:px-16 py-16 gap-8 mt-8">
   <!-- Card 1 -->
   <div class="w-full md:w-1/2 p-6 flex flex-col sm:flex-row items-center gap-6 bg-[url('./img/')] bg-cover bg-center bg-no-repeat">
   </div>
 
-<section class="pl-0 dark:bg-black bg-white ml-0 p-10 grid grid-cols-1 md:grid-cols-2 gap-4 justify-items-center">
+<section class="dark:bg-black bg-white p-6 grid grid-cols-1 md:grid-cols-2 gap-6 place-items-center justify-center text-center">
+
   <!-- Card 1 -->
   <a href="farmadas/farmada01.html">
     <div class="w-64">
@@ -201,25 +222,32 @@
 </section>
 </section>
 
-<div class="w-full min-h-screen relative px-10 py-16 flex flex-col items-center">
-  <div class="absolute inset-0  "></div>
-  <div class="relative z-10 w-full flex flex-col items-center">
-    <h2 class="text-2xl font-bold text-neutral-800 dark:text-gray-100 mb-10">
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-0">
-      <div class="w-96 md:w-100 p-12 ">
-        <div class="card-bg dark:bg-neutral-900 rounded-lg cursor-pointer bg-white p-8 flex flex-col items-center justify-center transition">
-          <h4 class="text-sm font-medium text-neutral-800 text-center mt-2"><br>(Pasta 01)</h4>
-        </div>
-      </div>
-      <div class="w-96 md:w-100 p-12 ">
-        <div class="card-bg dark:bg-neutral-900 rounded-lg cursor-pointer bg-white p-8 flex flex-col items-center justify-center transition">
-          <h4 class="text-sm font-medium text-neutral-800 text-center mt-2"><br>(Pasta 02)</h4>
+<div class="w-full min-h-screen relative mt-64 px-10 py-16 flex flex-col items-center">
+  <div class="absolute inset-0"></div>
+  <div class="relative z-10 w-full flex flex-col items-center ">
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10 p-8 mt-64">
+      <!-- Pasta 01 -->
+      <div class="w-full flex justify-center">
+        <div class="card-bg dark:bg-neutral-900 rounded-2xl cursor-pointer bg-white 
+                    w-[300px] h-[250px] sm:w-[350px] sm:h-[300px] md:w-[400px] md:h-[350px]
+                    flex flex-col items-center justify-center transition ">
+          <h4 class="text-lg font-semibold text-neutral-800 text-center mt-2">
+            ( ????? )
+          </h4>
         </div>
       </div>
 
-      
-
+      <!-- Pasta 02 -->
+      <div class="w-full flex justify-center">
+        <div class="card-bg dark:bg-neutral-900 rounded-2xl cursor-pointer bg-white 
+                    w-[300px] h-[250px] sm:w-[350px] sm:h-[300px] md:w-[400px] md:h-[350px]
+                    flex flex-col items-center justify-center">
+          <h4 class="text-lg font-semibold text-neutral-800 text-center mt-2">
+            ( ????? )
+          </h4>
+        </div>
+      </div>
     </div>
   </div>
 </div>
