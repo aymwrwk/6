@@ -1,101 +1,439 @@
-<!DOCTYPE html>
-<html lang="pt-br">
+<!doctype html>
+<html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>ㅤ</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-  <style>
-    body { 
-      background-image: url("img/bodyindex.jpg");
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="favicon.jpeg">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-    .video-bg {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      z-index: -1;
-      width: 500px;
-      height: auto;
-      opacity: 0.3;
-      pointer-events: none; 
-    }
+<title>ContaPro</title>
 
-    .form-wrapper {
-      position: relative;
-      width: 100%;
-      max-width: 400px;
-      border-radius: 1rem;
-      overflow: hidden;
-    }
+<style>
+/* ==================== TEMA ==================== */
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#0f172a;
+  --muted:#6b7280;
+  --accent:#2563eb;
+}
+[data-theme="dark"]{
+  --bg:#0b0b0b;
+  --card:#111111;
+  --text:#e6eef8;
+  --muted:#9aa9bf;
+  --accent:#3b82f6;
+}
 
-    .form-overlay {
-      position: relative;
-      z-index: 1;
-      padding: 1.5em;
-    }
-  </style>
+*{box-sizing:border-box;margin:0;padding:0;}
+body{
+  font-family: 'Inter', sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* ==================== HEADER ==================== */
+.container{
+  max-width:1100px;
+  margin:20px auto;
+  padding:15px;
+}
+
+header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  margin-bottom:30px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.logo{
+  width:40px;
+  height:40px;
+  border-radius:8px;
+  object-fit:cover;
+}
+
+/* SEARCH */
+.searchwrap{
+  flex:1;
+  display:flex;
+  gap:10px;
+}
+
+.search{
+  max-width: 560px; /* ajuste como quiser */
+
+  flex:1;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  background:var(--card);
+  padding:8px 12px;
+  border-radius:10px;
+  border:1px solid #00000022;
+}
+
+.search input{
+  flex:1;
+  border:0;
+  background:transparent;
+  outline:none;
+  font-size:14px;
+  color:var(--text);
+}
+
+#count{
+  color:var(--muted);
+  font-size:12px;
+}
+
+/* THEME BUTTON */
+.theme-btn{
+  background:transparent;
+  border:0;
+  cursor:pointer;
+  padding:6px;
+  border-radius:8px;
+}
+
+/* ==================== CARDS ==================== */
+.products{
+  margin-top:15px;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(170px,1fr));
+  gap:14px;
+}
+
+.card{
+  background:var(--card);
+  padding:10px;
+  border-radius:10px;
+  border:1px solid #00000020;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  transition:0.2s;
+}
+
+.card:hover{
+  transform:translateY(-3px);
+  box-shadow:0 4px 12px #00000025;
+}
+
+.thumb{
+  height:110px;
+  border-radius:8px;
+  background-size:cover;
+  background-position:center;
+}
+
+.title{
+  font-size:14px;
+  font-weight:600;
+}
+
+.muted{
+  color:var(--muted);
+  font-size:12px;
+}
+
+.price{
+  font-size:15px;
+  font-weight:700;
+  color:var(--accent);
+}
+
+.buy{
+  margin-top:8px;
+  padding:8px;
+  border:0;
+  border-radius:8px;
+  background:var(--accent);
+  color:white;
+  cursor:pointer;
+  font-size:14px;
+}
+
+/* Sem resultados */
+.no-results{
+  text-align:center;
+  margin-top:30px;
+  font-size:14px;
+  color:var(--muted);
+}
+
+.meio{
+text-align: center;
+}
+
+.meip-p{
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-principal{
+  background-color: var(--accent);
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.btn-principal >p{
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+
+.hero{
+  width:100%;
+  padding:70px 0 50px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  background: radial-gradient(800px 400px at 30% 40%, rgba(41,59,77,0.12), transparent 10%),
+              radial-gradient(700px 350px at 80% 30%, rgba(72,36,84,0.06), transparent 12%),
+              linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0));
+  position:relative;
+  color:var(--text, #e6eef8);
+}
+
+[data-theme="dark"] .hero{
+  background-color: #0b0b0b;
+}
+
+.hero-inner{
+  text-align:center;
+  max-width:920px;
+  padding:20px;
+  margin:0 20px;
+}
+
+
+.hero-title{
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  font-size:48px;  
+  letter-spacing:1px;
+  margin:0 0 14px;
+  line-height:1;
+  color:var(--text, #ffffff);
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+}
+
+.hero-title .bracket{
+  color: var(--muted, #9aa9bf);
+  font-weight:700;
+  margin:0 10px;
+  font-size:46px;
+  opacity:0.8;
+}
+
+.hero-sub{
+  margin:6px 0 22px;
+  font-size:16px;
+  color:var(--accent, #2aa6ff);
+  font-weight:600;
+  text-transform:none;
+}
+
+.hero-cta{
+  display:inline-block;
+  text-decoration:none;
+  padding:12px 28px;
+  border-radius:30px;
+  background: #1f7de6;
+  color:#fff;
+  font-weight:700;
+  font-size:14px;
+ 
+
+}
+
+.hero-cta:hover{
+  transform:translateY(-4px);
+  box-shadow: 0 12px 34px rgba(31,125,230,0.22);
+}
+
+@media (max-width:900px){
+  .hero-title{ font-size:38px; }
+  .hero-title .bracket{ font-size:36px; margin:0 8px; }
+  .hero-sub{ font-size:15px; }
+}
+@media (max-width:560px){
+  .hero{ padding:40px 0; }
+  .hero-title{ font-size:26px; }
+  .hero-title .bracket{ font-size:24px; margin:0 6px; }
+  .hero-sub{ font-size:13px; margin-bottom:12px; }
+  .hero-cta{ padding:10px 18px; font-size:13px; border-radius:22px; }
+}
+
+.redirect{
+  text-decoration: none;
+  color: inherit;
+}
+</style>
+
 </head>
-<body class="flex items-center justify-center min-h-screen bg-black text-white">
+<body>
 
-  <div class="form-wrapper rounded-lg p-8 ">
-    <form id="loginForm" class="form-overlay space-y-4">
-      <input
-        type="password"
-        id="senha"
-        required
-        placeholder=""
-        class="w-full p-2 text-black rounded-sm border border-white/20 
-        placeholder-white focus:outline-none focus:ring-2 focus:ring-red-500"
-      />
+<div class="container">
 
-      <div id="mensagemErro" class="hidden bg-red-500/80 text-white text-sm p-2 px-3 flex items-center gap-2 animate-pulse">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 fill-white" viewBox="0 0 24 24">
-          <path d="M1 21h22L12 2 1 21zm13-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
-        </svg>
-        Senha incorreta ou CAPTCHA inválido.
-      </div>
-
-      <div class="flex justify-center">
-        <div class="g-recaptcha" data-sitekey="6Le9OaUrAAAAADJBJxNHSEvLgILXi_wLnjlm6sys"></div>
-      </div>
-
-      <div class="flex justify-center items-center">
-        <button type="submit" class="w-16 text-black font-medium p-5 rounded-full hover:bg-red-500 transition">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#ffffff">
-            <path d="M480-120v-80h280v-560H480v-80h280q33 0 56.5 23.5T840-760v560q0 33-23.5 56.5T760-120H480Zm-80-160-55-58 102-102H120v-80h327L345-622l55-58 200 200-200 200Z"/>
-          </svg>
-        </button>
-      </div>
-    </form>
+<header>
+  <div class="brand">
+    <img src="favicon.jpeg" class="logo">
+    <strong>ContaPro</strong>
   </div>
 
-  <script>
-    document.getElementById("loginForm").addEventListener("submit", function(e) {
-      e.preventDefault();
+  <div class="searchwrap">
+    <div class="search">
+      <input id="search" placeholder="Pesquisar produtos...">
+      <div id="count">Mostrando 0 produtos</div>
+    </div>
 
-      const senhaDigitada = document.getElementById("senha").value;
-      const senhaCorreta = atob("MzM=");
-      const mensagemErro = document.getElementById("mensagemErro");
+    <button id="themeBtn" class="theme-btn">
+      <svg id="themeIcon" width="24" height="24"></svg>
+    </button>
+  </div>
+</header>
 
-      // Verifica se o CAPTCHA foi resolvido
-      const captchaResponse = grecaptcha.getResponse();
 
-      if (senhaDigitada === senhaCorreta && captchaResponse.length > 0) {
-        window.location.href = "TwxjE5olVBc.html";
-      } else {
-        mensagemErro.classList.remove("hidden");
-        mensagemErro.classList.add("animate-shake");
-        setTimeout(() => {
-          mensagemErro.classList.remove("animate-shake");
-        }, 500);
-      }
-    });
-  </script>
+<section class="hero">
+  <div class="hero-inner">
+    <h2 class="hero-title"><span class="bracket">[</span> Comprar e Vender <span class="bracket">]</span></h2>
+    <p class="hero-sub">contas, jogos, itens digitais e mais!</p>
+    <a class="hero-cta" href="#how">COMO FUNCIONA?</a>
+  </div>
+</section>
+
+
+<!-- ================= CARDS MANUAIS ================= -->
+<section class="products" id="products">
+
+  <a class="redirect" href="paginas/paramountplus.html">
+    <div class="card">
+      <div class="thumb" style="background-image:url('anuncios/anuncioparamount.png')"></div>
+      <div class="title">Paramount Plus</div>
+      <div class="muted">Streaming • Acesso total</div>
+      <div class="price">R$ 7,90</div>
+      <button class="buy">Comprar</button>
+    </div>
+  </a>
+
+  <div class="card">
+    <div class="thumb" style="background-image:url('anuncios/anuncionetflix.png')"></div>
+    <div class="title">Conta Netflix Premium</div>
+    <div class="muted">Streaming • Ultra HD</div>
+    <div class="price">R$ 10,00</div>
+    <button class="buy">Comprar</button>
+  </div>
+
+  <div class="card">
+    <div class="thumb" style="background-image:url('anuncios/spotify.jpg')"></div>
+    <div class="title">Spotify Individual</div>
+    <div class="muted">Música • Sem anúncios</div>
+    <div class="price">R$ 7,90</div>
+    <button class="buy">Comprar</button>
+  </div>
+
+   <div class="card">
+    <div class="thumb" style="background-image:url('anuncios/anunciodisney.png')"></div>
+    <div class="title">Disney Plus</div>
+    <div class="muted">Premium • Ultra HD</div>
+    <div class="price">R$ 5,90</div>
+    <button class="buy">Comprar</button>
+  </div>
+
+   <div class="card">
+    <div class="thumb" style="background-image:url('anuncios/anuncioroblox.png')"></div>
+    <div class="title">Contas Roblox</div>
+    <div class="muted">Limiteds • Itens </div>
+    <div class="price">R$ 14,90</div>
+    <button class="buy">Comprar</button>
+  </div>
+
+   <div class="card">
+    <div class="thumb" style="background-image:url('anuncios/anunciosmurfvalorant.jpg')"></div>
+    <div class="title">Smurfs Valorant</div>
+    <div class="muted">Level 20 +</div>
+    <div class="price">R$ 25,90</div>
+    <button class="buy">Comprar</button>
+  </div>
+</section>
+
+<div id="noResults" class="no-results" style="display:none;">
+  Nenhum produto encontrado.
+</div>
+
+</div>
+
+<!-- ==================== SCRIPT ==================== -->
+<script>
+/* ====== TEMA ====== */
+const root = document.documentElement;
+const themeBtn = document.getElementById("themeBtn");
+const themeIcon = document.getElementById("themeIcon");
+
+function setTheme(mode){
+  if(mode === "dark"){
+    root.setAttribute("data-theme","dark");
+    themeIcon.innerHTML = `<path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z" fill="white"/>`;
+  } else {
+    root.removeAttribute("data-theme");
+    themeIcon.innerHTML = `
+      <circle cx="12" cy="12" r="4" fill="black"/>
+      <path d="M12 2v3M12 19v3M4 12H1M23 12h-3M5 5l2 2M17 19l2 2M5 19l2-2M17 5l2-2"
+      stroke="black" stroke-width="1.5" stroke-linecap="round"/>`;
+  }
+  localStorage.setItem("theme",mode);
+}
+
+themeBtn.onclick = () => {
+  const mode = localStorage.getItem("theme")==="dark" ? "light" : "dark";
+  setTheme(mode);
+};
+
+setTheme(localStorage.getItem("theme") || "light");
+
+
+/* ====== BUSCA ====== */
+const search = document.getElementById("search");
+const cards = document.querySelectorAll(".card");
+const count = document.getElementById("count");
+const noResults = document.getElementById("noResults");
+
+function filterProducts(){
+  const q = search.value.toLowerCase().trim();
+  let visible = 0;
+
+  cards.forEach(card=>{
+    const text = card.innerText.toLowerCase();
+    const match = text.includes(q);
+
+    card.style.display = match ? "flex" : "none";
+    if(match) visible++;
+  });
+
+  count.textContent = `Mostrando ${visible} produtos`;
+  noResults.style.display = visible === 0 ? "block" : "none";
+}
+
+search.oninput = filterProducts;
+filterProducts();
+</script>
+
 </body>
 </html>
