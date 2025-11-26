@@ -38,14 +38,71 @@ body{
   margin:20px auto;
   padding:15px;
 }
-
+/* HEADER FIXO */
 header{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  backdrop-filter: blur(10px);
+  background: var(--bg);
   display:flex;
   align-items:center;
   justify-content:space-between;
-  gap:12px;
-  margin-bottom:30px;
+  padding:12px 20px;
+  border-bottom:1px solid #ffffff15;
 }
+
+/* container do header totalmente independente */
+.header-inner{
+  max-width:1100px;
+  width:100%;
+  margin:0 auto;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+}
+
+/* logo à esquerda */
+.header-logo{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.header-logo img{
+  width:42px;
+  height:42px;
+  object-fit:cover;
+  border-radius:8px;
+}
+
+/* barra de busca central */
+.header-search{
+  flex:1;
+  display:flex;
+  align-items:center;
+}
+
+/* botão Anunciar */
+.btn-anunciar{
+  text-transform: uppercase;
+  border: none;
+  display:inline-block;
+  text-decoration:none;
+  padding:12px 28px;
+  border-radius:30px;
+  background: #1f7de6;
+  color:#fff;
+  font-weight:700;
+  font-size:14px;
+}
+
+.btn-anunciar:hover{
+ transform:translateY(-4px);
+box-shadow: 0 12px 34px rgba(31,125,230,0.22);
+}
+
 
 .brand{
   display:flex;
@@ -68,17 +125,16 @@ header{
 }
 
 .search{
-  max-width: 560px; /* ajuste como quiser */
-
   flex:1;
   display:flex;
   align-items:center;
-  gap:8px;
+  gap:10px;
   background:var(--card);
-  padding:8px 12px;
+  padding:8px 14px;
   border-radius:10px;
-  border:1px solid #00000022;
+  border:1px solid #ffffff15;
 }
+
 
 .search input{
   flex:1;
@@ -107,20 +163,53 @@ header{
 .products{
   margin-top:15px;
   display:grid;
-  grid-template-columns:repeat(auto-fill, minmax(170px,1fr));
-  gap:14px;
+  gap:16px;
+  grid-template-columns:repeat(auto-fit, minmax(160px, 1fr));
+  justify-content:center;
 }
 
-.card{
+
+.products-jogos{
+  margin-top:15px;
+  display:grid;
+  gap:16px;
+  grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+  justify-content:center;
+}
+
+
+.card-jogos{
   background:var(--card);
-  padding:10px;
-  border-radius:10px;
+  padding:14px;
+  border-radius:12px;
   border:1px solid #00000020;
   display:flex;
   flex-direction:column;
-  gap:6px;
+  gap:10px;
   transition:0.2s;
+  min-height:360px; /* <-- ALTURA MAIOR DO CARD */
 }
+
+.thumb-jogos{
+  height:290px;       /* <-- antes 110px */
+  border-radius:10px;
+  background-size:cover;
+  background-position:center;
+}
+
+
+.card{
+  background:var(--card);
+  padding:14px;
+  border-radius:12px;
+  border:1px solid #00000020;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  transition:0.2s;
+  min-height:260px; /* <-- ALTURA MAIOR DO CARD */
+}
+
 
 .card:hover{
   transform:translateY(-3px);
@@ -128,11 +217,37 @@ header{
 }
 
 .thumb{
-  height:110px;
-  border-radius:8px;
+  height:150px;       /* <-- antes 110px */
+  border-radius:10px;
   background-size:cover;
   background-position:center;
 }
+
+@media (max-width:500px){
+
+  .thumb{
+    height:130px; /* adapta a imagem */
+  }
+
+  .card{
+    padding:12px;
+    min-height:240px;
+  }
+
+  .title{
+    font-size:13px;
+  }
+
+  .price{
+    font-size:14px;
+  }
+
+  .buy{
+    padding:8px;
+    font-size:13px;
+  }
+}
+
 
 .title{
   font-size:14px;
@@ -145,10 +260,17 @@ header{
 }
 
 .price{
+  display: inline-block;    /* Faz a borda ficar apenas no tamanho do texto */
+  margin: 0 auto;           /* Centraliza horizontalmente */
+  border-radius: 7px;
+  padding: 3px 8px;
+  border: 1px solid var(--accent);
   font-size:15px;
   font-weight:700;
   color:var(--accent);
+  text-align: center;
 }
+
 
 .buy{
   margin-top:8px;
@@ -285,6 +407,29 @@ text-align: center;
   text-decoration: none;
   color: inherit;
 }
+
+@media (max-width: 600px) {
+  .header-logo {
+    display: none !important;
+  }
+
+  .btn-anunciar {
+    display: none !important;
+  }
+
+  .header-search {
+    flex: 1;
+  }
+
+  .theme-btn {
+    margin-left: 10px;
+  }
+
+  .header-inner {
+    gap: 10px;
+  }
+}
+
 </style>
 
 </head>
@@ -292,20 +437,32 @@ text-align: center;
 
 <div class="container">
 
+<!-- ==================== HEADER ==================== -->
 <header>
-  <div class="brand">
-    <img src="favicon.jpeg" class="logo">
-    <strong>ContaPro</strong>
-  </div>
+  <div class="header-inner">
 
-  <div class="searchwrap">
-    <div class="search">
-      <input id="search" placeholder="Pesquisar produtos...">
-      <div id="count">Mostrando 0 produtos</div>
+    <div class="header-logo">
+      <img src="favicon.jpeg" alt="Logo">
+      <span style="font-weight:700; font-size:18px;">ContaPro</span>
     </div>
 
-    <button id="themeBtn" class="theme-btn">
-      <svg id="themeIcon" width="24" height="24"></svg>
+    <div class="header-search">
+      <div class="search">
+        <svg width="18" height="18" fill="none" stroke="var(--muted)" stroke-width="2"
+          stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="8" cy="8" r="6"></circle>
+          <line x1="14" y1="14" x2="20" y2="20"></line>
+        </svg>
+
+        <input id="search" placeholder="Pesquisar produtos...">
+      </div>
+    </div>
+
+
+    <button class="btn-anunciar">Anunciar</button>
+
+    <button id="themeBtn" class="theme-btn"> 
+    <svg id="themeIcon" width="24" height="24"></svg>
     </button>
   </div>
 </header>
@@ -319,9 +476,13 @@ text-align: center;
   </div>
 </section>
 
+<section class="hero">
+  <h3 class="hero-title"><span class="bracket"></span> Streaming e TV <span class="bracket"></span></h3>
+</section>
 
 <!-- ================= CARDS MANUAIS ================= -->
-<section class="products" id="products">
+<section class="products">
+
 
   <a class="redirect" href="paginas/paramountplus.html">
     <div class="card">
@@ -329,50 +490,55 @@ text-align: center;
       <div class="title">Paramount Plus</div>
       <div class="muted">Streaming • Acesso total</div>
       <div class="price">R$ 7,90</div>
-      <button class="buy">Comprar</button>
     </div>
   </a>
 
-  <div class="card">
-    <div class="thumb" style="background-image:url('anuncios/anuncionetflix.png')"></div>
-    <div class="title">Conta Netflix Premium</div>
-    <div class="muted">Streaming • Ultra HD</div>
-    <div class="price">R$ 10,00</div>
-    <button class="buy">Comprar</button>
-  </div>
-
-  <div class="card">
-    <div class="thumb" style="background-image:url('anuncios/spotify.jpg')"></div>
-    <div class="title">Spotify Individual</div>
-    <div class="muted">Música • Sem anúncios</div>
-    <div class="price">R$ 7,90</div>
-    <button class="buy">Comprar</button>
-  </div>
-
+  <a class="redirect" href="paginas/netflix.html">
+    <div class="card">
+      <div class="thumb" style="background-image:url('anuncios/anuncionetflix.png')"></div>
+      <div class="title">Conta Netflix Premium</div>
+      <div class="muted">Streaming • Ultra HD</div>
+      <div class="price">R$ 10,00</div>
+    </div>
+  </a>
+  <a class="redirect" href="paginas/disneyplus.html">
    <div class="card">
     <div class="thumb" style="background-image:url('anuncios/anunciodisney.png')"></div>
     <div class="title">Disney Plus</div>
     <div class="muted">Premium • Ultra HD</div>
     <div class="price">R$ 5,90</div>
-    <button class="buy">Comprar</button>
   </div>
-
-   <div class="card">
-    <div class="thumb" style="background-image:url('anuncios/anuncioroblox.png')"></div>
-    <div class="title">Contas Roblox</div>
-    <div class="muted">Limiteds • Itens </div>
-    <div class="price">R$ 14,90</div>
-    <button class="buy">Comprar</button>
-  </div>
-
-   <div class="card">
-    <div class="thumb" style="background-image:url('anuncios/anunciosmurfvalorant.jpg')"></div>
-    <div class="title">Smurfs Valorant</div>
-    <div class="muted">Level 20 +</div>
-    <div class="price">R$ 25,90</div>
-    <button class="buy">Comprar</button>
+  </a>
+    <div class="card">
+    <div class="thumb" style="background-image:url('anuncios/spotify.jpg')"></div>
+    <div class="title">Spotify Individual</div>
+    <div class="muted">Música • Sem anúncios</div>
+    <div class="price">R$ 7,90</div>
   </div>
 </section>
+
+<section class="hero">
+   <h2 class="hero-title"><span class="bracket"></span> Outros / Anúncios<span class="bracket"></span></h2>
+</section>
+
+<section class="products-jogos">
+
+<div class="card-jogos">
+    <div class="thumb-jogos" style="background-image:url('anuncios/anunciocontavalorant.png')"></div>
+    <div class="title">Conta de Valorant com Faca da coleção Kohaku & Matsuba + Vandal Origem </div>
+    <div class="muted">2 passes • Level 258 </div>
+    <div class="price">R$ 115,00</div>
+  </div>
+
+   <div class="card-jogos">
+    <div class="thumb-jogos" style="background-image:url('anuncios/anunciotwitterantiga.jpg')"></div>
+    <div class="title">Contas do X (Twitter) Antigas</div>
+    <div class="muted">2008 à 2014</div>
+    <div class="price">R$ 5,90</div>
+  </div>
+</section>
+
+
 
 <div id="noResults" class="no-results" style="display:none;">
   Nenhum produto encontrado.
@@ -406,7 +572,7 @@ themeBtn.onclick = () => {
   setTheme(mode);
 };
 
-setTheme(localStorage.getItem("theme") || "light");
+setTheme(localStorage.getItem("theme") || "dark");
 
 
 /* ====== BUSCA ====== */
