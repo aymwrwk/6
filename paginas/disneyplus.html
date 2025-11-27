@@ -302,7 +302,8 @@
   </div>
   <br>
     <div id="warningBox" class="warning-box">Selecione o Item desejado.</div>
-    <button class="btn">Comprar</button>
+    <button onclick="gerarPagamento()">Comprar</button>
+
   </div>
   <br /><br />
 
@@ -411,8 +412,41 @@ document.addEventListener('click', function (e) {
     document.getElementById('optionsList').style.display = 'none';
   }
 });
+</script>
 
 
+<script>
+async function gerarPagamento() {
+
+    if (!selectedItem) {
+        let box = document.getElementById("warningBox");
+        box.style.display = "block";
+        setTimeout(() => { box.style.display = "none"; }, 2500);
+        return;
+    }
+
+    const response = await fetch("./netlify/functions/gerarPagamento", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            item: selectedItem
+        })
+    });
+
+    const data = await response.json();
+
+    if (data.error) {
+        alert("Erro ao gerar pagamento");
+        return;
+    }
+
+    // LivePix retorna o link de checkout
+    const linkPagamento = data.checkout_url || data.charge_url;
+
+    window.location.href = linkPagamento;
+}
 </script>
 
 </body>
