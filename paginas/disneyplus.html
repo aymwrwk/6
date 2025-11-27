@@ -276,7 +276,7 @@
 
 <div class="container">
   <div class="product">
-    <div class="thumb" style="background-image:url('../anuncios/anuncioparamount.png')"></div>
+    <div class="thumb" style="background-image:url('../anuncios/anunciodisney.png')"></div>
     <div class="info">
       <h1>Disney Plus</h1>
       <p class="desc">Acesso completo à Disney, com filmes, séries e conteúdos exclusivos.</p>
@@ -366,65 +366,63 @@ document.addEventListener('click', function (e) {
 </script>
 
 
-<script>
-let selectedItem = null; // guarda o item selecionado
-
-function toggleOptions() {
-  document.getElementById('optionsList').style.display =
-    document.getElementById('optionsList').style.display === 'block'
-      ? 'none'
-      : 'block';
-}
-
-function selectOption(title, stock, price) {
-  selectedItem = { title, stock, price }; // salva seleção
-
-  document.getElementById("selectedText").innerHTML = `
-    ${title} — <span style="color:#2aa6ff; font-weight:700;">${price}</span>
-  `;
-
-  document.getElementById('optionsList').style.display = 'none';
-}
-
-// Fecha o select clicando fora
-document.addEventListener('click', function (e) {
-  if (!document.querySelector('.custom-select').contains(e.target)) {
-    document.getElementById('optionsList').style.display = 'none';
-  }
-});
 </script>
 
 
 <script>
-async function gerarPagamento() {
+let selectedItem = null;
 
+function selectItem(element, title, price) {
+    document.querySelectorAll(".item").forEach(i => i.classList.remove("selected"));
+    element.classList.add("selected");
+
+    selectedItem = { title, price };
+}
+
+// ==========================
+// GERAR PAGAMENTO (FUNCIONANDO)
+// ==========================
+async function gerarPagamento() {
     if (!selectedItem) {
         let box = document.getElementById("warningBox");
         box.style.display = "block";
-        setTimeout(() => { box.style.display = "none"; }, 2500);
+        setTimeout(() => box.style.display = "none", 2500);
         return;
     }
 
-    const response = await fetch("/.netlify/functions/gerarPagamento", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ item: selectedItem })
-    });
+    try {
+        const response = await fetch("/.netlify/functions/gerarPagamento", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                item: {
+                    price: selectedItem.price,
+                    title: selectedItem.title
+                }
+            })
+        });
 
-    const data = await response.json();
+        const data = await response.json();
 
-    if (data.error) {
-        alert("Erro ao gerar pagamento");
-        return;
+        if (!data || data.error) {
+            alert("Erro ao gerar pagamento: " + (data?.error || "desconhecido"));
+            return;
+        }
+
+        const link = data.checkout_url || data.charge_url;
+
+        if (!link) {
+            alert("Erro: o servidor não retornou o link de pagamento.");
+            return;
+        }
+
+        window.location.href = link;
+
+    } catch (error) {
+        alert("Erro ao conectar com o servidor.");
+        console.error(error);
     }
-
-    const linkPagamento = data.checkout_url || data.charge_url;
-
-    window.location.href = linkPagamento;
 }
-
 </script>
 
 </body>
