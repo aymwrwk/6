@@ -302,7 +302,8 @@
   </div>
   <br>
     <div id="warningBox" class="warning-box">Selecione o Item desejado.</div>
-    <button onclick="gerarPagamento()">Comprar</button>
+    <button onclick="gerarPagamento()" class="btn">Comprar</button>
+
 
   </div>
   <br /><br />
@@ -337,28 +338,7 @@
   </div>
 </div>
 
-
-
 <script>
-document.querySelector(".btn").addEventListener("click", function () {
-  if (!selectedItem) {
-    let box = document.getElementById("warningBox");
-
-    box.style.display = "block";
-
-    // desaparecer depois de 2.5s
-    setTimeout(() => {
-      box.style.display = "none";
-    }, 2500);
-
-    return; // impede a ação de compra sem item
-  }
-
-  // 🟦 REDIRECIONAMENTO AO COMPRAR
-  window.location.href = "https://livepix.gg/esbanjar?amount=5.90";
-});
-
-
 
 
 function toggleOptions() {
@@ -425,14 +405,12 @@ async function gerarPagamento() {
         return;
     }
 
-    const response = await fetch("./netlify/functions/gerarPagamento", {
+    const response = await fetch("/.netlify/functions/gerarPagamento", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
         },
-        body: JSON.stringify({
-            item: selectedItem
-        })
+        body: JSON.stringify({ item: selectedItem })
     });
 
     const data = await response.json();
@@ -442,11 +420,11 @@ async function gerarPagamento() {
         return;
     }
 
-    // LivePix retorna o link de checkout
     const linkPagamento = data.checkout_url || data.charge_url;
 
     window.location.href = linkPagamento;
 }
+
 </script>
 
 </body>
