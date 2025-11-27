@@ -4,7 +4,6 @@ exports.handler = async (event, context) => {
     const clientId = "cc405852-0aba-436a-bf91-b30f35322e85";
     const clientSecret = "G3nJUgysggOrP6KsZh9QJGeDDkcwbyRZfyXT/A2oJFSigty6RgqLm/ThzCIZ5A2dt1o7CQwoWZoEWauwAksxDnZRsLwQoaFGJwFMLnq056+QthSFUjEhLb6tXoPxBUDxhf6Q1fQshM7oxvJu7hT28dmQpWV7JJ1ybmfO2QKTruY";
 
-    // pega os dados enviados pelo front-end
     const body = JSON.parse(event.body || "{}");
 
     const valor = Number(body.item?.price?.replace("R$", "").replace(",", "."));
@@ -36,7 +35,11 @@ exports.handler = async (event, context) => {
         return {
             statusCode: 200,
             headers: { "Access-Control-Allow-Origin": "*" },
-            body: JSON.stringify(result)
+            body: JSON.stringify({
+                checkout_url: result.checkoutUrl, // 🔥 ajustado para o front
+                charge_url: result.chargeUrl,     // opcional
+                ...result
+            })
         };
 
     } catch (error) {
@@ -46,5 +49,3 @@ exports.handler = async (event, context) => {
         };
     }
 };
-
-
