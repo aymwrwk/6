@@ -4,6 +4,17 @@ exports.handler = async (event, context) => {
     const clientId = "cc405852-0aba-436a-bf91-b30f35322e85";
     const clientSecret = "G3nJUgysggOrP6KsZh9QJGeDDkcwbyRZfyXT/A2oJFSigty6RgqLm/ThzCIZ5A2dt1o7CQwoWZoEWauwAksxDnZRsLwQoaFGJwFMLnq056+QthSFUjEhLb6tXoPxBUDxhf6Q1fQshM7oxvJu7hT28dmQpWV7JJ1ybmfO2QKTruY";
 
+    if (event.httpMethod === "OPTIONS") {
+        return {
+            statusCode: 200,
+            headers: {
+                "Access-Control-Allow-Origin": "https://explana.shop",
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "POST, OPTIONS"
+            }
+        };
+    }
+
     const body = JSON.parse(event.body || "{}");
 
     const valor = Number(body.item?.price?.replace("R$", "").replace(",", "."));
@@ -12,6 +23,9 @@ exports.handler = async (event, context) => {
     if (!valor) {
         return {
             statusCode: 400,
+            headers: {
+                "Access-Control-Allow-Origin": "https://explana.shop"
+            },
             body: JSON.stringify({ error: "Valor inválido" })
         };
     }
@@ -34,10 +48,14 @@ exports.handler = async (event, context) => {
 
         return {
             statusCode: 200,
-            headers: { "Access-Control-Allow-Origin": "*" },
+            headers: {
+                "Access-Control-Allow-Origin": "https://explana.shop",
+                "Access-Control-Allow-Headers": "Content-Type",
+                "Access-Control-Allow-Methods": "POST, OPTIONS"
+            },
             body: JSON.stringify({
-                checkout_url: result.checkoutUrl, // 🔥 ajustado para o front
-                charge_url: result.chargeUrl,     // opcional
+                checkout_url: result.checkoutUrl,
+                charge_url: result.chargeUrl,
                 ...result
             })
         };
@@ -45,6 +63,9 @@ exports.handler = async (event, context) => {
     } catch (error) {
         return {
             statusCode: 500,
+            headers: {
+                "Access-Control-Allow-Origin": "https://explana.shop"
+            },
             body: JSON.stringify({ error: error.message })
         };
     }
