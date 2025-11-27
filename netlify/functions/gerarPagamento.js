@@ -62,7 +62,7 @@ exports.handler = async (event, context) => {
                 // Recomenda-se usar process.env.LIVEPIX_SECRET aqui!
                 "Client-Id": "cc405852-0aba-436a-bf91-b30f35322e85",
                 "Client-Secret":
-                    "G3nJUgysggOrP6KsZh9QJGeDDkcwbyRZfyXT/A2oJFSigty6RgqLm/ThzCIZ5A2dt1o7CQwoWZoEWauwAksxDnZRsLwQoaFGJwFMLnq056+QthSFUjEhLb6tXoPxBUDxhf6Q1fQshM7oxvJu7hT28dmQpWV7JJ1ybmfO2QKTruY"
+    "G3nJUgysggOrP6KsZh9QJGeDDkcwbyRZfyXT/A2oJFSigty6RgqLm/ThzCIZ5A2dt1o7CQwoWZoEWauwAksxDnZRsLwQoaFGJwFMLnq056+QthSFUjEhLb6tXoPxBUDxhf6Q1fQshM7oxvJu7hT28dmQpWV7JJ1ybmfO2QKTruY"
             },
             body: JSON.stringify({
                 value: valor,
