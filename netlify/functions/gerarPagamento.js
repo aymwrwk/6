@@ -1,6 +1,5 @@
 exports.handler = async (event, context) => {
-    const fetch = (...args) =>
-        import("node-fetch").then(({ default: fetch }) => fetch(...args));
+    const fetch = require("node-fetch");
 
     // ORIGENS PERMITIDAS
     const allowedOrigins = [
