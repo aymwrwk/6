@@ -11,15 +11,15 @@ exports.handler = async (event, context) => {
 
     const origin = event.headers.origin;
 
+    const isAllowed = allowedOrigins.some(o => origin?.startsWith(o));
+
     const corsHeaders = {
         "Access-Control-Allow-Headers": "Content-Type",
         "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-        "Access-Control-Allow-Origin":
-            allowedOrigins.some(o => origin?.startsWith(o)) ? origin : allowedOrigins[0]
-
+        "Access-Control-Allow-Origin": isAllowed ? origin : allowedOrigins[0]
     };
 
-    // Resposta do pré-flight OPTIONS
+    // OPTIONS (pré-flight)
     if (event.httpMethod === "OPTIONS") {
         return {
             statusCode: 200,
@@ -27,11 +27,8 @@ exports.handler = async (event, context) => {
         };
     }
 
-    // -----------------------------
-    // PROCESSAMENTO DO PAGAMENTO
-    // -----------------------------
+    // Ler o JSON
     let body;
-
     try {
         body = JSON.parse(event.body || "{}");
     } catch (e) {
@@ -56,6 +53,7 @@ exports.handler = async (event, context) => {
         };
     }
 
+    // CHAMAR API LIVEPIX
     try {
         const response = await fetch("https://api.livepix.gg/v1/charge", {
             method: "POST",
