@@ -347,39 +347,39 @@ let selectedItem = null;
 
 // Alterna a exibição das opções
 function toggleOptions() {
-  document.getElementById('optionsList').style.display =
-    document.getElementById('optionsList').style.display === 'block'
-      ? 'none'
-      : 'block';
+    document.getElementById('optionsList').style.display =
+        document.getElementById('optionsList').style.display === 'block'
+            ? 'none'
+            : 'block';
 }
 
 // Lógica de Seleção de Opção
 function selectOption(title, stock, price) {
-  // 1. LIMPA E SALVA O ITEM SELECIONADO (CHAVE PARA O PAGAMENTO)
-  const cleanPrice = price.replace("R$", "").replace(",", ".").trim();
-  selectedItem = { 
-    title: title, 
-    // Armazena o preço no formato "5.90" para facilitar o envio ao LivePix
-    price: cleanPrice 
-  }; 
+    // 1. LIMPA E SALVA O ITEM SELECIONADO (CHAVE PARA O PAGAMENTO)
+    const cleanPrice = price.replace("R$", "").replace(",", ".").trim();
+    selectedItem = { 
+        title: title, 
+        // Armazena o preço no formato "5.90" para facilitar o envio ao LivePix
+        price: cleanPrice 
+    }; 
 
-  // 2. ATUALIZA O TEXTO EXIBIDO
-  document.getElementById("selectedText").innerHTML = `
-    ${title} — <span style="color:#2aa6ff; font-weight:700;">${price}</span>
-  `;
+    // 2. ATUALIZA O TEXTO EXIBIDO
+    document.getElementById("selectedText").innerHTML = `
+        ${title} — <span style="color:#2aa6ff; font-weight:700;">${price}</span>
+    `;
 
-  // 3. FECHA O MENU
-  document.getElementById('optionsList').style.display = 'none';
+    // 3. FECHA O MENU
+    document.getElementById('optionsList').style.display = 'none';
 
-  // Opcional: Remover aviso se o usuário selecionar após o erro
-  document.getElementById("warningBox").style.display = "none";
+    // Opcional: Remover aviso se o usuário selecionar após o erro
+    document.getElementById("warningBox").style.display = "none";
 }
 
 // Fecha o select clicando fora
 document.addEventListener('click', function (e) {
-  if (!document.querySelector('.custom-select').contains(e.target)) {
-    document.getElementById('optionsList').style.display = 'none';
-  }
+    if (!document.querySelector('.custom-select').contains(e.target)) {
+        document.getElementById('optionsList').style.display = 'none';
+    }
 });
 
 
@@ -387,50 +387,62 @@ document.addEventListener('click', function (e) {
 // GERAR PAGAMENTO E REDIRECIONAMENTO
 // ==========================
 async function gerarPagamento() {
-  // 1. VERIFICA SE O ITEM FOI SELECIONADO
-  if (!selectedItem) {
-    let box = document.getElementById("warningBox");
-    box.style.display = "block";
-    setTimeout(() => box.style.display = "none", 2500);
-    return;
-  }
+    // 1. VERIFICA SE O ITEM FOI SELECIONADO
+    if (!selectedItem) {
+        let box = document.getElementById("warningBox");
+        box.style.display = "block";
+        setTimeout(() => box.style.display = "none", 2500);
+        return;
+    }
 
-  // 2. TENTA GERAR O PAGAMENTO
-  try {
-    const response = await fetch("/.netlify/functions/gerarPagamento", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        item: {
-          // Usa o preço já limpo da função selectOption (ex: "5.90")
-          price: selectedItem.price, 
-          title: selectedItem.title
+    // 2. TENTA GERAR O PAGAMENTO
+    try {
+        const response = await fetch("/.netlify/functions/gerarPagamento", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                item: {
+                    // Usa o preço já limpo da função selectOption (ex: "5.90")
+                    price: selectedItem.price, 
+                    title: selectedItem.title
+                }
+            })
+        });
+
+        const data = await response.json();
+
+        // >>>>>>> MUDANÇA AQUI: TRATAMENTO DE ERRO APRIMORADO <<<<<<<
+        if (!data || data.error) {
+            let details = '';
+            if (data?.detalhes) {
+                // Tenta exibir a mensagem específica da API
+                details = data.detalhes.message || JSON.stringify(data.detalhes);
+            }
+            
+            // Exibe um alerta com a mensagem de erro do backend e detalhes
+            alert("Erro ao gerar pagamento: " + (data?.error || "desconhecido") + 
+                  (details ? `\nDetalhes: ${details}` : ''));
+            
+            console.error("Erro completo:", data);
+            return;
         }
-      })
-    });
+        // >>>>>>> FIM DA MUDANÇA <<<<<<<
 
-    const data = await response.json();
+        // 3. REDIRECIONAMENTO PARA O LIVEPIX
+        const link = data.checkout_url || data.charge_url;
 
-    if (!data || data.error) {
-      alert("Erro ao gerar pagamento: " + (data?.error || "desconhecido"));
-      return;
+        if (!link) {
+            alert("Erro: o servidor não retornou o link de pagamento.");
+            return;
+        }
+
+        // Ação principal: Redireciona o usuário para o link do LivePix
+        window.location.href = link;
+
+    } catch (error) {
+        alert("Erro ao conectar com o servidor. Verifique o Netlify Functions.");
+        console.error(error);
     }
-
-    // 3. REDIRECIONAMENTO PARA O LIVEPIX
-    const link = data.checkout_url || data.charge_url;
-
-    if (!link) {
-      alert("Erro: o servidor não retornou o link de pagamento.");
-      return;
-    }
-
-    // Ação principal: Redireciona o usuário para o link do LivePix
-    window.location.href = link;
-
-  } catch (error) {
-    alert("Erro ao conectar com o servidor.");
-    console.error(error);
-  }
 }
 </script>
 

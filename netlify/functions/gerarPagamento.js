@@ -59,6 +59,8 @@ exports.handler = async (event, context) => {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
+                // Mantenha seu Client-Id e Client-Secret.
+                // Recomenda-se usar process.env.LIVEPIX_SECRET aqui!
                 "Client-Id": "cc405852-0aba-436a-bf91-b30f35322e85",
                 "Client-Secret":
                     "G3nJUgysggOrP6KsZh9QJGeDDkcwbyRZfyXT/A2oJFSigty6RgqLm/ThzCIZ5A2dt1o7CQwoWZoEWauwAksxDnZRsLwQoaFGJwFMLnq056+QthSFUjEhLb6tXoPxBUDxhf6Q1fQshM7oxvJu7hT28dmQpWV7JJ1ybmfO2QKTruY"
@@ -70,7 +72,24 @@ exports.handler = async (event, context) => {
         });
 
         const result = await response.json();
+        console.log("Resposta Completa LivePix:", result); // Log para diagnóstico
 
+        // Verifica se a resposta foi bem-sucedida E se contém o link necessário
+        if (!response.ok || (!result.checkout_url && !result.charge_url)) {
+            const errorMessage = result.message || response.statusText || "Erro desconhecido na LivePix";
+            
+            // Se falhar na autenticação, o status será 401 ou 403.
+            return {
+                statusCode: response.status || 500,
+                headers: corsHeaders,
+                body: JSON.stringify({
+                    error: "Erro na API LivePix: " + errorMessage,
+                    detalhes: result // Retorna a resposta completa para o frontend
+                })
+            };
+        }
+
+        // Resposta de sucesso (deve conter o link)
         return {
             statusCode: 200,
             headers: corsHeaders,
@@ -81,11 +100,12 @@ exports.handler = async (event, context) => {
             })
         };
     } catch (error) {
+        console.error("Erro de Conexão no Netlify Function:", error);
         return {
             statusCode: 500,
             headers: corsHeaders,
             body: JSON.stringify({
-                error: "Falha ao conectar com o LivePix",
+                error: "Falha ao conectar com o servidor LivePix",
                 detalhes: error.message
             })
         };
