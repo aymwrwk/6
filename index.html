@@ -1,134 +1,132 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pagamento LivePix</title>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pagamento LivePix</title>
 
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            max-width: 500px;
-            margin: 40px auto;
-            padding: 20px;
-        }
+ <style>
+body {
+ font-family: Arial, sans-serif;
+ max-width: 500px;
+margin: 40px auto;
+padding: 20px;
+}
 
-        input {
-            display: block;
-            width: 100%;
-            padding: 10px;
-            margin-top: 8px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
+input {
+ display: block;
+ width: 100%;
+ padding: 10px;
+margin-top: 8px;
+border-radius: 6px;
+border: 1px solid #ccc;
+ }
 
-        .btn {
-            background: #4f46e5;
-            color: white;
-            padding: 12px;
-            border: none;
-            width: 100%;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 15px;
-        }
+ .btn {
+background: #4f46e5;
+ color: white;
+ padding: 12px;
+ border: none;
+ width: 100%;
+ border-radius: 6px;
+ cursor: pointer;
+ font-size: 16px;
+ margin-top: 15px;
+ }
 
-        #mensagem {
-            margin-top: 20px;
-            padding: 12px;
-            font-size: 15px;
-            border-radius: 6px;
-            display: none;
-        }
+ #mensagem {
+ margin-top: 20px;
+ padding: 12px;
+ font-size: 15px;
+ border-radius: 6px;
+ display: none;
+ }
 
-        .erro {
-            background: #ffdddd;
-            color: #a70000;
-        }
+.erro {
+ background: #ffdddd;
+ color: #a70000;
+ }
 
-        .sucesso {
-            background: #ddffdd;
-            color: #006600;
-        }
-    </style>
+ .sucesso {
+ background: #ddffdd;
+ color: #006600;
+ }
+ </style>
 </head>
 <body>
 
-    <h2>Finalizar Compra</h2>
+ <h2>Finalizar Compra</h2>
+ <label>Valor do pagamento:</label>
+ <input type="number" id="valor" value="7.90" step="0.01">
 
-    <!-- Campo de valor -->
-    <label>Valor do pagamento:</label>
-    <input type="number" id="valor" value="7.90" step="0.01">
+ <label style="margin-top:15px; display:block;">Descrição:</label>
+<input type="text" id="descricao" value="Pagamento do produto">
 
-    <!-- Descrição -->
-    <label style="margin-top:15px; display:block;">Descrição:</label>
-    <input type="text" id="descricao" value="Pagamento do produto">
+ <button class="btn" id="btnComprar">Comprar</button>
 
-    <button class="btn" id="btnComprar">Comprar</button>
+ <div id="mensagem"></div>
 
-    <div id="mensagem"></div>
+ <script>
+ document.getElementById("btnComprar").addEventListener("click", async () => {
 
-    <script>
-        document.getElementById("btnComprar").addEventListener("click", async () => {
+ const valor = document.getElementById("valor").value;
+ const descricao = document.getElementById("descricao").value;
+ const msg = document.getElementById("mensagem");
 
-            const valor = document.getElementById("valor").value;
-            const descricao = document.getElementById("descricao").value;
-            const msg = document.getElementById("mensagem");
+ msg.style.display = "none";
 
-            msg.style.display = "none";
+ if (!valor || valor <= 0) {
+msg.textContent = "Defina um valor válido.";
+ msg.className = "erro";
+msg.style.display = "block";
+ return;
+ }
 
-            // Validação simples
-            if (!valor || valor <= 0) {
-                msg.textContent = "Defina um valor válido.";
-                msg.className = "erro";
-                msg.style.display = "block";
-                return;
-            }
+ try {
+ msg.textContent = "Gerando pagamento...";
+msg.className = "sucesso";
+msg.style.display = "block";
 
-            try {
-                msg.textContent = "Gerando pagamento...";
-                msg.className = "sucesso";
-                msg.style.display = "block";
+ const resposta = await fetch("/.netlify/functions/gerar-pagamento", {
+ method: "POST",
+ headers: { "Content-Type": "application/json" },
+ body: JSON.stringify({
+ valor: Number(valor),
+ descricao
+ })
+ });
 
-                const resposta = await fetch("/.netlify/functions/gerar-pagamento", {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        valor: Number(valor),
-                        descricao
-                    })
-                });
+ const data = await resposta.json();
 
-                const data = await resposta.json();
+console.log("RETORNO DA API LIVEPIX:", data); // DEBUG
+                
+                // 🛑 MUDANÇA AQUI: Esperamos apenas a chave 'url', que é o que a função retorna.
+ let linkPagamento = data.url;
 
-                console.log("RETORNO DA API LIVEPIX:", data); // DEBUG
-
-                // Tenta identificar automaticamente o link de pagamento
-                let linkPagamento =
-                    data.payment_url ||
-                    data.pix_url ||
-                    data.checkout_url ||
-                    data.url ||
-                    data.link_pagamento ||
-                    null;
-
-                if (!linkPagamento) {
-                    msg.textContent = "Erro: LivePix não retornou um link de pagamento.";
+                // 🛑 TRATAMENTO DE ERRO MELHORADO: Verifica se a função retornou um erro
+                if (data.erro) {
+                    msg.textContent = "Erro: " + data.erro;
                     msg.className = "erro";
+                    msg.style.display = "block";
                     return;
                 }
 
-                // 🔥 Redirecionar
-                window.location.href = linkPagamento;
+if (!linkPagamento) {
+ msg.textContent = "Erro: LivePix não retornou um link de pagamento (url vazia).";
+ msg.className = "erro";
+return;
+}
 
-            } catch (erro) {
-                msg.textContent = "Erro ao criar pagamento: " + erro.message;
-                msg.className = "erro";
-                msg.style.display = "block";
-            }
-        });
-    </script>
+
+ window.location.href = linkPagamento;
+
+} catch (erro) {
+msg.textContent = "Erro ao criar pagamento: " + erro.message;
+ msg.className = "erro";
+ msg.style.display = "block";
+ }
+ });
+ </script>
 
 </body>
 </html>
