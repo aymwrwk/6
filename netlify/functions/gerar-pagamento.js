@@ -1,6 +1,3 @@
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
-
 exports.handler = async (event) => {
   try {
     const { valor, descricao } = JSON.parse(event.body);
@@ -20,15 +17,10 @@ exports.handler = async (event) => {
 
     const data = await response.json();
 
-    console.log("Resposta LivePix:", data);
-
     if (!data.checkout_url) {
       return {
         statusCode: 500,
-        body: JSON.stringify({
-          erro: "LivePix não retornou checkout_url",
-          resposta: data
-        })
+        body: JSON.stringify({ erro: "LivePix não retornou checkout_url", resposta: data })
       };
     }
 
