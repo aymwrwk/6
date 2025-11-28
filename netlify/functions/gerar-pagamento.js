@@ -14,7 +14,7 @@ exports.handler = async (event) => {
       body: JSON.stringify({
         amount: valor,
         description: descricao,
-        callback_url: "https://seusite.shop/.netlify/functions/webhook-livepix"
+        callback_url: "https://explana.shop/.netlify/functions/webhook-livepix"
       })
     });
 
