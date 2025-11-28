@@ -15,7 +15,7 @@ exports.handler = async (event) => {
       })
     });
 
-    const text = await response.text(); // <-- captura TUDO
+    const text = await response.text();
     let data;
 
     try {
@@ -31,7 +31,7 @@ exports.handler = async (event) => {
         statusCode: 500,
         body: JSON.stringify({
           erro: "LivePix não retornou checkout_url",
-          motivo_real: data,   // <-- agora você vai VER O ERRO
+          motivo_real: data
         })
       };
     }
