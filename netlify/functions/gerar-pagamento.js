@@ -1,15 +1,28 @@
-const fetch = (...args) =>
-  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+const fetch = (...args) => import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 exports.handler = async (event) => {
   try {
     const { valor, descricao } = JSON.parse(event.body);
 
-    const response = await fetch("https://api.livepix.gg/payment", {
+    // 1. PEGAR TOKEN DE ACESSO
+    const auth = await fetch("https://api.livepix.gg/oauth/token", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        client_id: process.env.LIVEPIX_CLIENT_ID,
+        client_secret: process.env.LIVEPIX_CLIENT_SECRET,
+        grant_type: "client_credentials"
+      })
+    });
+
+    const { access_token } = await auth.json();
+
+    // 2. CRIAR PAGAMENTO
+    const response = await fetch("https://api.livepix.gg/payments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.LIVEPIX_API_KEY}`
+        "Authorization": `Bearer ${access_token}`
       },
       body: JSON.stringify({
         amount: valor,
