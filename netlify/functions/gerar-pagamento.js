@@ -1,8 +1,11 @@
+const fetch = (...args) =>
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
+
 exports.handler = async (event) => {
   try {
     const { valor, descricao } = JSON.parse(event.body);
 
-    const response = await fetch("https://api.livepix.gg/payment", {
+    const response = await fetch("https://api.livepix.gg/api/v1/payments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -17,10 +20,23 @@ exports.handler = async (event) => {
 
     const data = await response.json();
 
+    console.log("Resposta LivePix:", data);
+
+    if (!data.checkout_url) {
+      return {
+        statusCode: 500,
+        body: JSON.stringify({
+          erro: "LivePix não retornou checkout_url",
+          resposta: data
+        })
+      };
+    }
+
     return {
       statusCode: 200,
-      body: JSON.stringify(data)
+      body: JSON.stringify({ url: data.checkout_url })
     };
+
   } catch (err) {
     return {
       statusCode: 500,
