@@ -1,9 +1,16 @@
 const fetch = (...args) =>
-    import("node-fetch").then(({ default: fetch }) => fetch(...args));
+  import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 exports.handler = async (event) => {
   try {
-    const { valor, descricao } = JSON.parse(event.body);
+    const { valor, descricao } = JSON.parse(event.body || "{}");
+
+    if (!valor) {
+      return {
+        statusCode: 400,
+        body: JSON.stringify({ erro: "Valor não informado" })
+      };
+    }
 
     const response = await fetch("https://api.livepix.gg/v1/payments", {
       method: "POST",
@@ -13,36 +20,25 @@ exports.handler = async (event) => {
       },
       body: JSON.stringify({
         amount: valor,
-        description: descricao
+        description: descricao || "Pagamento",
+        callback_url: "https://explana.shop/.netlify/functions/webhook-livepix"
       })
     });
 
     const data = await response.json();
 
-    console.log("RETORNO LIVEPIX:", data);
-
-    if (!data.checkout_url) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({
-          erro: "LivePix não retornou checkout_url",
-          detalhe: data
-        })
-      };
-    }
-
     return {
       statusCode: 200,
-      body: JSON.stringify({ url: data.checkout_url })
+      body: JSON.stringify({
+        recebido: data,
+        checkout_url: data.checkout_url
+      })
     };
 
-  } catch (error) {
+  } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({
-        erro: "Erro na function",
-        detalhe: error.message
-      })
+      body: JSON.stringify({ erro: err.message })
     };
   }
 };
