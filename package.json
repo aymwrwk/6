@@ -1,6 +1,5 @@
 {
-  "name": "explana-shop",
-  "version": "1.0.0",
-  "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "node-fetch": "^3.3.2"
+  }
 }
