@@ -1,37 +1,32 @@
+const fetch = (...args) =>
+    import("node-fetch").then(({ default: fetch }) => fetch(...args));
+
 exports.handler = async (event) => {
   try {
-    const { valor, descricao } = JSON.parse(event.body || "{}");
+    const { valor, descricao } = JSON.parse(event.body);
 
-    const response = await fetch("https://api.livepix.gg/api/v1/payments", {
+    const response = await fetch("https://api.livepix.gg/v1/payments", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${process.env.LIVEPIX_API_KEY}`
       },
       body: JSON.stringify({
-        amount: Number(valor),
-        description: descricao,
-        callback_url: "https://explana.shop/.netlify/functions/webhook-livepix"
+        amount: valor,
+        description: descricao
       })
     });
 
-    const text = await response.text();
-    let data;
+    const data = await response.json();
 
-    try {
-      data = JSON.parse(text);
-    } catch {
-      data = { raw: text };
-    }
-
-    console.log("📌 RESPOSTA COMPLETA DO LIVEPIX:", JSON.stringify(data, null, 2));
+    console.log("RETORNO LIVEPIX:", data);
 
     if (!data.checkout_url) {
       return {
-        statusCode: 500,
+        statusCode: 400,
         body: JSON.stringify({
           erro: "LivePix não retornou checkout_url",
-          motivo_real: data
+          detalhe: data
         })
       };
     }
@@ -41,12 +36,12 @@ exports.handler = async (event) => {
       body: JSON.stringify({ url: data.checkout_url })
     };
 
-  } catch (err) {
+  } catch (error) {
     return {
       statusCode: 500,
       body: JSON.stringify({
-        erro: "Falha geral",
-        detalhe: err.message
+        erro: "Erro na function",
+        detalhe: error.message
       })
     };
   }
