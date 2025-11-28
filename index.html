@@ -13,6 +13,15 @@
             padding: 20px;
         }
 
+        input {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+
         .btn {
             background: #4f46e5;
             color: white;
@@ -93,14 +102,25 @@
 
                 const data = await resposta.json();
 
-                if (!data || !data.payment_url) {
-                    msg.textContent = "Erro: API não retornou um link de pagamento.";
+                console.log("RETORNO DA API LIVEPIX:", data); // DEBUG
+
+                // Tenta identificar automaticamente o link de pagamento
+                let linkPagamento =
+                    data.payment_url ||
+                    data.pix_url ||
+                    data.checkout_url ||
+                    data.url ||
+                    data.link_pagamento ||
+                    null;
+
+                if (!linkPagamento) {
+                    msg.textContent = "Erro: LivePix não retornou um link de pagamento.";
                     msg.className = "erro";
                     return;
                 }
 
-                // 🔥 REDIRECIONAR PARA A PÁGINA DE PAGAMENTO LIVEPIX
-                window.location.href = data.payment_url;
+                // 🔥 Redirecionar
+                window.location.href = linkPagamento;
 
             } catch (erro) {
                 msg.textContent = "Erro ao criar pagamento: " + erro.message;
