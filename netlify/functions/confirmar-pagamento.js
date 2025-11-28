@@ -2,12 +2,21 @@ const fetch = (...args) =>
   import("node-fetch").then(({ default: fetch }) => fetch(...args));
 
 exports.handler = async (event) => {
-  const { id } = JSON.parse(event.body);
+  const { id } = JSON.parse(event.body || "{}");
+
+  if (!id) {
+    return {
+      statusCode: 400,
+      body: JSON.stringify({ erro: "ID do pagamento não informado" })
+    };
+  }
 
   try {
-    const response = await fetch(`https://api.livepix.gg/payment/${id}`, {
+    const response = await fetch(`https://api.livepix.gg/api/v1/payments/${id}`, {
+      method: "GET",
       headers: {
-        "Authorization": `Bearer ${process.env.LIVEPIX_API_KEY}`
+        "Authorization": `Bearer ${process.env.LIVEPIX_API_KEY}`,
+        "Accept": "application/json"
       }
     });
 
