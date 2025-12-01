@@ -1,137 +1,131 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
- <meta charset="UTF-8">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Pagamento LivePix</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seu Site Profissional</title>
 
- <style>
-body {
- font-family: Arial, sans-serif;
- max-width: 500px;
- margin: 40px auto;
- padding: 20px;
-}
-
-input {
- display: block;
- width: 100%;
- padding: 10px;
- margin-top: 8px;
- border-radius: 6px;
- border: 1px solid #ccc;
-}
-
-.btn {
- background: #4f46e5;
- color: white;
- padding: 12px;
- border: none;
- width: 100%;
- border-radius: 6px;
- cursor: pointer;
- font-size: 16px;
- margin-top: 15px;
-}
-
-#mensagem {
- margin-top: 20px;
- padding: 12px;
- font-size: 15px;
- border-radius: 6px;
- display: none;
- white-space: pre-wrap; /* permite mostrar JSON formatado */
-}
-
-.erro {
- background: #ffdddd;
- color: #a70000;
-}
-
-.sucesso {
- background: #ddffdd;
- color: #006600;
-}
- </style>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
 
- <h2>Finalizar Compra</h2>
+    <!-- HEADER -->
+   <header class="header">
+    <div class="logo"><img class="logof" src="logo.png" alt=""></div>
 
- <label>Valor do pagamento:</label>
- <input type="number" id="valor" value="7.90" step="0.01">
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
+    </div>
+</header>
 
- <label style="margin-top:15px; display:block;">Descrição:</label>
- <input type="text" id="descricao" value="Pagamento do produto">
+    <!-- HERO -->
+    <section class="hero">
+        <h1 class="title">[ Resgate seu código aqui ]</h1>
+        <button class="btn-large">Resgatar</button>
+    </section>
 
- <button class="btn" id="btnComprar">Comprar</button>
+    <!-- PRODUTOS -->
+    <section class="produtos-section">
+        <h2 class="section-title">Produtor • Produtos em Alta</h2>
 
- <div id="mensagem"></div>
+        <div class="produtos-container" id="produtosContainer">
 
- <script>
- document.getElementById("btnComprar").addEventListener("click", async () => {
+            <!-- PRODUTO 1 -->
+            <div class="produto-card" data-name="Twitter X Antiga">
+                <img src="./img/anunciotwitter.png" alt="Produto">
+                <h3>X (Twitter) Antiga</h3>
+                <p class="descricao">Melhor preço</p>
+                <span class="preco">R$ 4,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
 
- const valor = document.getElementById("valor").value;
- const descricao = document.getElementById("descricao").value;
- const msg = document.getElementById("mensagem");
+            <!-- PRODUTO 2 -->
+            <div class="produto-card" data-name="Paramount Plus Série TV Streaming">
+                <img src="./img/anuncioparamount.png" alt="Produto">
+                <h3>Paramount Plus</h3>
+                <p class="descricao">Streaming</p>
+                <span class="preco">R$ 6,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
 
- msg.style.display = "none";
+            <!-- PRODUTO 3 -->
+            <div class="produto-card" data-name="Spotify Premium Música Play">
+                <img src="./img/anunciospotify.png" alt="Produto">
+                <h3>Spotify Premium</h3>
+                <p class="descricao">Acesso full </p>
+                <span class="preco">R$ 6,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
 
- if (!valor || valor <= 0) {
-    msg.textContent = "Defina um valor válido.";
-    msg.className = "erro";
-    msg.style.display = "block";
-    return;
- }
+            
+            <!-- PRODUTO 3 -->
+            <div class="produto-card" data-name="Disney Plus Série TV Streaming">
+                <img src="./img/anunciodisney.png" alt="Produto">
+                <h3>Disney Plus</h3>
+                <p class="descricao">Acesso imediato</p>
+                <span class="preco">R$ 6,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            
+            <!-- PRODUTO 3 -->
+            <div class="produto-card" data-name="Netflix Série TV Streaming">
+                <img src="./img/anuncionetflix.png" alt="Produto">
+                <h3>Netlix Premium</h3>
+                <p class="descricao">Streaming & TV</p>
+                <span class="preco">R$ 10,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            
+            <!-- PRODUTO 3 -->
+            <div class="produto-card" data-name="Conta Premium">
+                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
+                <h3>Conta Premium</h3>
+                <p class="descricao">Acesso imediato • Garantia total</p>
+                <span class="preco">R$ 24,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div> 
+            <!-- PRODUTO 3 -->
+            <div class="produto-card" data-name="Conta Premium">
+                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
+                <h3>Conta Premium</h3>
+                <p class="descricao">Acesso imediato • Garantia total</p>
+                <span class="preco">R$ 24,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            
+            <!-- PRODUTO 3 -->
+            <div class="produto-card" data-name="Conta Premium">
+                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
+                <h3>Conta Premium</h3>
+                <p class="descricao">Acesso imediato • Garantia total</p>
+                <span class="preco">R$ 24,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            <!-- PRODUTO 3 -->
+            <div class="produto-card" data-name="Conta Premium">
+                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
+                <h3>Conta Premium</h3>
+                <p class="descricao">Acesso imediato • Garantia total</p>
+                <span class="preco">R$ 24,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+            <!-- PRODUTO 3 -->
+            <div class="produto-card" data-name="Conta Premium">
+                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
+                <h3>Conta Premium</h3>
+                <p class="descricao">Acesso imediato • Garantia total</p>
+                <span class="preco">R$ 24,90</span>
+                <button class="btn-comprar">Comprar</button>
+            </div>
+        </div>
+    </section>
 
- try {
-    msg.textContent = "Gerando pagamento...";
-    msg.className = "sucesso";
-    msg.style.display = "block";
+    <footer class="footer">
+        © 2025 — Seu Site Profissional. Todos os direitos reservados.
+    </footer>
 
-    const resposta = await fetch("/.netlify/functions/gerar-pagamento", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          valor: Number(valor),
-          descricao
-        })
-    });
-
-    const data = await resposta.json();
-
-    console.log("RETORNO LIVEPIX:", data);
-
-    // 🔥 Mostra erro completo se LivePix deu erro
-    if (data.erro) {
-        msg.textContent = 
-          "Erro: " + data.erro + 
-          "\n\nDetalhe: " + JSON.stringify(data.motivo_real, null, 2);
-        msg.className = "erro";
-        msg.style.display = "block";
-        return;
-    }
-
-    let linkPagamento = data.url;
-
-    if (!linkPagamento) {
-        msg.textContent = 
-        "Erro: LivePix não retornou um link de pagamento.\n\n" +
-        "Detalhe: " + JSON.stringify(data, null, 2);
-        msg.className = "erro";
-        msg.style.display = "block";
-        return;
-    }
-
-    window.location.href = linkPagamento;
-
- } catch (erro) {
-    msg.textContent = "Erro ao criar pagamento: " + erro.message;
-    msg.className = "erro";
-    msg.style.display = "block";
- }
- });
- </script>
-
+    <script src="script.js"></script>
 </body>
 </html>
