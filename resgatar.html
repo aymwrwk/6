@@ -136,18 +136,7 @@
   </div>
 
 <script>
-/* -----------------------------------------
-   5 CÓDIGOS VÁLIDOS (COM DADOS FICTÍCIOS)
---------------------------------------------*/
-const codes = {
-  "ALFA10":   { email:"acesso1@demo.com", pass:"senhaDemo#1" },
-  "BRAVO20":  { email:"acesso2@demo.com", pass:"senhaDemo#2" },
-  "CHARLIE30":{ email:"acesso3@demo.com", pass:"senhaDemo#3" },
-  "DELTA40":  { email:"acesso4@demo.com", pass:"senhaDemo#4" },
-  "ECHO50":   { email:"acesso5@demo.com", pass:"senhaDemo#5" }
-};
-
-/* ELEMENTOS */
+// ELEMENTOS
 const modal = document.getElementById("modal");
 const openBtn = document.getElementById("openBtn");
 const cancelBtn = document.getElementById("cancelBtn");
@@ -159,86 +148,85 @@ const savedCode = document.getElementById("savedCode");
 const savedEmail = document.getElementById("savedEmail");
 const savedPass = document.getElementById("savedPass");
 
-/* -----------------------------------------
-   CARREGAR DO LOCALSTORAGE AO ABRIR O SITE
---------------------------------------------*/
+// CARREGAR DO LOCALSTORAGE
 const saved = localStorage.getItem("codigoResgatado");
 
-if(saved && codes[saved]) {
-  savedCode.textContent = saved;
-  savedEmail.textContent = "Email: " + codes[saved].email;
-  savedPass.textContent  = "Senha: " + codes[saved].pass;
+if (saved) {
+  // buscar dados salvos no backend (não expõe nada)
+  fetch(`/.netlify/functions/verificarCodigo?code=${saved}`)
+    .then(r => r.json())
+    .then(data => {
+      if (data.ok) {
+        savedCode.textContent = saved;
+        savedEmail.textContent = "Email: " + data.email;
+        savedPass.textContent  = "Senha: " + data.pass;
+      }
+    })
+    .catch(() => {});
 }
 
-/* -----------------------------------------
-   ABRIR MODAL
---------------------------------------------*/
+// MODAL
 openBtn.onclick = () => {
   modal.style.display = "flex";
   codeInput.value = "";
   resultBox.style.display = "none";
-  setTimeout(()=>codeInput.focus(),100);
+  setTimeout(() => codeInput.focus(), 80);
 };
 
-/* -----------------------------------------
-   FECHAR MODAL
---------------------------------------------*/
-cancelBtn.onclick = () => {
-  modal.style.display = "none";
-};
-modal.onclick = (e)=>{
-  if(e.target===modal) modal.style.display = "none";
-}
+cancelBtn.onclick = () => { modal.style.display = "none"; };
+modal.onclick = (e) => { if (e.target === modal) modal.style.display = "none"; };
 
-/* -----------------------------------------
-   CONFIRMAR CÓDIGO
---------------------------------------------*/
+// SUBMIT
 submitBtn.onclick = handleSubmit;
-codeInput.addEventListener("keydown", e=>{
-  if(e.key==="Enter") handleSubmit();
+codeInput.addEventListener("keydown", e => {
+  if (e.key === "Enter") handleSubmit();
 });
 
-function handleSubmit(){
+function handleSubmit() {
   const typed = codeInput.value.trim().toUpperCase();
 
-  if(!typed){
+  if (!typed) {
     showResult("Digite um código válido.", false);
     return;
   }
 
-  if(codes[typed]) {
-    const data = codes[typed];
+  fetch(`/.netlify/functions/verificarCodigo?code=${typed}`)
+    .then(r => r.json())
+    .then(data => {
+      if (!data.ok) {
+        showResult("Código inválido. Tente novamente.", false);
+        return;
+      }
 
-    // SALVAR
-    localStorage.setItem("codigoResgatado", typed);
+      // SALVAR LOCAL
+      localStorage.setItem("codigoResgatado", typed);
 
-    // EXIBIR
-    showResult(
-      `Código válido!<br><br>
-      Email: <strong>${data.email}</strong><br>
-      Senha: <strong>${data.pass}</strong>`,
-      true
-    );
+      // EXIBIR
+      showResult(
+        `Código válido!<br><br>
+        Email: <strong>${data.email}</strong><br>
+        Senha: <strong>${data.pass}</strong>`,
+        true
+      );
 
-    // ATUALIZAR PAINEL DA TELA
-    savedCode.textContent = typed;
-    savedEmail.textContent = "Email: " + data.email;
-    savedPass.textContent  = "Senha: " + data.pass;
-  }
-  else {
-    showResult("Código inválido. Tente novamente.", false);
-  }
+      // ATUALIZAR PAINEL
+      savedCode.textContent = typed;
+      savedEmail.textContent = "Email: " + data.email;
+      savedPass.textContent  = "Senha: " + data.pass;
+    })
+    .catch(() => {
+      showResult("Erro ao conectar com o servidor.", false);
+    });
 }
 
-/* -----------------------------------------
-   FUNÇÃO VISUAL DO RESULTADO
---------------------------------------------*/
-function showResult(msg, ok){
+// VISUAL DO RESULTADO
+function showResult(msg, ok) {
   resultBox.style.display = "block";
   resultBox.style.color = ok ? "#6ee7b7" : "#f55";
   resultBox.innerHTML = msg;
 }
 </script>
+
 
 </body>
 </html>
