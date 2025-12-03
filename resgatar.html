@@ -6,99 +6,160 @@
   <title>Resgate de Código</title>
 
   <style>
-    :root{
-      --bg:#0f1724;
-      --card:#0b1220;
-      --accent:#6ee7b7;
-      --muted:#93a4b8;
-      --glass:rgba(255,255,255,0.04);
-    }
-    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial}
+  /* ======== ESTILO DARKSTORE ======== */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
 
-    body{
-      background:var(--bg);
-      color:#e8eef6;
-      min-height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:20px;
-    }
+:root{
+  --bg: #0b0b0b;
+  --card: #111;
+  --glass: rgba(255,255,255,0.04);
+  --border: #1e1e1e;
+  --accent: #ff008c;
+  --accent-light: #ff44cc;
+  --text-muted: #b8b8b8;
+}
 
-    .container{
-      width:100%;
-      max-width:600px;
-      background:var(--card);
-      border-radius:14px;
-      padding:22px;
-      border:1px solid rgba(255,255,255,0.05);
-      box-shadow:0 8px 25px rgba(0,0,0,0.4);
-    }
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:"Poppins", sans-serif;
+}
 
-    h1{font-size:22px;margin-bottom:8px}
-    p{color:var(--muted);font-size:14px;margin-bottom:16px}
+body{
+  background:var(--bg);
+  color:#f5f5f5;
+  min-height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:30px;
+}
 
-    button{
-      background:var(--accent);
-      color:#04201a;
-      padding:10px 16px;
-      border:none;
-      border-radius:10px;
-      font-weight:600;
-      cursor:pointer;
-      margin-top:8px;
-      transition:.15s;
-    }
-    button:hover{transform:scale(1.02)}
-    button.secondary{
-      background:transparent;
-      color:var(--muted);
-      border:1px solid rgba(255,255,255,0.08);
-    }
+/* ========= CARD PRINCIPAL ========= */
+.container{
+  width:100%;
+  max-width:600px;
+  background:#0f0f0f;
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:30px;
+  box-shadow:0 0 25px #00000080;
+  backdrop-filter:blur(8px);
+}
 
-    .card{
-      background:var(--glass);
-      padding:14px;
-      border-radius:12px;
-      margin-top:14px;
-    }
+h1{
+  font-size:28px;
+  font-weight:700;
+  margin-bottom:10px;
+  background:linear-gradient(90deg, var(--accent), var(--accent-light));
+  -webkit-background-clip:text;
+  color:transparent;
+}
 
-    /* MODAL */
-    .modal-backdrop{
-      position:fixed;
-      inset:0;
-      background:rgba(0,0,0,0.6);
-      display:none;
-      justify-content:center;
-      align-items:center;
-      z-index:999;
-    }
-    .modal{
-      width:100%;
-      max-width:360px;
-      background:var(--card);
-      padding:18px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,0.05);
-    }
-    input{
-      width:100%;
-      padding:10px;
-      border-radius:10px;
-      background:transparent;
-      border:1px solid rgba(255,255,255,0.08);
-      color:#fff;
-      margin-top:10px;
-      margin-bottom:10px;
-    }
+p{
+  font-size:15px;
+  color:var(--text-muted);
+  margin-bottom:18px;
+}
 
-    .result{
-      background:rgba(255,255,255,0.06);
-      padding:10px;
-      border-radius:10px;
-      margin-top:10px;
-      display:none;
-    }
+/* ========= BOTÕES ========= */
+button{
+    background-color:#ff008c77 ;
+  border:none;
+  padding:12px 18px;
+  border-radius:10px;
+  font-weight:600;
+  cursor:pointer;
+  color:#fff;
+  transition:.3s;
+  
+}
+
+button:hover{
+  transform:scale(1.05);
+  background:#ff008cdd;
+}
+
+button.secondary{
+  background:transparent;
+  border:1px solid #333;
+  color:var(--text-muted);
+  box-shadow:none;
+}
+
+.secondary:hover{
+  border-color:var(--accent);
+  color:#fff;
+}
+
+/* ===== CARD DO CÓDIGO SALVO ===== */
+.card{
+  background:#111;
+  border:1px solid #1f1f1f;
+  padding:18px;
+  border-radius:14px;
+  margin-top:20px;
+  box-shadow:0 0 20px #00000066;
+}
+
+/* ======= MODAL ======== */
+.modal-backdrop{
+  position:fixed;
+  inset:0;
+  background:#ff008c77;
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:999;
+}
+
+.modal{
+  width:100%;
+  max-width:360px;
+  background:#0f0f0f;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #1e1e1e;
+  box-shadow:0 0 25px #00000088;
+}
+
+.modal h2{
+  font-size:22px;
+  margin-bottom:10px;
+  font-weight:700;
+}
+
+input{
+  width:100%;
+  padding:12px;
+  background:#111;
+  border:1px solid #222;
+  color:#fff;
+  border-radius:10px;
+  margin-top:12px;
+  margin-bottom:10px;
+  font-size:15px;
+}
+
+input:focus{
+  outline:none;
+  border-color:var(--accent);
+  
+}
+
+/* RESULTADO */
+.result{
+  background:#111;
+  border:1px solid #222;
+  padding:12px;
+  border-radius:10px;
+  margin-top:12px;
+  display:none;
+  color:#fff;
+  box-shadow:0 0 10px #00000055 inset;
+}
+
   </style>
 </head>
 
