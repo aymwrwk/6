@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Resgate de Código</title>
+
+  <style>
+    :root{
+      --bg:#0f1724;
+      --card:#0b1220;
+      --accent:#6ee7b7;
+      --muted:#93a4b8;
+      --glass:rgba(255,255,255,0.04);
+    }
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Poppins,Arial}
+
+    body{
+      background:var(--bg);
+      color:#e8eef6;
+      min-height:100vh;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:20px;
+    }
+
+    .container{
+      width:100%;
+      max-width:600px;
+      background:var(--card);
+      border-radius:14px;
+      padding:22px;
+      border:1px solid rgba(255,255,255,0.05);
+      box-shadow:0 8px 25px rgba(0,0,0,0.4);
+    }
+
+    h1{font-size:22px;margin-bottom:8px}
+    p{color:var(--muted);font-size:14px;margin-bottom:16px}
+
+    button{
+      background:var(--accent);
+      color:#04201a;
+      padding:10px 16px;
+      border:none;
+      border-radius:10px;
+      font-weight:600;
+      cursor:pointer;
+      margin-top:8px;
+      transition:.15s;
+    }
+    button:hover{transform:scale(1.02)}
+    button.secondary{
+      background:transparent;
+      color:var(--muted);
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .card{
+      background:var(--glass);
+      padding:14px;
+      border-radius:12px;
+      margin-top:14px;
+    }
+
+    /* MODAL */
+    .modal-backdrop{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,0.6);
+      display:none;
+      justify-content:center;
+      align-items:center;
+      z-index:999;
+    }
+    .modal{
+      width:100%;
+      max-width:360px;
+      background:var(--card);
+      padding:18px;
+      border-radius:12px;
+      border:1px solid rgba(255,255,255,0.05);
+    }
+    input{
+      width:100%;
+      padding:10px;
+      border-radius:10px;
+      background:transparent;
+      border:1px solid rgba(255,255,255,0.08);
+      color:#fff;
+      margin-top:10px;
+      margin-bottom:10px;
+    }
+
+    .result{
+      background:rgba(255,255,255,0.06);
+      padding:10px;
+      border-radius:10px;
+      margin-top:10px;
+      display:none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Resgatar Código</h1>
+    <p>Insira seu código para liberar suas informações.  
+    O código ficará salvo para você automaticamente.</p>
+
+    <button id="openBtn">Inserir código</button>
+
+    <div class="card" style="margin-top:20px">
+      <div style="font-size:13px;color:var(--muted)">Seu último código salvo:</div>
+      <div id="savedCode" style="font-size:16px;font-weight:600;margin-top:6px">Nenhum resgatado</div>
+
+      <div style="margin-top:12px;font-size:13px;color:var(--muted)">Informações liberadas:</div>
+      <div id="savedEmail" style="margin-top:4px">—</div>
+      <div id="savedPass">—</div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="modal-backdrop" id="modal">
+    <div class="modal">
+      <h2 style="font-size:18px">Inserir código</h2>
+      <input id="codeInput" type="text" placeholder="Ex: CODE123"/>
+
+      <div style="display:flex;justify-content:flex-end;gap:10px;margin-top:10px">
+        <button class="secondary" id="cancelBtn">Cancelar</button>
+        <button id="submitBtn">Confirmar</button>
+      </div>
+
+      <div class="result" id="resultBox"></div>
+    </div>
+  </div>
+
+<script>
+/* -----------------------------------------
+   5 CÓDIGOS VÁLIDOS (COM DADOS FICTÍCIOS)
+--------------------------------------------*/
+const codes = {
+  "ALFA10":   { email:"acesso1@demo.com", pass:"senhaDemo#1" },
+  "BRAVO20":  { email:"acesso2@demo.com", pass:"senhaDemo#2" },
+  "CHARLIE30":{ email:"acesso3@demo.com", pass:"senhaDemo#3" },
+  "DELTA40":  { email:"acesso4@demo.com", pass:"senhaDemo#4" },
+  "ECHO50":   { email:"acesso5@demo.com", pass:"senhaDemo#5" }
+};
+
+/* ELEMENTOS */
+const modal = document.getElementById("modal");
+const openBtn = document.getElementById("openBtn");
+const cancelBtn = document.getElementById("cancelBtn");
+const submitBtn = document.getElementById("submitBtn");
+const resultBox = document.getElementById("resultBox");
+const codeInput = document.getElementById("codeInput");
+
+const savedCode = document.getElementById("savedCode");
+const savedEmail = document.getElementById("savedEmail");
+const savedPass = document.getElementById("savedPass");
+
+/* -----------------------------------------
+   CARREGAR DO LOCALSTORAGE AO ABRIR O SITE
+--------------------------------------------*/
+const saved = localStorage.getItem("codigoResgatado");
+
+if(saved && codes[saved]) {
+  savedCode.textContent = saved;
+  savedEmail.textContent = "Email: " + codes[saved].email;
+  savedPass.textContent  = "Senha: " + codes[saved].pass;
+}
+
+/* -----------------------------------------
+   ABRIR MODAL
+--------------------------------------------*/
+openBtn.onclick = () => {
+  modal.style.display = "flex";
+  codeInput.value = "";
+  resultBox.style.display = "none";
+  setTimeout(()=>codeInput.focus(),100);
+};
+
+/* -----------------------------------------
+   FECHAR MODAL
+--------------------------------------------*/
+cancelBtn.onclick = () => {
+  modal.style.display = "none";
+};
+modal.onclick = (e)=>{
+  if(e.target===modal) modal.style.display = "none";
+}
+
+/* -----------------------------------------
+   CONFIRMAR CÓDIGO
+--------------------------------------------*/
+submitBtn.onclick = handleSubmit;
+codeInput.addEventListener("keydown", e=>{
+  if(e.key==="Enter") handleSubmit();
+});
+
+function handleSubmit(){
+  const typed = codeInput.value.trim().toUpperCase();
+
+  if(!typed){
+    showResult("Digite um código válido.", false);
+    return;
+  }
+
+  if(codes[typed]) {
+    const data = codes[typed];
+
+    // SALVAR
+    localStorage.setItem("codigoResgatado", typed);
+
+    // EXIBIR
+    showResult(
+      `Código válido!<br><br>
+      Email: <strong>${data.email}</strong><br>
+      Senha: <strong>${data.pass}</strong>`,
+      true
+    );
+
+    // ATUALIZAR PAINEL DA TELA
+    savedCode.textContent = typed;
+    savedEmail.textContent = "Email: " + data.email;
+    savedPass.textContent  = "Senha: " + data.pass;
+  }
+  else {
+    showResult("Código inválido. Tente novamente.", false);
+  }
+}
+
+/* -----------------------------------------
+   FUNÇÃO VISUAL DO RESULTADO
+--------------------------------------------*/
+function showResult(msg, ok){
+  resultBox.style.display = "block";
+  resultBox.style.color = ok ? "#6ee7b7" : "#f55";
+  resultBox.innerHTML = msg;
+}
+</script>
+
+</body>
+</html>

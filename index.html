@@ -1,131 +1,408 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Seu Site Profissional</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DarkStore - Corrigido</title>
 
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+    *{ margin:0; padding:0; box-sizing:border-box; font-family:"Poppins",sans-serif; }
+    body{ background:#0b0b0b; color:#f5f5f5; overflow-x:hidden; }
+
+    header{
+        width:100%; padding:20px 6%; display:flex; justify-content:space-between; align-items:center;
+        background:#0f0f0f; position:sticky; top:0; z-index:1000; border-bottom:1px solid #1e1e1e;
+        backdrop-filter:blur(8px); box-shadow:0 4px 20px #00000055;
+    }
+
+    .logo{
+        height: 90px;
+    }
+
+    /* BARRA DE PESQUISA */
+    .search-box {
+        width: 420px;
+        display: flex;
+        background: #111;
+        border: 1px solid #222;
+        border-radius: 10px;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+    .search-box input {
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        padding: 12px 15px;
+        color: #fff;
+        font-size: 15px;
+    }
+    .search-box button {
+        background: #1E7FC2;
+        border: none;
+        padding: 0 18px;
+        color: #fff;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .search-box button:hover {
+        background: #1E7FC2cc;
+    }
+
+    #showAll {
+        display:none;
+        margin:20px auto;
+        text-align:center;
+        padding:12px 22px;
+        border-radius:8px;
+        background:#ff008c77;
+        color:#fff;
+        border:none;
+        cursor:pointer;
+        font-weight:600;
+        transition:0.3s;
+    }
+    #showAll:hover { background:#ff008c; }
+
+    .hero{ width:100%; padding:100px 6%; text-align:center; background:linear-gradient(180deg,#111 0%,#0b0b0b 100%); border-bottom:1px solid #1c1c1c; }
+    .hero h2{
+        font-size:48px; font-weight:700; margin-bottom:15px;
+        background:linear-gradient(90deg,#ff008c,#ff44cc,#ff008c); -webkit-background-clip:text; color:transparent;
+    }
+    .hero p{ font-size:20px; color:#cfcfcf; max-width:700px; margin:auto; }
+
+    /* CARROSSEL */
+    .carousel-container{ position:relative; width:92%; margin:60px auto; overflow:hidden; padding:20px 0; }
+    .carousel{
+        display:flex; gap:22px; overflow-x:auto; scroll-behavior:smooth; padding:10px 5px 30px 5px;
+        scroll-snap-type:x mandatory; position:relative; z-index:1; -webkit-overflow-scrolling:touch;
+    }
+    .carousel::-webkit-scrollbar{ height:7px; }
+    .carousel::-webkit-scrollbar-thumb{ background:#ff008c; border-radius:20px; }
+
+    .card{
+        min-width:260px; background:#111; border:1px solid #1f1f1f; border-radius:18px; padding:18px;
+        transition:0.3s; scroll-snap-align:center; box-shadow:0 0 18px #00000055;
+    }
+    .card:hover{ transform:translateY(-5px) scale(1.03); border-color:#ff008c66; box-shadow:0 0 25px #ff008c33; }
+    .card img{ width:100%; height:190px; object-fit:cover; border-radius:12px; }
+    .card h3{ margin:12px 0 6px; font-size:20px; font-weight:600; }
+    .card p{ color:#aaa; margin-bottom:10px; font-size:14px; }
+
+    .btng{
+      margin-top: 20px;
+      padding:10px; 
+      background:#1E7FC2;
+      border:none; 
+      color:#fff;
+      border-radius:4px;
+      width:15%;
+      cursor:pointer;
+      font-weight:600;
+      transition:0.3s;
+    }
+
+       .btng:hover {
+        background: #1E7FC2cc;
+    }
+
+    
+    .btn{ padding:10px; background:#ff008c77; border:none; color:#fff; border-radius:4px; width:100%; cursor:pointer; font-weight:600; transition:0.3s; }
+    .btn:hover{ background:#e6007f; }
+
+    .btn-left, .btn-right{
+        position:absolute; top:50%; transform:translateY(-50%); background:#ff008c88; border:none;
+        border-radius:8px; padding:18px 22px; font-size:24px; color:#fff; cursor:pointer;
+        backdrop-filter:blur(6px); transition:0.2s; z-index:200; pointer-events:auto;
+        display:flex; align-items:center; justify-content:center;
+    }
+    .btn-left:hover, .btn-right:hover{ background:#ff008c; }
+    .btn-left{ left:10px; }
+    .btn-right{ right:10px; }
+
+    /* CARD AMPLIADO */
+    .card.ampliado {
+        transform: scale(1.35) !important;
+        margin: 80px auto !important;
+        z-index: 999;
+        width: 420px !important;
+    }
+
+    section{ padding:80px 8%; }
+    .title{ font-size:36px; text-align:center; margin-bottom:30px; font-weight:700; }
+    .grid-products{ display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:30px; }
+
+    .category{ background:#141414; padding:25px; border-radius:18px; text-align:center; border:1px solid #222; box-shadow:0 0 15px #00000055; transition:0.3s; }
+    .category:hover{ background:#1a1a1a; transform:translateY(-5px); border-color:#ff008c55; }
+    .category img{ width:100%; height:160px; border-radius:12px; object-fit:cover; margin-bottom:12px; }
+
+  
+
+    .categoria-especial{ width:100%; background:#131313; padding:45px; border-radius:22px; border:1px solid #1f1f1f; display:flex; gap:40px; align-items:center; box-shadow:0 0 25px #00000066; transition:0.3s; }
+    /* Correção para GIF da categoria especial */
+.categoria-especial img.imgdc {
+    width: 280px !important;   /* diminuir largura */
+    height: auto !important;   /* mantém proporção */
+    object-fit: contain !important;  /* evita corte */
+}
+
+    .categoria-especial:hover{ transform:scale(1.01); background:#1a1a1a; border-color:#ff008c55; }
+    .categoria-especial .info{ width:55%; }
+    .categoria-especial .info h3{ font-size:30px; margin-bottom:15px; font-weight:700; }
+
+    footer{
+       margin-top:80px; padding:40px; text-align:center; border-top:1px solid #1e1e1e; background:#0f0f0f;
+    }
+
+
+/* ============================
+      🔥 RESPONSIVIDADE 🔥
+============================*/
+
+/* --------- Tablets --------- */
+@media (max-width: 992px){
+    header{
+        flex-direction: column;
+        gap: 15px;
+    }
+    .search-box{
+        width:100%;
+        max-width:480px;
+    }
+    .hero h2{
+        font-size:36px;
+    }
+    .categoria-especial{
+        flex-direction:column;
+        text-align:center;
+    }
+    .categoria-especial img{
+        width:100%;
+        height:220px;
+    }
+    .categoria-especial .info{
+        width:100%;
+    }
+    .btng{
+        width:40%;
+    }
+}
+
+/* Esconder a logo no celular */
+@media (max-width: 768px) {
+    .logo {
+        display: none;
+    }
+}
+
+
+/* --------- Celulares --------- */
+@media (max-width: 600px){
+
+    header{
+        padding:15px 5%;
+    }
+
+
+
+    .search-box{
+        width:100%;
+    }
+
+    .hero{ padding:60px 8%; }
+    .hero h2{ font-size:28px; }
+    .hero p{ font-size:16px; }
+
+    .carousel-container{
+        width:100%;
+        margin-top:30px;
+    }
+
+    .btn-left,
+    .btn-right{
+        display:none !important; /* Evita quebrar a tela */
+    }
+
+    .card{
+        min-width:75%;
+    }
+
+    section{
+        padding:50px 6%;
+    }
+
+    .title{
+        font-size:26px;
+    }
+
+    .categoria-especial{
+        padding:25px;
+        gap:20px;
+    }
+
+    .categoria-especial img{
+        height:180px;
+    }
+
+    .btng{
+        width:70%;
+    }
+
+    .card.ampliado {
+        width:90% !important;
+        transform:scale(1.05) !important;
+        margin-top:40px !important;
+    }
+}
+
+</style>
 </head>
-
 <body>
 
-    <!-- HEADER -->
-   <header class="header">
-    <div class="logo"><img class="logof" src="logo.png" alt=""></div>
-
+<header>
+    <a href="index.html"><img src="logo.png" alt="DarkStore Logo" class="logo"></a>
     <div class="search-box">
         <input type="text" id="searchInput" placeholder="Pesquisar produtos...">
+        <button onclick="buscar()">Pesquisar</button>
     </div>
 </header>
 
-    <!-- HERO -->
-    <section class="hero">
-        <h1 class="title">[ Resgate seu código aqui ]</h1>
-        <button class="btn-large">Resgatar</button>
-    </section>
+<button id="showAll" onclick="mostrarTudo()">Mostrar tudo</button>
 
-    <!-- PRODUTOS -->
-    <section class="produtos-section">
-        <h2 class="section-title">Produtor • Produtos em Alta</h2>
+<section class="hero content">
+    <p>Resgate o código da sua compra aqui! </p>
+    <a href="resgatar.html"><button class="btng">Resgatar</button></a>
+</section>
 
-        <div class="produtos-container" id="produtosContainer">
+<section id="produtos" class="carousel-container content">
+    <button class="btn-left" aria-label="Anteriores" onclick="carouselPrev()">❮</button>
+    <button class="btn-right" aria-label="Próximos" onclick="carouselNext()">❯</button>
 
-            <!-- PRODUTO 1 -->
-            <div class="produto-card" data-name="Twitter X Antiga">
-                <img src="./img/anunciotwitter.png" alt="Produto">
-                <h3>X (Twitter) Antiga</h3>
-                <p class="descricao">Melhor preço</p>
-                <span class="preco">R$ 4,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
+    <div class="carousel" id="carousel">
+        <div class="card" data-name="disney disney+"><img src="./img/anunciodisney.png"><h3>Disney+</h3><p>Assinatura streaming.</p><button class="btn">Comprar</button></div>
 
-            <!-- PRODUTO 2 -->
-            <div class="produto-card" data-name="Paramount Plus Série TV Streaming">
-                <img src="./img/anuncioparamount.png" alt="Produto">
-                <h3>Paramount Plus</h3>
-                <p class="descricao">Streaming</p>
-                <span class="preco">R$ 6,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
+        <div class="card" data-name="netflix"><img src="./img/anuncionetflix.png"><h3>Netflix</h3><p>Assinatura premium.</p><button class="btn">Comprar</button></div>
 
-            <!-- PRODUTO 3 -->
-            <div class="produto-card" data-name="Spotify Premium Música Play">
-                <img src="./img/anunciospotify.png" alt="Produto">
-                <h3>Spotify Premium</h3>
-                <p class="descricao">Acesso full </p>
-                <span class="preco">R$ 6,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
+        <div class="card" data-name="paramount"><img src="./img/anuncioparamount.png"><h3>Paramount+</h3><p>Séries e filmes.</p><button class="btn">Comprar</button></div>
 
-            
-            <!-- PRODUTO 3 -->
-            <div class="produto-card" data-name="Disney Plus Série TV Streaming">
-                <img src="./img/anunciodisney.png" alt="Produto">
-                <h3>Disney Plus</h3>
-                <p class="descricao">Acesso imediato</p>
-                <span class="preco">R$ 6,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
-            
-            <!-- PRODUTO 3 -->
-            <div class="produto-card" data-name="Netflix Série TV Streaming">
-                <img src="./img/anuncionetflix.png" alt="Produto">
-                <h3>Netlix Premium</h3>
-                <p class="descricao">Streaming & TV</p>
-                <span class="preco">R$ 10,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
-              
-            <!-- PRODUTO 3 -->
-            <div class="produto-card" data-name="Conta Premium">
-                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
-                <h3>Conta Premium</h3>
-                <p class="descricao">Acesso imediato • Garantia total</p>
-                <span class="preco">R$ 24,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div> 
-            <!-- PRODUTO 3 -->
-            <div class="produto-card" data-name="Conta Premium">
-                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
-                <h3>Conta Premium</h3>
-                <p class="descricao">Acesso imediato • Garantia total</p>
-                <span class="preco">R$ 24,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
-            
-            <!-- PRODUTO 3 -->
-            <div class="produto-card" data-name="Conta Premium">
-                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
-                <h3>Conta Premium</h3>
-                <p class="descricao">Acesso imediato • Garantia total</p>
-                <span class="preco">R$ 24,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
-            <!-- PRODUTO 3 -->
-            <div class="produto-card" data-name="Conta Premium">
-                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
-                <h3>Conta Premium</h3>
-                <p class="descricao">Acesso imediato • Garantia total</p>
-                <span class="preco">R$ 24,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
-            <!-- PRODUTO 3 -->
-            <div class="produto-card" data-name="Conta Premium">
-                <img src="https://i.imgur.com/4XvQ0y7.png" alt="Produto">
-                <h3>Conta Premium</h3>
-                <p class="descricao">Acesso imediato • Garantia total</p>
-                <span class="preco">R$ 24,90</span>
-                <button class="btn-comprar">Comprar</button>
-            </div>
+        <div class="card" data-name="spotify"><img src="./img/anunciospotify.png"><h3>Spotify</h3><p>Plano premium.</p><button class="btn">Comprar</button></div>
+
+        <div class="card" data-name="twitter x premium"><img src="./img/anunciotwitter.png"><h3>Twitter / X</h3><p>Assinatura azul.</p><button class="btn">Comprar</button></div>
+    </div>
+</section>
+
+<section id="categorias" class="content">
+    <h2 class="title">Categorias</h2>
+    <div class="grid-products">
+        <div class="category"><img src="https://i.imgur.com/9yG6VQx.jpeg"><h3>Periféricos</h3></div>
+        <div class="category"><img src="https://i.imgur.com/0DElr0H.jpeg"><h3>PC Gamer</h3></div>
+        <div class="category"><img src="https://i.imgur.com/Fo5YhWQ.jpeg"><h3>Monitores</h3></div>
+        <div class="category"><img src="https://i.imgur.com/mz0FfXU.jpeg"><h3>Acessórios</h3></div>
+    </div>
+</section>
+
+<section id="categoria-especial" class="content">
+    <h2 class="title">Suporte</h2>
+    <div class="categoria-especial">
+        <img class="imgdc" src="./img/discordlogo.gif">
+        <div class="info">
+            <h3>Problema com suas compras?</h3>
+            <p>Teve algum problema ou dúvida sobre sua compra? Nossa equipe está pronta para ajudar no Discord.</p>
+            <br>
+            <button class="btn">Explorar</button>
         </div>
-    </section>
+    </div>
+</section>
 
-    <footer class="footer">
-        © 2025 — Seu Site Profissional. Todos os direitos reservados.
-    </footer>
+<section id="sobre" class="content">
+    <h2 class="title">Sobre Nós</h2>
+    <div class="banner">
+        <h3>Contas totalmente roubadas, e continuarei roubando.</h3>
+        <p style="margin-top:15px;color:#ccc;"></p>
+    </div>
+</section>
 
-    <script src="script.js"></script>
-</body>
-</html>
+<footer id="contato" class="content">
+    <p>ExplanaGG © 2025 - Todos os direitos reservados.</p>
+</footer>
+
+<script>
+/* ------------- CARROSSEL ------------- */
+const carousel = document.getElementById('carousel');
+
+function carouselPrev(){
+    carousel.scrollBy({ left: -300, behavior: 'smooth' });
+}
+function carouselNext(){
+    carousel.scrollBy({ left: 300, behavior: 'smooth' });
+}
+
+/* ------------- BUSCA + AMPLIAÇÃO ------------- */
+function buscar(){
+    const termo = document.getElementById("searchInput").value.trim().toLowerCase();
+    const cards = document.querySelectorAll(".card");
+    const conteudos = document.querySelectorAll(".content");
+    const leftBtn = document.querySelector(".btn-left");
+    const rightBtn = document.querySelector(".btn-right");
+    const hero = document.querySelector(".hero");
+
+    if(termo.length === 0) return;
+
+    let encontrou = false;
+
+    // Reset das ampliações
+    cards.forEach(c => c.classList.remove("ampliado"));
+
+    cards.forEach(card => {
+        const nome = card.getAttribute("data-name").toLowerCase();
+
+        if(nome.includes(termo)){
+            encontrou = true;
+
+            // Oculta os outros cards
+            cards.forEach(c => c.style.display = "none");
+
+            // MOSTRA só o card achado
+            card.style.display = "block";
+            card.classList.add("ampliado");
+        }
+    });
+
+    conteudos.forEach(sec => sec.style.display = "none");
+
+    leftBtn.style.display = "none";
+    rightBtn.style.display = "none";
+
+    hero.style.display = "none";
+
+    document.getElementById("produtos").style.display = "block";
+
+    document.getElementById("showAll").style.display = "block";
+}
+
+/* ---------- RESTAURAR TUDO ---------- */
+function mostrarTudo(){
+    const cards = document.querySelectorAll(".card");
+    const conteudos = document.querySelectorAll(".content");
+    const leftBtn = document.querySelector(".btn-left");
+    const rightBtn = document.querySelector(".btn-right");
+    const hero = document.querySelector(".hero");
+
+    conteudos.forEach(sec => sec.style.display = "block");
+
+    cards.forEach(card => {
+        card.style.display = "block";
+        card.classList.remove("ampliado");
+    });
+
+    leftBtn.style.display = "flex";
+    rightBtn.style.display = "flex";
+
+    hero.style.display = "block";
+
+    document.getElementById("showAll").style.display = "none";
+}
+</script>
