@@ -2,27 +2,27 @@ exports.handler = async (event) => {
   const code = (event.queryStringParameters.code || "").toUpperCase();
 
   const codes = {
-    "ALFA10": {
+    "X9K2M7": {
       produto: "Spotify Premium",
       email: "userforgetname@gmail.com",
       pass: "forget$@123"
     },
-    "BRAVO20": {
+    "A7P0Q3": {
       produto: "HBO Max",
       email: "pngdesign25@gmail.com",
       pass: "01020304Bv@"
     },
-    "CHARLIE30": {
+    "Z4R8T1": {
       produto: "Crunchyroll Premium",
       email: "neededgore@gmail.com",
       pass: "forget$@123"
     },
-    "DELTA40": {
+    "U98TWK": {
       produto: "Paramount Plus",
       email: "larissavitoriaff123@gmail.com",
       pass: "forget$@123"
     },
-    "ECHO50": {
+    "36YMNF": {
       produto: "Disney Plus",
       email: "pngdesign25@gmail.com",
       pass: "01020304Bv@"
