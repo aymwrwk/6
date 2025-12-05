@@ -289,8 +289,9 @@ if (saved) {
     .then(data => {
       if (data.ok) {
         savedCode.textContent = saved;
-        savedEmail.textContent = "Email: " + data.email;
-        savedPass.textContent  = "Senha: " + data.pass;
+        savedEmail.textContent = "Produto: " + data.produto;
+        savedPass.textContent  = "Email: " + data.email + " | Senha: " + data.pass;
+
       }
     })
     .catch(() => {});
@@ -334,11 +335,13 @@ function handleSubmit() {
 
       // EXIBIR
       showResult(
-        `Código válido!<br><br>
-        Email: <strong>${data.email}</strong><br>
-        Senha: <strong>${data.pass}</strong>`,
-        true
-      );
+  `Código válido!<br><br>
+  Produto: <strong>${data.produto}</strong><br>
+  Email: <strong>${data.email}</strong><br>
+  Senha: <strong>${data.pass}</strong>`,
+  true
+);
+
 
       // ATUALIZAR PAINEL
       savedCode.textContent = typed;
