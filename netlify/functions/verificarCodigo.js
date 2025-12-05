@@ -1,13 +1,11 @@
 exports.handler = async (event) => {
   const code = (event.queryStringParameters.code || "").toUpperCase();
 
-  const codes = {
-    "A9fK72mQxL4p":   { email:"acesso1@demo.com", pass:"senhaDemo#1" },
-    "BRAVO20":  { email:"acesso2@demo.com", pass:"senhaDemo#2" },
-    "CHARLIE30":{ email:"acesso3@demo.com", pass:"senhaDemo#3" },
-    "DELTA40":  { email:"acesso4@demo.com", pass:"senhaDemo#4" },
-    "ECHO50":   { email:"acesso5@demo.com", pass:"senhaDemo#5" }
-  };
+ const codes = {
+  "X9K2M7": { email:"email1@exemplo.com", pass:"senha1" },
+  "A7P0Q3": { email:"email2@exemplo.com", pass:"senha2" },
+  "Z4R8T1": { email:"email3@exemplo.com", pass:"senha3" }
+};
 
   if (!codes[code]) {
     return {
