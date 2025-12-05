@@ -26,6 +26,44 @@ exports.handler = async (event) => {
       produto: "Disney Plus",
       email: "pngdesign25@gmail.com",
       pass: "01020304Bv@"
+    },
+    "54FTCP": {
+      produto: "HBO Max",
+      email: "william.ibarrondo@yahoo.com",
+      pass: "1barrondo!"
+    },
+    "ASDHK2": {
+      produto: "Roblox / Limited",
+      email: "larissavitoriaff123@gmail.com",
+      pass: "01020304BV@"
+    },
+    "IKN8SA": {
+      produto: "Spotify Premium",
+      email: "laurinhab26@gmail.com",
+      pass: "forget$@123"
+    },
+    "5JHSDA": {
+      produto: "Valorant Smurf",
+      email: "matheusbjj15",
+      pass: "01020304Bv@"
+    }
+    ,
+    "SAD6NM": {
+      produto: "Twitter Antiga",
+      email: "junior_william@hotmail.com",
+      pass: "01020304Bv@"
+    }
+    ,
+    "7GTYNM": {
+      produto: "Roblox",
+      email: "luismiguelito777",
+      pass: "01020304Bv@"
+    }
+    ,
+    "WEQUY1": {
+      produto: "League of Legends",
+      email: "nuintinakx7",
+      pass: "01020304Bv@"
     }
   };
 
