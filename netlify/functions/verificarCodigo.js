@@ -3,29 +3,29 @@ exports.handler = async (event) => {
 
   const codes = {
     "ALFA10": {
-      produto: "Plano Gold",
-      email: "acesso1@demo.com",
-      pass: "senhaDemo#1"
+      produto: "Spotify Premium",
+      email: "userforgetname@gmail.com",
+      pass: "forget$@123"
     },
     "BRAVO20": {
-      produto: "Assinatura Premium",
-      email: "acesso2@demo.com",
-      pass: "senhaDemo#2"
+      produto: "HBO Max",
+      email: "pngdesign25@gmail.com",
+      pass: "01020304Bv@"
     },
     "CHARLIE30": {
-      produto: "Curso Avançado",
-      email: "acesso3@demo.com",
-      pass: "senhaDemo#3"
+      produto: "Crunchyroll Premium",
+      email: "neededgore@gmail.com",
+      pass: "forget$@123"
     },
     "DELTA40": {
-      produto: "Pacote Pro",
-      email: "acesso4@demo.com",
-      pass: "senhaDemo#4"
+      produto: "Paramount Plus",
+      email: "larissavitoriaff123@gmail.com",
+      pass: "forget$@123"
     },
     "ECHO50": {
-      produto: "Plano Master",
-      email: "acesso5@demo.com",
-      pass: "senhaDemo#5"
+      produto: "Disney Plus",
+      email: "pngdesign25@gmail.com",
+      pass: "01020304Bv@"
     }
   };
 
