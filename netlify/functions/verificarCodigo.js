@@ -64,6 +64,11 @@ exports.handler = async (event) => {
       produto: "League of Legends",
       email: "nuintinakx7",
       pass: "01020304Bv@"
+    },
+    "SBNDW7": {
+      produto: "Spotify Premium",
+      email: "usertdhsinho@gmail.com",
+      pass: "01020304Bv@"
     }
   };
 
