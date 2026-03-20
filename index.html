@@ -1,306 +1,318 @@
 <!DOCTYPE html>
-<html lang="en">
+
+<html lang="pt-br">
 <head>
 <meta charset="UTF-8">
-<title>DarkPaste</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-:root {
-  --bg: #000;
-  --bg-soft: #0b0b0b;
-  --border: #222;
-  --text: #cfcfcf;
-  --muted: #777;
-}
+<title>Galeria de Pessoas</title>
 
+<!-- Google Fonts -->
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
+    font-family: 'Poppins', sans-serif;
+    background: #0a0a0a;
+    color: #f5f5f5;
 }
 
-.spanred {
-  color: red;
-}
-
-/* ===== HERO (AJUSTADA) ===== */
-.hero {
-  min-height: 360px;          /* ↓ antes 85vh */
-  padding-top: 40px;          /* controla distância do topo */
-  padding-bottom: 25px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+/* HEADER */
+header {
+    background: #000;
+    padding: 15px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #ff4da6;
 }
 
 .logo {
-  width: 130px;               /* um pouco menor */
-  margin-bottom: 10px;
+    font-size: 22px;
+    font-weight: 600;
+    color: #ff4da6;
 }
 
-.hero-title {
-  color: #ff6a00;
-  font-weight: bold;
-  margin-bottom: 2px;
+nav a {
+    color: #ccc;
+    margin-left: 25px;
+    text-decoration: none;
+    font-size: 14px;
+    transition: 0.3s;
 }
 
-.hero-sub {
-  color: red;
-  margin-bottom: 8px;
-  font-size: 12px;
+nav a:hover {
+    color: #ff4da6;
 }
 
-.search-wrapper {
-  display: flex;
-  margin-top: 6px;
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 70px 20px;
 }
 
-.search-wrapper input {
-  width: 260px;
-  padding: 6px 9px;
-  background: #111;
-  border: 1px solid var(--border);
-  color: var(--text);
-  outline: none;
+.hero h1 {
+    font-size: 38px;
+    font-weight: 600;
 }
 
-.search-wrapper button {
-  padding: 6px 14px;
-  background: #000;
-  border: 1px solid var(--border);
-  color: #fff;
-  cursor: pointer;
+.hero p {
+    color: #aaa;
+    margin-top: 10px;
 }
 
-.search-wrapper button:hover {
-  background: #111;
+/* SEARCH */
+.search-container {
+    text-align: center;
+    margin: 20px;
 }
 
-.hero-info {
-  margin-top: 6px;
-  color: var(--muted);
-  font-size: 12px;
+.search-container input {
+    padding: 12px;
+    width: 280px;
+    border: 1px solid #333;
+    background: #111;
+    color: white;
+    border-radius: 6px;
+    outline: none;
 }
 
-/* ===== PAGINATION ===== */
-.pagination {
-  margin-top: 10px;
+.search-container input:focus {
+    border-color: #ff4da6;
 }
 
-.pagination button {
-  background: #000;
-  border: 1px solid var(--border);
-  color: #fff;
-  padding: 4px 8px;
-  margin: 0 2px;
-  cursor: pointer;
+/* FILTER */
+.filter {
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-.pagination button:hover {
-  background: #111;
+.filter button {
+    padding: 8px 16px;
+    margin: 5px;
+    border: 1px solid #ff4da6;
+    background: transparent;
+    color: #ff4da6;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: 0.3s;
 }
 
-/* ===== CONTENT ===== */
-.container {
-  max-width: 1200px;
-  margin: 0 auto 10px;
-  padding: 0 10px;
+.filter button:hover {
+    background: #ff4da6;
+    color: black;
 }
 
-.section-title {
-  margin: 0 0 8px;
-  font-weight: bold;
-  color: #fff;
+/* GALERIA */
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
 }
 
-/* ===== TABLE ===== */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  background: var(--bg-soft);
-  border: 1px solid var(--border);
+.card {
+    width: 240px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-thead {
-  background: #111;
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #ff4da6;
 }
 
-th, td {
-  padding: 8px 10px;
-  border-bottom: 1px solid var(--border);
-  text-align: left;
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
 }
 
-th {
-  color: #bbb;
+.card .info {
+    padding: 12px;
 }
 
-tbody tr:hover {
-  background: #111;
+.card h3 {
+    font-size: 16px;
+    margin-bottom: 5px;
 }
 
-a {
-  color: #fff;
-  text-decoration: none;
+.card p {
+    font-size: 13px;
+    color: #aaa;
 }
 
-a:hover {
-  text-decoration: underline;
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    background: rgba(0,0,0,0.9);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
 }
 
-/* ===== FOOTER ===== */
+.modal img {
+    max-width: 75%;
+}
+
+.modal span {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #ff4da6;
+}
+
+/* BOTÃO TOPO */
+#topo {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #ff4da6;
+    border: none;
+    padding: 10px;
+    color: black;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+/* SOBRE */
+#sobre {
+    padding: 50px 20px;
+    text-align: center;
+}
+
+#sobre h2 {
+    margin-bottom: 10px;
+}
+
+/* FOOTER */
 footer {
-  border-top: 1px solid var(--border);
-  padding: 20px;
-  text-align: center;
-  color: #555;
-  font-size: 12px;
+    background: #000;
+    text-align: center;
+    padding: 25px;
+    border-top: 1px solid #222;
+    color: #777;
 }
 
-@media (max-width: 768px) {
-  .hero {
-    min-height: 300px;
-    padding-top: 30px;
-  }
-
-  .search-wrapper input {
-    width: 200px;
-  }
-}
 </style>
+
 </head>
 
 <body>
 
-<!-- ===== HERO ===== -->
-<div class="hero">
+<header>
+    <div class="logo">Galeria</div>
+    <nav>
+        <a href="#">Início</a>
+        <a href="#galeria">Pessoas</a>
+        <a href="#sobre">Sobre</a>
+    </nav>
+</header>
 
-  <svg class="logo" viewBox="0 0 512 512" fill="none" stroke="white" stroke-width="10">
-    <path d="M256 40 L180 120 L200 200 L256 220 L312 200 L332 120 Z"/>
-    <path d="M180 120 L120 80"/>
-    <path d="M332 120 L392 80"/>
-    <path d="M200 200 L180 300 L256 360 L332 300 L312 200"/>
-  </svg>
+<section class="hero">
+    <h1>Galeria d Pessoas</h1>
+    <p>Explore perfis, memórias e momentos especiais</p>
+</section>
 
-  <div class="hero-title">JOIN OUR TELEGRAM</div>
-  <div class="hero-sub">https://t.me/explanafun</div>
-
-  <div class="search-wrapper">
-    <input type="text" id="searchInput" placeholder="Search for...">
-    <button>Search</button>
-  </div>
-
-  <div class="hero-info">
-    Showing 12 (of 12 total) pastes
-  </div>
-
-  <div class="pagination">
-    <button>&lt;</button>
-    <button><span class="spanred">1</span></button>
-    <button>2</button>
-    <button>3</button>
-    <button>4</button>
-    <button>5</button>
-    <button>&gt;</button>
-  </div>
-
+<div class="search-container">
+    <input type="text" id="pesquisa" placeholder="Buscar pessoa..." onkeyup="filtrar()">
 </div>
 
-<!-- ===== CONTENT ===== -->
-<div class="container">
 
-  <div class="section-title">Pinned Pastes</div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th>Comments</th>
-        <th>Views</th>
-        <th>Created by</th>
-        <th>Added</th>
-      </tr>
-    </thead>
-    <tbody id="pasteTable">
-      <tr>
-        <td><a href="../upload/6984d079-81a0-8331-9692-26eeb9303c6d.html">silly ro-vibes</a></td>
-        <td>0</td>
-        <td>???</td>
-        <td>Anonymous</td>
-        <td>Feb 4, 2026</td>
-      </tr>
-      <tr>
-        <td><a href="#">bella vizinhos</a></td>
-        <td>0</td>
-        <td>???</td>
-        <td>Anonymous</td>
-        <td>Feb 3, 2026</td>
-      </tr>
-      <tr>
-        <td><a href="#">nana putinha</a></td>
-        <td>0</td>
-        <td>???</td>
-        <td>anonymous</td>
-        <td>Feb 1, 2026</td>
-      </tr>
-      <tr>
-        <td><a href="#">????????</a></td>
-        <td>0</td>
-        <td>???</td>
-        <td>anonymous</td>
-        <td>Feb 1, 2026</td>
-      </tr>
-      <tr>
-        <td><a href="#">????????</a></td>
-        <td>0</td>
-        <td>???</td>
-        <td>anonymous</td>
-        <td>Feb 1, 2026</td>
-      </tr>
-      <tr>
-        <td><a href="#">????????</a></td>
-        <td>0</td>
-        <td>???</td>
-        <td>anonymous</td>
-        <td>Feb 1, 2026</td>
-      </tr>
-      <tr>
-        <td><a href="#">????????</a></td>
-        <td>0</td>
-        <td>???</td>
-        <td>anonymous</td>
-        <td>Feb 1, 2026</td>
-      </tr>
-    </tbody>
-  </table>
+<section class="galeria" id="galeria">
 
+```
+<div class="card" data-nome="pessoa 1" data-cat="amigos">
+    <img src="midia/pessoa1/foto1.jpg" onclick="abrirModal(this.src)">
+    <div class="info">
+        <h3>Pessoa 1</h3>
+        <p>Amigo próximo e confiável.</p>
+    </div>
 </div>
+
+<div class="card" data-nome="pessoa 2" data-cat="familia">
+    <img src="midia/pessoa2/foto1.jpg" onclick="abrirModal(this.src)">
+    <div class="info">
+        <h3>Pessoa 2</h3>
+        <p>Parte importante da família.</p>
+    </div>
+</div>
+```
+
+</section>
+
+<!-- MODAL -->
+
+<div class="modal" id="modal">
+    <span onclick="fecharModal()">✕</span>
+    <img id="imgModal">
+</div>
+
+<section id="sobre">
+    <h2>Sobre</h2>
+    <p>Este projeto foi desenvolvido para organizar fotos e vídeos de pessoas importantes de forma elegante e moderna.</p>
+</section>
 
 <footer>
-  Educational clone • No real data hosted
+    <p>© 2026 - Galeria</p>
 </footer>
 
-<script>
-const searchInput = document.getElementById("searchInput");
-const rows = document.querySelectorAll("#pasteTable tr");
+<button id="topo" onclick="voltarTopo()">↑</button>
 
-searchInput.addEventListener("keyup", () => {
-  const value = searchInput.value.toLowerCase();
-  rows.forEach(row => {
-    row.style.display = row.innerText.toLowerCase().includes(value)
-      ? ""
-      : "none";
-  });
-});
+<script>
+function filtrar() {
+    let input = document.getElementById("pesquisa").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let nome = card.dataset.nome;
+        card.style.display = nome.includes(input) ? "block" : "none";
+    });
+}
+
+function filtrarCategoria(cat) {
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        if (cat === "todos" || card.dataset.cat === cat) {
+            card.style.display = "block";
+        } else {
+            card.style.display = "none";
+        }
+    });
+}
+
+function abrirModal(src) {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("imgModal").src = src;
+}
+
+function fecharModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function voltarTopo() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
 </script>
 
 </body>
