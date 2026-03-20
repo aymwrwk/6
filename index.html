@@ -4,12 +4,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="img/discordlogo.gif" type="image/png">
+<title>Backup</title>
 
-<title>Galeria de Pessoas</title>
-
-<!-- Google Fonts -->
+<!-- Google Font -->
 
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Google Icons -->
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 <style>
 * {
@@ -24,34 +28,6 @@ body {
     color: #f5f5f5;
 }
 
-/* HEADER */
-header {
-    background: #000;
-    padding: 15px 40px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid #ff4da6;
-}
-
-.logo {
-    font-size: 22px;
-    font-weight: 600;
-    color: #ff4da6;
-}
-
-nav a {
-    color: #ccc;
-    margin-left: 25px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
-}
-
-nav a:hover {
-    color: #ff4da6;
-}
-
 /* HERO */
 .hero {
     text-align: center;
@@ -60,54 +36,93 @@ nav a:hover {
 
 .hero h1 {
     font-size: 38px;
-    font-weight: 600;
 }
 
 .hero p {
     color: #aaa;
-    margin-top: 10px;
 }
 
 /* SEARCH */
 .search-container {
-    text-align: center;
+    display: flex;
+    justify-content: center;
     margin: 20px;
 }
 
-.search-container input {
-    padding: 12px;
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding: 12px 45px 12px 15px;
     width: 280px;
     border: 1px solid #333;
     background: #111;
     color: white;
-    border-radius: 6px;
+    border-radius: 3px;
     outline: none;
 }
 
-.search-container input:focus {
+.search-box input:focus {
     border-color: #ff4da6;
 }
 
-/* FILTER */
-.filter {
-    text-align: center;
-    margin-bottom: 20px;
+.search-box span {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff4da6;
+    font-size: 22px;
+    pointer-events: none;
 }
 
-.filter button {
-    padding: 8px 16px;
-    margin: 5px;
+/* DESTAQUE */
+.destaque {
+    display: flex;
+    justify-content: center;
+    margin: 40px 20px;
+}
+
+.box {
+    width: 700px;
+    background: #111;
     border: 1px solid #ff4da6;
-    background: transparent;
-    color: #ff4da6;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.box img {
+    width: 250px;
+    object-fit: cover;
+}
+
+.box-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.box-texto h2 {
+    margin-bottom: 10px;
+}
+
+.box-texto p {
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.box-texto button {
+    background: #ff4da6;
+    border: none;
+    padding: 10px;
     cursor: pointer;
-    border-radius: 6px;
     transition: 0.3s;
 }
 
-.filter button:hover {
-    background: #ff4da6;
-    color: black;
+.box-texto button:hover {
+    background: #ff2e93;
 }
 
 /* GALERIA */
@@ -146,7 +161,6 @@ nav a:hover {
 
 .card h3 {
     font-size: 16px;
-    margin-bottom: 5px;
 }
 
 .card p {
@@ -180,103 +194,106 @@ nav a:hover {
     color: #ff4da6;
 }
 
-/* BOTÃO TOPO */
-#topo {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    background: #ff4da6;
-    border: none;
-    padding: 10px;
-    color: black;
-    cursor: pointer;
-    border-radius: 6px;
+a{
+    text-decoration: none;
 }
-
-/* SOBRE */
-#sobre {
-    padding: 50px 20px;
-    text-align: center;
-}
-
-#sobre h2 {
-    margin-bottom: 10px;
-}
-
-/* FOOTER */
-footer {
-    background: #000;
-    text-align: center;
-    padding: 25px;
-    border-top: 1px solid #222;
-    color: #777;
-}
-
 </style>
 
 </head>
 
 <body>
 
-<header>
-    <div class="logo">Galeria</div>
-    <nav>
-        <a href="#">Início</a>
-        <a href="#galeria">Pessoas</a>
-        <a href="#sobre">Sobre</a>
-    </nav>
-</header>
-
 <section class="hero">
-    <h1>Galeria d Pessoas</h1>
-    <p>Explore perfis, memórias e momentos especiais</p>
+    <h1>18192789138970132891</h1> 
+    <br>
+    <img src="img/caption.gif" alt="">
 </section>
 
+<!-- SEARCH COM GOOGLE ICON -->
+
 <div class="search-container">
-    <input type="text" id="pesquisa" placeholder="Buscar pessoa..." onkeyup="filtrar()">
+    <div class="search-box">
+        <input type="text" id="pesquisa" placeholder="" onkeyup="filtrar()">
+        <span class="material-symbols-outlined">search</span>
+    </div>
 </div>
 
+<!-- DESTAQUE -->
 
+<section class="destaque">
+    <div class="box">
+        <img src="img/5005863467180821291.jpg">
+        <div class="box-texto">
+            <h2>Pessoa em Destaque</h2>
+            <p>Veja mais fotos e vídeos dessa pessoa especial da galeria.</p>
+            <button onclick="irPara('pessoas/pessoa1.html')">Ver Perfil</button>
+        </div>
+    </div>
+</section>
+
+<!-- GALERIA -->
 
 <section class="galeria" id="galeria">
-
-```
-<div class="card" data-nome="pessoa 1" data-cat="amigos">
-    <img src="midia/pessoa1/foto1.jpg" onclick="abrirModal(this.src)">
+<a href="https://mega.nz/folder/TxB0iZQD#mBNLyqs528tD338nx4H9UA">
+<div class="card" data-nome="pessoa 1">
+    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
     <div class="info">
         <h3>Pessoa 1</h3>
-        <p>Amigo próximo e confiável.</p>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+<div class="card" data-nome="pessoa 2">
+    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <div class="info">
+        <h3>Pessoa 2</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
     </div>
 </div>
 
-<div class="card" data-nome="pessoa 2" data-cat="familia">
-    <img src="midia/pessoa2/foto1.jpg" onclick="abrirModal(this.src)">
+<div class="card" data-nome="pessoa 3">
+    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
     <div class="info">
-        <h3>Pessoa 2</h3>
-        <p>Parte importante da família.</p>
+        <h3>Pessoa 3</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
     </div>
 </div>
-```
+
+<div class="card" data-nome="pessoa 4">
+    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <div class="info">
+        <h3>Pessoa 4</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+
+<div class="card" data-nome="pessoa 5">
+    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <div class="info">
+        <h3>Pessoa 5</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+<div class="card" data-nome="pessoa 6">
+    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <div class="info">
+        <h3>Pessoa 6</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+<div class="card" data-nome="pessoa 7">
+    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <div class="info">
+        <h3>Pessoa 7</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
 
 </section>
 
 <!-- MODAL -->
 
-<div class="modal" id="modal">
-    <span onclick="fecharModal()">✕</span>
-    <img id="imgModal">
-</div>
 
-<section id="sobre">
-    <h2>Sobre</h2>
-    <p>Este projeto foi desenvolvido para organizar fotos e vídeos de pessoas importantes de forma elegante e moderna.</p>
-</section>
-
-<footer>
-    <p>© 2026 - Galeria</p>
-</footer>
-
-<button id="topo" onclick="voltarTopo()">↑</button>
 
 <script>
 function filtrar() {
@@ -289,18 +306,6 @@ function filtrar() {
     });
 }
 
-function filtrarCategoria(cat) {
-    let cards = document.querySelectorAll(".card");
-
-    cards.forEach(card => {
-        if (cat === "todos" || card.dataset.cat === cat) {
-            card.style.display = "block";
-        } else {
-            card.style.display = "none";
-        }
-    });
-}
-
 function abrirModal(src) {
     document.getElementById("modal").style.display = "flex";
     document.getElementById("imgModal").src = src;
@@ -310,8 +315,8 @@ function fecharModal() {
     document.getElementById("modal").style.display = "none";
 }
 
-function voltarTopo() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+function irPara(pagina) {
+    window.location.href = pagina;
 }
 </script>
 
