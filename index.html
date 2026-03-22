@@ -8,11 +8,9 @@
 <title>Backup</title>
 
 <!-- Google Font -->
-
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <!-- Google Icons -->
-
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 <style>
@@ -87,7 +85,6 @@ body {
 .box {
     width: 700px;
     background: #111;
-    border: 1px solid #ff4da6;
     display: flex;
     gap: 20px;
     padding: 20px;
@@ -194,8 +191,35 @@ body {
     color: #ff4da6;
 }
 
-a{
+/* ===== ALTERAÇÃO AQUI ===== */
+
+a {
     text-decoration: none;
+    color: #ff4da6;
+    font-weight: normal;
+}
+
+a:visited {
+    color: #ff4da6;
+}
+
+a:hover {
+    color: #ff4da6;
+}
+
+a:active {
+    color: #ff4da6;
+}
+
+.card, .card * {
+    color: #ff4da6;
+    font-weight: normal;
+}
+
+.box video {
+    width: 250px;
+    height: 100%;
+    object-fit: cover;
 }
 </style>
 
@@ -203,13 +227,20 @@ a{
 
 <body>
 
-<section class="hero">
-    <h1>18192789138970132891</h1> 
-    <br>
-    <img src="img/caption.gif" alt="">
-</section>
 
-<!-- SEARCH COM GOOGLE ICON -->
+<section class="destaque">
+    <div class="box">
+        <video autoplay muted loop playsinline>
+    <source src="img/main.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo.
+</video>
+        <div class="box-texto">
+            <h2>´</h2>
+            <p>Backup & Galery</p>
+            <button onclick="irPara('pessoas/pessoa1.html')">Ver Perfil</button>
+        </div>
+    </div>
+</section>
 
 <div class="search-container">
     <div class="search-box">
@@ -218,82 +249,108 @@ a{
     </div>
 </div>
 
-<!-- DESTAQUE -->
-
-<section class="destaque">
-    <div class="box">
-        <img src="img/5005863467180821291.jpg">
-        <div class="box-texto">
-            <h2>Pessoa em Destaque</h2>
-            <p>Veja mais fotos e vídeos dessa pessoa especial da galeria.</p>
-            <button onclick="irPara('pessoas/pessoa1.html')">Ver Perfil</button>
-        </div>
-    </div>
-</section>
-
-<!-- GALERIA -->
-
 <section class="galeria" id="galeria">
+
 <a href="https://mega.nz/folder/TxB0iZQD#mBNLyqs528tD338nx4H9UA">
 <div class="card" data-nome="pessoa 1">
-    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <img src="img/card.jpg">
     <div class="info">
-        <h3>Pessoa 1</h3>
+        <h3>Nina</h3>
         <p>Lorem ipsum dolor sit amet.</p>
     </div>
 </div>
 </a>
-<div class="card" data-nome="pessoa 2">
-    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
-    <div class="info">
-        <h3>Pessoa 2</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
 
+<a href="https://mega.nz/folder/ylhliTqS#6omJSKpHH0Had3kLhNFEJw">
 <div class="card" data-nome="pessoa 3">
-    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <img src="img/card.jpg">
     <div class="info">
-        <h3>Pessoa 3</h3>
+        <h3>Emilly ( Mie )</h3>
         <p>Lorem ipsum dolor sit amet.</p>
     </div>
 </div>
+</a>
 
+<a href="https://mega.nz/folder/ughXmRTC#7koL_5oV82UPLfqtkrTgiQ">
 <div class="card" data-nome="pessoa 4">
-    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <img src="img/card.jpg">
     <div class="info">
-        <h3>Pessoa 4</h3>
+        <h3>Alice ( Lilly )</h3>
         <p>Lorem ipsum dolor sit amet.</p>
     </div>
 </div>
+</a>
 
+<a href="https://mega.nz/folder/zhYzXIyb#xYvAyVV4wcP5KPPTHGOOWQ">
+<div class="card" data-nome="pessoa 2">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Kiara</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/ThgAFDqQ#nLNl-YPkX9H3mvS4ybrhYQ">
 <div class="card" data-nome="pessoa 5">
-    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <img src="img/card.jpg">
     <div class="info">
-        <h3>Pessoa 5</h3>
+        <h3>Isabella ( Bella )</h3>
         <p>Lorem ipsum dolor sit amet.</p>
     </div>
 </div>
+</a>
+
+<a href="https://mega.nz/folder/2wISyBia#z0gvei3bC0ybChxSmMEjUA">
 <div class="card" data-nome="pessoa 6">
-    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <img src="img/card.jpg">
     <div class="info">
-        <h3>Pessoa 6</h3>
+        <h3>Anna ( Aya )</h3>
         <p>Lorem ipsum dolor sit amet.</p>
     </div>
 </div>
+</a>
+
+<a href="https://mega.nz/folder/y8o0XYqI#W3iRTBwaRaU0WJBXymf6gw">
 <div class="card" data-nome="pessoa 7">
-    <img src="img/discordlogo.gif" onclick="abrirModal(this.src)">
+    <img src="img/card.jpg">
     <div class="info">
-        <h3>Pessoa 7</h3>
+        <h3>Anna ( Aya ) 2.0</h3>
         <p>Lorem ipsum dolor sit amet.</p>
     </div>
 </div>
+</a>
 
+<a href="https://mega.nz/folder/msQggS5T#EBqnF7MeVlHZ7UoRItjaPg">
+<div class="card" data-nome="pessoa 7">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Maria ( Aika )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/TxB0iZQD#mBNLyqs528tD338nx4H9UA">
+<div class="card" data-nome="pessoa 1">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Nina</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/msQggS5T#EBqnF7MeVlHZ7UoRItjaPg">
+<div class="card" data-nome="pessoa 8">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Júlia ( Pearl )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
 </section>
-
-<!-- MODAL -->
-
-
 
 <script>
 function filtrar() {
