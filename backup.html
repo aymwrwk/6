@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="img/discordlogo.gif" type="image/png">
+<title>Backup</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #0a0a0a;
+    color: #f5f5f5;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 70px 20px;
+}
+
+.hero h1 {
+    font-size: 38px;
+}
+
+.hero p {
+    color: #aaa;
+}
+
+/* SEARCH */
+.search-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+}
+
+.search-box {
+    position: relative;
+}
+
+.search-box input {
+    padding: 12px 45px 12px 15px;
+    width: 280px;
+    border: 1px solid #333;
+    background: #111;
+    color: white;
+    border-radius: 3px;
+    outline: none;
+}
+
+.search-box input:focus {
+    border-color: #ff4da6;
+}
+
+.search-box span {
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #ff4da6;
+    font-size: 22px;
+    pointer-events: none;
+}
+
+/* DESTAQUE */
+.destaque {
+    display: flex;
+    justify-content: center;
+    margin: 40px 20px;
+}
+
+.box {
+    width: 700px;
+    background: #111;
+    display: flex;
+    gap: 20px;
+    padding: 20px;
+}
+
+.box img {
+    width: 250px;
+    object-fit: cover;
+}
+
+.box-texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.box-texto h2 {
+    margin-bottom: 10px;
+}
+
+.box-texto p {
+    color: #aaa;
+    margin-bottom: 15px;
+}
+
+.box-texto button {
+    background: #ff4da6;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.box-texto button:hover {
+    background: #ff2e93;
+}
+
+/* GALERIA */
+.galeria {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 30px;
+}
+
+.card {
+    width: 240px;
+    background: #111;
+    border: 1px solid #222;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-x{
+   width: 240px;
+    background: #111;
+    border: 2px solid #ee0000;
+    border-radius: 2px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.card-x:hover {
+    transform: translateY(-6px);
+    border-color: #ff0000;
+}
+
+.card-x img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.card-x .info {
+    padding: 12px;
+}
+
+.card-x h3 {
+    font-size: 16px;
+}
+
+.card-x p {
+    font-size: 13px;
+    color: #aaa;
+}
+
+
+.card:hover {
+    transform: translateY(-6px);
+    border-color: #ff4da6;
+}
+
+.card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+}
+
+.card .info {
+    padding: 12px;
+}
+
+.card h3 {
+    font-size: 16px;
+}
+
+.card p {
+    font-size: 13px;
+    color: #aaa;
+}
+
+/* MODAL */
+.modal {
+    display: none;
+    position: fixed;
+    background: rgba(0,0,0,0.9);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal img {
+    max-width: 75%;
+}
+
+.modal span {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 28px;
+    cursor: pointer;
+    color: #ff4da6;
+}
+
+a {
+    text-decoration: none;
+    color: #ff4da6;
+    font-weight: normal;
+}
+
+a:visited {
+    color: #ff4da6;
+}
+
+a:hover {
+    color: #ff4da6;
+}
+
+a:active {
+    color: #ff4da6;
+}
+
+.card, .card * {
+    color: #ff4da6;
+    font-weight: normal;
+}
+
+.box video {
+    width: 250px;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* CARROSSEL */
+.carrossel-container {
+    position: relative;
+    overflow: hidden;
+    margin: 50px auto;
+    width: 100%;
+    max-width: 500px; /* AUMENTA AQUI */
+}
+
+.carrossel {
+    display: flex;
+    gap: 20px;
+    transition: transform 0.4s ease;
+    align-items: center;
+}
+
+.carrossel img,
+.carrossel video {
+    width: 100%;
+    max-width: 500px; /* aumenta o tamanho real */
+    height: 300px; /* altura fixa pra ficar bonito */
+    object-fit: cover;
+    border-radius: 6px;
+    flex-shrink: 0;
+}
+
+.carrossel video:nth-child(2) {
+    height: 1000px;
+    max-width: 600px;
+    transform: scale(0.95);
+}
+
+
+/* BOTÕES */
+.btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff4da6;
+    border: none;
+    color: white;
+    font-size: 25px;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+</style>
+
+</head>
+
+<body>
+
+
+<section class="destaque">
+    <div class="box">
+        <video autoplay muted loop playsinline>
+    <source src="img/ssstwitter.com_1774293469554.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo.
+</video>
+        <div class="box-texto">
+            <h2>Backup</h2>
+            <p>Galery</p>
+            <button onclick="irPara('pessoas/pessoa1.html')">Ver Perfil</button>
+        </div>
+    </div>
+</section>
+
+<div class="search-container">
+    <div class="search-box">
+        <input type="text" id="pesquisa" placeholder="" onkeyup="filtrar()">
+        <span class="material-symbols-outlined">search</span>
+    </div>
+</div>
+
+<section class="galeria" id="galeria">
+<a href="https://mega.nz/folder/ylhliTqS#6omJSKpHH0Had3kLhNFEJw">
+<div class="card" data-nome="pessoa 3">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Emilly ( Mie )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/ughXmRTC#7koL_5oV82UPLfqtkrTgiQ">
+<div class="card" data-nome="pessoa 4">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Alice ( Lilly )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/vph3FDxL#DE1uiTuozbetkd3IGm0mug">
+<div class="card-x" data-nome="pessoa 8">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Letícia ( lele )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/zhYzXIyb#xYvAyVV4wcP5KPPTHGOOWQ">
+<div class="card" data-nome="pessoa 2">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Kiara ( Kiki )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/ThgAFDqQ#nLNl-YPkX9H3mvS4ybrhYQ">
+<div class="card" data-nome="pessoa 5">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Isabella ( Bella )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/2wISyBia#z0gvei3bC0ybChxSmMEjUA">
+<div class="card" data-nome="pessoa 6">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Anna ( Aya )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/vph3FDxL#DE1uiTuozbetkd3IGm0mug">
+<div class="card-x" data-nome="pessoa 8">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Lara ( law )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/y8o0XYqI#W3iRTBwaRaU0WJBXymf6gw">
+<div class="card" data-nome="pessoa 7">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Anna ( Aya ) 2.0</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/msQggS5T#EBqnF7MeVlHZ7UoRItjaPg">
+<div class="card" data-nome="pessoa 7">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Maria ( Aika )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+
+<a href="https://mega.nz/folder/vph3FDxL#DE1uiTuozbetkd3IGm0mug">
+<div class="card" data-nome="pessoa 8">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Júlia ( Pearl )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+
+<a href="https://mega.nz/folder/vph3FDxL#DE1uiTuozbetkd3IGm0mug">
+<div class="card-x" data-nome="pessoa 8">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Giovana ( Coelhinha )</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+<a href="https://mega.nz/folder/TxB0iZQD#mBNLyqs528tD338nx4H9UA">
+<div class="card" data-nome="pessoa 1">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Nina</h3>
+        <p>Lorem ipsum dolor sit amet.</p>
+    </div>
+</div>
+</a>
+
+</section>
+
+
+
+<section class="carrossel-container">
+  <br>
+<center>
+<h1>Lost Midia</h1>
+</center>
+    <button class="btn prev">&#10094;</button>
+
+    <div class="carrossel" id="carrossel">
+        <video src="img/VID_20250707_234836_105.MP4" autoplay muted loop playsinline></video>
+        <video src="img/2025-10-09 21.54.47.mp4" autoplay muted loop playsinline></video>
+    </div>
+
+    <button class="btn next">&#10095;</button>
+</section>
+
+
+<script>
+function filtrar() {
+    let input = document.getElementById("pesquisa").value.toLowerCase();
+    let cards = document.querySelectorAll(".card");
+
+    cards.forEach(card => {
+        let nome = card.dataset.nome;
+        card.style.display = nome.includes(input) ? "block" : "none";
+    });
+}
+
+function abrirModal(src) {
+    document.getElementById("modal").style.display = "flex";
+    document.getElementById("imgModal").src = src;
+}
+
+function fecharModal() {
+    document.getElementById("modal").style.display = "none";
+}
+
+function irPara(pagina) {
+    window.location.href = pagina;
+}
+
+
+const carrossel = document.getElementById("carrossel");
+let scrollAmount = 0;
+
+document.querySelector(".next").addEventListener("click", () => {
+    scrollAmount += 300;
+    carrossel.style.transform = `translateX(-${scrollAmount}px)`;
+});
+
+document.querySelector(".prev").addEventListener("click", () => {
+    scrollAmount -= 300;
+    if (scrollAmount < 0) scrollAmount = 0;
+    carrossel.style.transform = `translateX(-${scrollAmount}px)`;
+});
+
+/* SWIPE MOBILE */
+let startX = 0;
+
+carrossel.addEventListener("touchstart", (e) => {
+    startX = e.touches[0].clientX;
+});
+
+carrossel.addEventListener("touchend", (e) => {
+    let endX = e.changedTouches[0].clientX;
+
+    if (startX - endX > 50) {
+        scrollAmount -= 520;
+    } else if (endX - startX > 50) {
+        scrollAmount -= 520;
+        if (scrollAmount < 0) scrollAmount = 0;
+    }
+
+    carrossel.style.transform = `translateX(-${scrollAmount}px)`;
+});
+</script>
+
+
+</body>
+</html>

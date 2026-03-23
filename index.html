@@ -1,16 +1,14 @@
 <!DOCTYPE html>
-
 <html lang="pt-br">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" href="img/discordlogo.gif" type="image/png">
-<title>Backup</title>
+<title>Login</title>
 
-<!-- Google Font -->
+<!-- GOOGLE FONTS -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
-<!-- Google Icons -->
+<!-- GOOGLE ICONS -->
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 <style>
@@ -22,204 +20,97 @@
 
 body {
     font-family: 'Poppins', sans-serif;
-    background: #0a0a0a;
-    color: #f5f5f5;
-}
-
-/* HERO */
-.hero {
-    text-align: center;
-    padding: 70px 20px;
-}
-
-.hero h1 {
-    font-size: 38px;
-}
-
-.hero p {
-    color: #aaa;
-}
-
-/* SEARCH */
-.search-container {
+    background: radial-gradient(circle at top, #0a0a0a, #000);
+    color: #fff;
     display: flex;
     justify-content: center;
-    margin: 20px;
+    align-items: center;
+    height: 100vh;
 }
 
-.search-box {
-    position: relative;
-}
-
-.search-box input {
-    padding: 12px 45px 12px 15px;
-    width: 280px;
-    border: 1px solid #333;
+/* BOX */
+.login-box {
     background: #111;
-    color: white;
-    border-radius: 3px;
+    padding: 40px;
+    width: 320px;
+    text-align: center;
+    border-radius: 8px;
+    animation: aparecer 0.6s ease;
+}
+
+@keyframes aparecer {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h2 {
+    margin-bottom: 25px;
+    color: #fff;
+    font-weight: 600;
+}
+
+/* INPUT */
+.input-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 45px 12px 15px;
+    background: #000;
+    border: 1px solid #353434ab;
+    color: #fff;
     outline: none;
+    border-radius: 4px;
+    transition: 0.3s;
 }
 
-.search-box input:focus {
-    border-color: #ff4da6;
+.input-group input:focus {
+    border-color: #ff0000;
+    box-shadow: 0 0 8px rgba(255,0,0,0.3);
 }
 
-.search-box span {
+/* ÍCONE */
+.input-group span {
     position: absolute;
     right: 12px;
     top: 50%;
     transform: translateY(-50%);
-    color: #ff4da6;
-    font-size: 22px;
-    pointer-events: none;
-}
-
-/* DESTAQUE */
-.destaque {
-    display: flex;
-    justify-content: center;
-    margin: 40px 20px;
-}
-
-.box {
-    width: 700px;
-    background: #111;
-    display: flex;
-    gap: 20px;
-    padding: 20px;
-}
-
-.box img {
-    width: 250px;
-    object-fit: cover;
-}
-
-.box-texto {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.box-texto h2 {
-    margin-bottom: 10px;
-}
-
-.box-texto p {
-    color: #aaa;
-    margin-bottom: 15px;
-}
-
-.box-texto button {
-    background: #ff4da6;
-    border: none;
-    padding: 10px;
+    color: #c2b9b9;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-.box-texto button:hover {
-    background: #ff2e93;
-}
-
-/* GALERIA */
-.galeria {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
-    padding: 30px;
-}
-
-.card {
-    width: 240px;
-    background: #111;
-    border: 1px solid #222;
-    border-radius: 6px;
-    overflow: hidden;
-    cursor: pointer;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-6px);
-    border-color: #ff4da6;
-}
-
-.card img {
+/* BOTÃO */
+button {
     width: 100%;
-    height: 160px;
-    object-fit: cover;
-}
-
-.card .info {
     padding: 12px;
-}
-
-.card h3 {
-    font-size: 16px;
-}
-
-.card p {
-    font-size: 13px;
-    color: #aaa;
-}
-
-/* MODAL */
-.modal {
-    display: none;
-    position: fixed;
-    background: rgba(0,0,0,0.9);
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal img {
-    max-width: 75%;
-}
-
-.modal span {
-    position: absolute;
-    top: 20px;
-    right: 30px;
-    font-size: 28px;
+    border: none;
+    background: linear-gradient(45deg, #ff0000, #cc0000);
+    color: white;
     cursor: pointer;
-    color: #ff4da6;
+    border-radius: 4px;
+    transition: 0.3s;
+    font-weight: 500;
 }
 
-/* ===== ALTERAÇÃO AQUI ===== */
-
-a {
-    text-decoration: none;
-    color: #ff4da6;
-    font-weight: normal;
+button:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px rgba(255,0,0,0.5);
 }
 
-a:visited {
-    color: #ff4da6;
-}
-
-a:hover {
-    color: #ff4da6;
-}
-
-a:active {
-    color: #ff4da6;
-}
-
-.card, .card * {
-    color: #ff4da6;
-    font-weight: normal;
-}
-
-.box video {
-    width: 250px;
-    height: 100%;
-    object-fit: cover;
+/* ERRO */
+.erro {
+    color: #ff4d4d;
+    margin-top: 12px;
+    display: none;
+    font-size: 14px;
 }
 </style>
 
@@ -227,153 +118,47 @@ a:active {
 
 <body>
 
+<div class="login-box">
+    <h2>Login</h2>
 
-<section class="destaque">
-    <div class="box">
-        <video autoplay muted loop playsinline>
-    <source src="img/main.mp4" type="video/mp4">
-    Seu navegador não suporta vídeo.
-</video>
-        <div class="box-texto">
-            <h2>´</h2>
-            <p>Backup & Galery</p>
-            <button onclick="irPara('pessoas/pessoa1.html')">Ver Perfil</button>
-        </div>
+    <div class="input-group">
+        <input type="password" id="senha" placeholder="*******">
+        <span class="material-symbols-outlined" onclick="toggleSenha()">visibility</span>
     </div>
-</section>
 
-<div class="search-container">
-    <div class="search-box">
-        <input type="text" id="pesquisa" placeholder="" onkeyup="filtrar()">
-        <span class="material-symbols-outlined">search</span>
-    </div>
+    <button onclick="logar()"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e3e3e3">
+        <path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg></button>
+
+    <div class="erro" id="erro">Senha incorreta</div>
 </div>
-
-<section class="galeria" id="galeria">
-
-<a href="https://mega.nz/folder/TxB0iZQD#mBNLyqs528tD338nx4H9UA">
-<div class="card" data-nome="pessoa 1">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Nina</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/ylhliTqS#6omJSKpHH0Had3kLhNFEJw">
-<div class="card" data-nome="pessoa 3">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Emilly ( Mie )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/ughXmRTC#7koL_5oV82UPLfqtkrTgiQ">
-<div class="card" data-nome="pessoa 4">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Alice ( Lilly )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/zhYzXIyb#xYvAyVV4wcP5KPPTHGOOWQ">
-<div class="card" data-nome="pessoa 2">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Kiara</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/ThgAFDqQ#nLNl-YPkX9H3mvS4ybrhYQ">
-<div class="card" data-nome="pessoa 5">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Isabella ( Bella )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/2wISyBia#z0gvei3bC0ybChxSmMEjUA">
-<div class="card" data-nome="pessoa 6">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Anna ( Aya )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/y8o0XYqI#W3iRTBwaRaU0WJBXymf6gw">
-<div class="card" data-nome="pessoa 7">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Anna ( Aya ) 2.0</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/msQggS5T#EBqnF7MeVlHZ7UoRItjaPg">
-<div class="card" data-nome="pessoa 7">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Maria ( Aika )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/TxB0iZQD#mBNLyqs528tD338nx4H9UA">
-<div class="card" data-nome="pessoa 1">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Nina</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-
-<a href="https://mega.nz/folder/vph3FDxL#DE1uiTuozbetkd3IGm0mug">
-<div class="card" data-nome="pessoa 8">
-    <img src="img/card.jpg">
-    <div class="info">
-        <h3>Júlia ( Pearl )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
-    </div>
-</div>
-</a>
-</section>
 
 <script>
-function filtrar() {
-    let input = document.getElementById("pesquisa").value.toLowerCase();
-    let cards = document.querySelectorAll(".card");
+// 🔑 HASH
+const senhaHashCorreta = "0788979fc9366e21cd56311511b897a222cf91711481bcd7dc837eac2172d087";
 
-    cards.forEach(card => {
-        let nome = card.dataset.nome;
-        card.style.display = nome.includes(input) ? "block" : "none";
-    });
+async function gerarHash(texto) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(texto);
+    const hashBuffer = await crypto.subtle.digest("SHA-256", data);
+    const hashArray = Array.from(new Uint8Array(hashBuffer));
+    return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
 }
 
-function abrirModal(src) {
-    document.getElementById("modal").style.display = "flex";
-    document.getElementById("imgModal").src = src;
+async function logar() {
+    const senha = document.getElementById("senha").value.trim();
+    const hash = await gerarHash(senha);
+
+    if (hash === senhaHashCorreta) {
+        window.location.href = "backup.html";
+    } else {
+        document.getElementById("erro").style.display = "block";
+    }
 }
 
-function fecharModal() {
-    document.getElementById("modal").style.display = "none";
-}
-
-function irPara(pagina) {
-    window.location.href = pagina;
+/* MOSTRAR / ESCONDER SENHA */
+function toggleSenha() {
+    const input = document.getElementById("senha");
+    input.type = input.type === "password" ? "text" : "password";
 }
 </script>
 
