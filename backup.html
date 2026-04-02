@@ -314,7 +314,7 @@ a:active {
 
 <body>
 
-
+<!-- 
 <section class="destaque">
     <div class="box">
         <video autoplay muted loop playsinline>
@@ -328,7 +328,7 @@ a:active {
         </div>
     </div>
 </section>
-
+-->
 <div class="search-container">
     <div class="search-box">
         <input type="text" id="pesquisa" placeholder="" onkeyup="filtrar()">
@@ -342,7 +342,7 @@ a:active {
     <img src="img/card.jpg">
     <div class="info">
         <h3>Emilly ( Mie )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>001</p>
     </div>
 </div>
 </a>
@@ -352,17 +352,17 @@ a:active {
     <img src="img/card.jpg">
     <div class="info">
         <h3>Alice ( Lilly )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>002</p>
     </div>
 </div>
 </a>
 
 <a href="https://mega.nz/folder/vph3FDxL#DE1uiTuozbetkd3IGm0mug">
-<div class="card-x" data-nome="pessoa 8">
+<div class="card" data-nome="pessoa 8">
     <img src="img/card.jpg">
     <div class="info">
-        <h3>Letícia ( lele )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <h3>Letícia ( Letty )</h3>
+        <p>003</p>
     </div>
 </div>
 </a>
@@ -372,7 +372,7 @@ a:active {
     <img src="img/card.jpg">
     <div class="info">
         <h3>Kiara ( Kiki )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>004</p>
     </div>
 </div>
 </a>
@@ -382,7 +382,7 @@ a:active {
     <img src="img/card.jpg">
     <div class="info">
         <h3>Isabella ( Bella )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>005</p>
     </div>
 </div>
 </a>
@@ -392,17 +392,17 @@ a:active {
     <img src="img/card.jpg">
     <div class="info">
         <h3>Anna ( Aya )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>006</p>
     </div>
 </div>
 </a>
 
 <a href="https://mega.nz/folder/vph3FDxL#DE1uiTuozbetkd3IGm0mug">
-<div class="card-x" data-nome="pessoa 8">
+<div class="card" data-nome="pessoa 8">
     <img src="img/card.jpg">
     <div class="info">
-        <h3>Lara ( law )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <h3>Clara ( ??? )</h3>
+        <p>007</p>
     </div>
 </div>
 </a>
@@ -412,7 +412,7 @@ a:active {
     <img src="img/card.jpg">
     <div class="info">
         <h3>Anna ( Aya ) 2.0</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>008</p>
     </div>
 </div>
 </a>
@@ -422,7 +422,7 @@ a:active {
     <img src="img/card.jpg">
     <div class="info">
         <h3>Maria ( Aika )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>009</p>
     </div>
 </div>
 </a>
@@ -433,18 +433,18 @@ a:active {
     <img src="img/card.jpg">
     <div class="info">
         <h3>Júlia ( Pearl )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>010</p>
     </div>
 </div>
 </a>
 
 
 <a href="https://mega.nz/folder/vph3FDxL#DE1uiTuozbetkd3IGm0mug">
-<div class="card-x" data-nome="pessoa 8">
+<div class="card" data-nome="pessoa 8">
     <img src="img/card.jpg">
     <div class="info">
         <h3>Giovana ( Coelhinha )</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <p>011</p>
     </div>
 </div>
 </a>
@@ -453,30 +453,37 @@ a:active {
 <div class="card" data-nome="pessoa 1">
     <img src="img/card.jpg">
     <div class="info">
-        <h3>Nina</h3>
-        <p>Lorem ipsum dolor sit amet.</p>
+        <h3>Ana Beatriz ( Nina )</h3>
+        <p>012</p>
     </div>
 </div>
 </a>
 
-</section>
-
-
-
-<section class="carrossel-container">
-  <br>
-<center>
-<h1>Lost Midia</h1>
-</center>
-    <button class="btn prev">&#10094;</button>
-
-    <div class="carrossel" id="carrossel">
-        <video src="img/VID_20250707_234836_105.MP4" autoplay muted loop playsinline></video>
-        <video src="img/2025-10-09 21.54.47.mp4" autoplay muted loop playsinline></video>
+<a href="https://mega.nz/folder/TxB0iZQD#mBNLyqs528tD338nx4H9UA">
+<div class="card" data-nome="pessoa 1">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>Ayumi ( ??? )</h3>
+        <p>013</p>
     </div>
+</div>
+</a>
 
-    <button class="btn next">&#10095;</button>
+<a href="https://mega.nz/folder/TxB0iZQD#mBNLyqs528tD338nx4H9UA">
+<div class="card" data-nome="pessoa 1">
+    <img src="img/card.jpg">
+    <div class="info">
+        <h3>??????</h3>
+        <p>014</p>
+    </div>  
+</div>
+</a>
+
+
+
 </section>
+
+
 
 
 <script>
@@ -485,8 +492,8 @@ function filtrar() {
     let cards = document.querySelectorAll(".card");
 
     cards.forEach(card => {
-        let nome = card.dataset.nome;
-        card.style.display = nome.includes(input) ? "block" : "none";
+        let texto = card.innerText.toLowerCase(); // 👈 pega tudo do card
+        card.style.display = texto.includes(input) ? "block" : "none";
     });
 }
 
@@ -503,40 +510,6 @@ function irPara(pagina) {
     window.location.href = pagina;
 }
 
-
-const carrossel = document.getElementById("carrossel");
-let scrollAmount = 0;
-
-document.querySelector(".next").addEventListener("click", () => {
-    scrollAmount += 300;
-    carrossel.style.transform = `translateX(-${scrollAmount}px)`;
-});
-
-document.querySelector(".prev").addEventListener("click", () => {
-    scrollAmount -= 300;
-    if (scrollAmount < 0) scrollAmount = 0;
-    carrossel.style.transform = `translateX(-${scrollAmount}px)`;
-});
-
-/* SWIPE MOBILE */
-let startX = 0;
-
-carrossel.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-});
-
-carrossel.addEventListener("touchend", (e) => {
-    let endX = e.changedTouches[0].clientX;
-
-    if (startX - endX > 50) {
-        scrollAmount -= 520;
-    } else if (endX - startX > 50) {
-        scrollAmount -= 520;
-        if (scrollAmount < 0) scrollAmount = 0;
-    }
-
-    carrossel.style.transform = `translateX(-${scrollAmount}px)`;
-});
 </script>
 
 
