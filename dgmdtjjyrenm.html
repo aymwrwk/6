@@ -1,0 +1,305 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Yuki's Room</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    background:#f8f1f4;
+    font-family:'Quicksand',sans-serif;
+    color:#9c7f89;
+    padding:30px;
+}
+
+/* FLORES DECORATIVAS */
+.flower{
+    position:fixed;
+    font-size:50px;
+    opacity:.3;
+    pointer-events:none;
+}
+
+.f1{top:10px;left:10px;}
+.f2{top:10px;right:10px;}
+.f3{bottom:10px;left:50%;}
+.f4{bottom:10px;right:10px;}
+
+/* CONTAINER */
+.site{
+    max-width:1150px;
+    margin:auto;
+    background:#fff;
+    border:5px solid #f8d9e3;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 0 30px rgba(255,192,203,.2);
+}
+
+/* HEADER */
+.header{
+    padding:35px;
+    text-align:center;
+}
+
+.logo{
+    font-size:42px;
+    color:#e8a9bc;
+    font-weight:bold;
+}
+
+.subtitle{
+    margin-top:10px;
+    font-style:italic;
+    color:#c5a7b0;
+}
+
+/* BANNER */
+.banner{
+    margin:0 35px;
+    height:260px;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.banner img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* MAIN */
+.content{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:30px;
+    padding:35px;
+}
+
+/* SIDEBAR */
+.sidebar{
+    background:#fdeef4;
+    padding:20px;
+    border-radius:20px;
+}
+
+.menu{
+    background:
+    repeating-linear-gradient(
+    90deg,
+    #ffeaf2,
+    #ffeaf2 8px,
+    #fff4f8 8px,
+    #fff4f8 16px
+    );
+
+    border-radius:20px;
+    padding:30px;
+    border:2px solid #ffd9e6;
+}
+
+.menu h3{
+    text-align:center;
+    margin-bottom:25px;
+    color:#c77293;
+}
+
+.menu a{
+    display:block;
+    text-decoration:none;
+    color:#a06f80;
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:8px;
+    transition:.2s;
+}
+
+.menu a:hover{
+    background:#ffd9e6;
+}
+
+.sticker{
+    margin-top:25px;
+    background:white;
+    border-radius:18px;
+    padding:15px;
+    border:2px solid #ffdbe7;
+}
+
+.sticker img{
+    width:100%;
+    border-radius:12px;
+}
+
+/* DIREITA */
+.main{
+    display:flex;
+    flex-direction:column;
+    gap:25px;
+}
+
+.profile-card{
+    background:#fff7fa;
+    border:2px solid #ffdbe7;
+    border-radius:20px;
+    padding:15px;
+    display:flex;
+    justify-content:center;
+}
+
+.profile-card img{
+    width:100%;
+    max-width:420px;
+    border-radius:18px;
+}
+
+.about{
+    padding:30px;
+    border-radius:25px;
+    border:2px solid #ffdbe7;
+
+    background:
+    linear-gradient(90deg,
+    rgba(255,192,203,.12) 1px,
+    transparent 1px),
+
+    linear-gradient(
+    rgba(255,192,203,.12) 1px,
+    transparent 1px);
+
+    background-size:30px 30px;
+}
+
+.about h2{
+    margin-bottom:20px;
+    color:#d08aa4;
+}
+
+.about p{
+    line-height:1.9;
+    margin-bottom:15px;
+}
+
+/* FOOTER */
+.footer{
+    text-align:center;
+    padding:25px;
+    border-top:2px dashed #f3d4de;
+    color:#b99ba6;
+}
+
+@media(max-width:900px){
+
+.content{
+    grid-template-columns:1fr;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="flower f1">🌸</div>
+<div class="flower f2">🌸</div>
+<div class="flower f3">🌸</div>
+<div class="flower f4">🌸</div>
+
+<div class="site">
+
+    <div class="header">
+        <div class="logo">♡ yuki's room ♡</div>
+        <div class="subtitle">
+            a lovely girl's heart is full of sweet things
+        </div>
+    </div>
+
+    <div class="banner">
+        <img src="banner.jpg">
+    </div>
+
+    <div class="content">
+
+        <!-- ESQUERDA -->
+        <aside class="sidebar">
+
+            <div class="menu">
+
+                <h3>navigate my world</h3>
+
+                <a href="#">🏠 homepage</a>
+                <a href="#">👤 profile</a>
+                <a href="#">📝 blog</a>
+                <a href="#">💭 thoughts</a>
+                <a href="#">🔗 links</a>
+                <a href="#">🎮 game log</a>
+
+            </div>
+
+            <div class="sticker">
+                <img src="stickers.jpg">
+            </div>
+
+        </aside>
+
+        <!-- DIREITA -->
+        <main class="main">
+
+            <div class="profile-card">
+                <img src="girl.jpg">
+            </div>
+
+            <div class="about">
+
+                <h2>
+                    hi there~ welcome to my dreamy pink space ✧
+                </h2>
+
+                <p>
+                    my name is yuki — but you can call me
+                    anything gentle ♡
+                </p>
+
+                <p>
+                    i'm blank years old, but my soul lives in a
+                    daydream ☁️
+                </p>
+
+                <p>
+                    my mbti is blank — let's see if we match
+                    energies ✨
+                </p>
+
+                <p>
+                    i love soft aesthetics, gentle music,
+                    warm drinks and cloudy days 🌸
+                </p>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <div class="footer">
+        ~ made by yukilyinhhh ~
+        <br>
+        Latest blog entry : Feeling nervous over everything
+    </div>
+
+</div>
+
+</body>
+</html>
+
