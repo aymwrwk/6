@@ -1,10 +1,10 @@
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Yuki's Room</title>
+<title>♡ Nosso Cantinho ♡</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
 
@@ -23,7 +23,7 @@ body{
     padding:30px;
 }
 
-/* FLORES DECORATIVAS */
+/* FLORES */
 .flower{
     position:fixed;
     font-size:50px;
@@ -36,72 +36,31 @@ body{
 .f3{bottom:10px;left:50%;}
 .f4{bottom:10px;right:10px;}
 
-/* CONTAINER */
-.site{
-    max-width:1150px;
-    margin:auto;
-    background:#fff;
-    border:5px solid #f8d9e3;
-    border-radius:25px;
-    overflow:hidden;
-    box-shadow:0 0 30px rgba(255,192,203,.2);
-}
-
-/* HEADER */
-.header{
-    padding:35px;
-    text-align:center;
-}
-
-.logo{
-    font-size:42px;
-    color:#e8a9bc;
-    font-weight:bold;
-}
-
-.subtitle{
-    margin-top:10px;
-    font-style:italic;
-    color:#c5a7b0;
-}
-
-/* BANNER */
-.banner{
-    margin:0 35px;
-    height:260px;
-    border-radius:20px;
-    overflow:hidden;
-}
-
-.banner img{
-    width:100%;
-    height:100%;
-    object-fit:cover;
-}
-
-/* MAIN */
+/* CONTEÚDO */
 .content{
+    max-width:1100px;
+    margin:auto;
     display:grid;
     grid-template-columns:260px 1fr;
     gap:30px;
-    padding:35px;
 }
 
-/* SIDEBAR */
+/* MENU */
 .sidebar{
     background:#fdeef4;
     padding:20px;
     border-radius:20px;
+    height:fit-content;
 }
 
 .menu{
     background:
     repeating-linear-gradient(
-    90deg,
-    #ffeaf2,
-    #ffeaf2 8px,
-    #fff4f8 8px,
-    #fff4f8 16px
+        90deg,
+        #ffeaf2,
+        #ffeaf2 8px,
+        #fff4f8 8px,
+        #fff4f8 16px
     );
 
     border-radius:20px;
@@ -129,81 +88,117 @@ body{
     background:#ffd9e6;
 }
 
-.sticker{
-    margin-top:25px;
-    background:white;
-    border-radius:18px;
-    padding:15px;
-    border:2px solid #ffdbe7;
-}
-
-.sticker img{
-    width:100%;
-    border-radius:12px;
-}
-
-/* DIREITA */
+/* ÁREA DIREITA */
 .main{
     display:flex;
     flex-direction:column;
     gap:25px;
 }
 
-.profile-card{
+/* CARROSSEL */
+.carousel{
+    position:relative;
     background:#fff7fa;
     border:2px solid #ffdbe7;
-    border-radius:20px;
+    border-radius:25px;
     padding:15px;
     display:flex;
     justify-content:center;
+    align-items:center;
+    box-shadow:0 0 20px rgba(255,192,203,.2);
 }
 
-.profile-card img{
+.carousel img{
     width:100%;
-    max-width:420px;
+    max-height:500px;
+    object-fit:cover;
     border-radius:18px;
 }
 
+.btn{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    width:45px;
+    height:45px;
+    border:none;
+    border-radius:50%;
+    background:#ffd9e6;
+    color:#c77293;
+    cursor:pointer;
+    font-size:22px;
+    font-weight:bold;
+    transition:.2s;
+}
+
+.btn:hover{
+    background:#ffc7d8;
+}
+
+.prev{
+    left:20px;
+}
+
+.next{
+    right:20px;
+}
+
+/* BOLINHAS */
+.dots{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-top:15px;
+}
+
+.dot{
+    width:12px;
+    height:12px;
+    border-radius:50%;
+    background:#ffd0df;
+    cursor:pointer;
+}
+
+.dot.active{
+    background:#d986a7;
+}
+
+/* TEXTO */
 .about{
     padding:30px;
     border-radius:25px;
-    border:2px solid #ffdbe7;
-
     background:
-    linear-gradient(90deg,
-    rgba(255,192,203,.12) 1px,
-    transparent 1px),
-
-    linear-gradient(
-    rgba(255,192,203,.12) 1px,
-    transparent 1px);
+        linear-gradient(
+            90deg,
+            rgba(255,192,203,.12) 1px,
+            transparent 1px
+        ),
+        linear-gradient(
+            rgba(255,192,203,.12) 1px,
+            transparent 1px
+        );
 
     background-size:30px 30px;
+
+  
 }
 
 .about h2{
-    margin-bottom:20px;
     color:#d08aa4;
+    margin-bottom:20px;
 }
 
 .about p{
     line-height:1.9;
-    margin-bottom:15px;
+    font-size:17px;
 }
 
-/* FOOTER */
-.footer{
-    text-align:center;
-    padding:25px;
-    border-top:2px dashed #f3d4de;
-    color:#b99ba6;
-}
-
+/* RESPONSIVO */
 @media(max-width:900px){
 
-.content{
-    grid-template-columns:1fr;
-}
+    .content{
+        grid-template-columns:1fr;
+    }
 
 }
 
@@ -216,77 +211,121 @@ body{
 <div class="flower f3">🌸</div>
 <div class="flower f4">🌸</div>
 
+<div class="content">
 
-    <div class="content">
+    <!-- MENU -->
+    <aside class="sidebar">
 
-        <!-- ESQUERDA -->
-        <aside class="sidebar">
+        <div class="menu">
 
-            <div class="menu">
+            <h3>navigate my world ♡</h3>
 
-                <h3>navigate my world</h3>
-
-                <a href="#">🏠 homepage</a>
-                <a href="#">👤 profile</a>
+                <a href="./index.html">🏠 homepage</a>
+                <a href="./profile.html">👤 profile</a>
                 <a href="#">📝 blog</a>
                 <a href="#">💭 thoughts</a>
                 <a href="#">🔗 links</a>
                 <a href="#">🎮 game log</a>
 
-            </div>
+        </div>
 
-            <div class="sticker">
-                <img src="stickers.jpg">
-            </div>
+    </aside>
 
-        </aside>
+    <!-- CONTEÚDO -->
+    <main class="main">
 
-        <!-- DIREITA -->
-        <main class="main">
+        <div>
 
-            <div class="profile-card">
-                <img src="girl.jpg">
-            </div>
+            <div class="carousel">
 
-            <div class="about">
+                <button class="btn prev" onclick="trocarFoto(-1)">
+                    ❮
+                </button>
 
-                <h2>
-                    hi there~ welcome to my dreamy pink space ✧
-                </h2>
+                <img id="foto" src="./Lara1.png">
 
-                <p>
-                    my name is yuki — but you can call me
-                    anything gentle ♡
-                </p>
-
-                <p>
-                    i'm blank years old, but my soul lives in a
-                    daydream ☁️
-                </p>
-
-                <p>
-                    my mbti is blank — let's see if we match
-                    energies ✨
-                </p>
-
-                <p>
-                    i love soft aesthetics, gentle music,
-                    warm drinks and cloudy days 🌸
-                </p>
+                <button class="btn next" onclick="trocarFoto(1)">
+                    ❯
+                </button>
 
             </div>
 
-        </main>
+            <div class="dots">
+                <div class="dot active" onclick="irPara(0)"></div>
+                <div class="dot" onclick="irPara(1)"></div>
+                <div class="dot" onclick="irPara(2)"></div>
+                <div class="dot" onclick="irPara(3)"></div>
+            </div>
 
-    </div>
+        </div>
 
-    <div class="footer">
-        ~ made by yukilyinhhh ~
-        <br>
-        Latest blog entry : Feeling nervous over everything
-    </div>
+        <div class="about">
+
+            <p>
+                você ainda não sabe o quanto eu te acho bonita,
+                ao ponto de querer criar essa página só para te ver :)
+            </p>
+
+
+        </div>
+
+    </main>
 
 </div>
+
+<script>
+
+const fotos = [
+    "./lara2.jpg",
+    "./lara1.png",
+    "./lara4.jpg",
+    "./lara5.jpg"
+];
+
+let atual = 0;
+
+const imagem = document.getElementById("foto");
+const dots = document.querySelectorAll(".dot");
+
+function atualizar(){
+
+    imagem.src = fotos[atual];
+
+    dots.forEach(dot=>{
+        dot.classList.remove("active");
+    });
+
+    dots[atual].classList.add("active");
+}
+
+function trocarFoto(direcao){
+
+    atual += direcao;
+
+    if(atual < 0){
+        atual = fotos.length - 1;
+    }
+
+    if(atual >= fotos.length){
+        atual = 0;
+    }
+
+    atualizar();
+}
+
+function irPara(indice){
+
+    atual = indice;
+    atualizar();
+
+}
+
+/* troca automática */
+setInterval(()=>{
+    trocarFoto(1);
+}, 5000);
+
+</script>
 
 </body>
 </html>
