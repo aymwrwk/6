@@ -7,6 +7,7 @@
 <title>Bunny's Paradise ♡</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 <style>
 
@@ -16,26 +17,15 @@
     box-sizing:border-box;
 }
 
-html{
-    scroll-behavior:smooth;
-}
-
 body{
-  background:
-        linear-gradient(
-            90deg,
-            rgba(255,192,203,.12) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            rgba(255,192,203,.12) 1px,
-            transparent 1px
-        );
-
-    background-size:30px 30px;
     font-family:'Quicksand',sans-serif;
 
-  
+    background:
+        linear-gradient(90deg, rgba(255,192,203,.12) 1px, transparent 1px),
+        linear-gradient(rgba(255,192,203,.12) 1px, transparent 1px);
+
+    background-size:30px 30px;
+
     color:#8f6c79;
 }
 
@@ -45,7 +35,6 @@ body{
     font-size:45px;
     opacity:.25;
     pointer-events:none;
-    z-index:0;
 }
 
 .f1{top:10px;left:10px;}
@@ -57,56 +46,124 @@ body{
 .navbar{
     position:sticky;
     top:0;
-    z-index:1000;
+    z-index:998;
 
     display:flex;
     justify-content:space-between;
     align-items:center;
 
-    padding:15px 20px;
+    padding:14px 20px;
     margin:15px;
 
-    background:rgba(255,255,255,.75);
+    background:rgba(255,255,255,.85);
     backdrop-filter:blur(12px);
+}
 
-    border-radius:18px;
-
-    box-shadow:0 10px 30px rgba(255,182,193,.25);
+#icon{
+    font-size:34px;
+    color: #f3b4cc;
 }
 
 .logo{
-    font-size:22px;
-    font-weight:700;
-    color:#d889a7;
+    font-size:18px;
+    font-weight:600;
+    color:#222;
 }
 
-.menu{
-    display:flex;
-    gap:10px;
-}
-
-.menu a{
-    text-decoration:none;
-    color:#8f6c79;
-    padding:10px 14px;
-    border-radius:12px;
-    transition:.3s;
-}
-
-.menu a:hover{
-    background:#ffd9e6;
-}
-
+/* BOTÃO MENU */
 .menu-btn{
-    display:none;
-    font-size:30px;
     background:none;
     border:none;
-    color:#d889a7;
     cursor:pointer;
+    color:#222;
 }
 
-/* CONTAINER */
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.25);
+    backdrop-filter:blur(3px);
+
+    opacity:0;
+    pointer-events:none;
+    transition:.25s ease;
+
+    z-index:999;
+}
+
+.overlay.active{
+    opacity:1;
+    pointer-events:auto;
+}
+
+/* MENU LATERAL */
+.side-menu{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:280px;
+
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(18px);
+
+    border-right:1px solid #eee;
+
+    padding:25px;
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+    transform:translateX(-105%);
+    transition:.35s cubic-bezier(.4,0,.2,1);
+
+    z-index:1000;
+}
+
+.side-menu.active{
+    transform:translateX(0);
+}
+
+/* LINKS */
+.side-menu a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    text-decoration:none;
+    color:#333;
+
+    padding:12px;
+    border-radius:12px;
+
+    font-size:14px;
+
+    opacity:0;
+    transform:translateX(-10px);
+    transition:.25s;
+}
+
+/* ANIMAÇÃO STAGGER */
+.side-menu.active a{
+    opacity:1;
+    transform:translateX(0);
+    transition-delay: calc(var(--i) * 0.08s);
+}
+
+/* HOVER */
+.side-menu a:hover{
+    background:#f3f3f3;
+}
+
+/* ÍCONES */
+.material-symbols-outlined{
+    font-size:20px;
+    color:#555;
+}
+
+/* SITE CONTAINER */
 .site{
     max-width:1200px;
     margin:auto;
@@ -147,196 +204,35 @@ body{
     object-fit:cover;
 }
 
-/* GRID */
-.content{
-    display:grid;
-    grid-template-columns:280px 1fr;
-    gap:25px;
-}
-
-/* SIDEBAR */
-.sidebar{
-    background:rgba(255,255,255,.6);
-    backdrop-filter:blur(12px);
-
-    border-radius:20px;
-    padding:20px;
-
-    height:fit-content;
-    box-shadow:0 10px 25px rgba(255,182,193,.15);
-}
-
-.sidebar h3{
-    text-align:center;
-    margin-bottom:15px;
-    color:#c77293;
-}
-
-.sidebar a{
-    display:block;
-    text-decoration:none;
-    color:#8f6c79;
-
-    padding:10px;
-    margin-bottom:8px;
-
-    border-radius:12px;
-    transition:.3s;
-}
-
-.sidebar a:hover{
-    background:#ffd9e6;
-}
-
-/* MAIN */
-.main{
-    display:flex;
-    flex-direction:column;
-    gap:20px;
-}
-
-.card{
-    background:
-    linear-gradient(rgba(255, 255, 255, 0.979), rgba(255, 255, 255, 0.219));
-
-    background-size:cover;
-    background-position:center;
-    background-repeat:no-repeat;
-
-    backdrop-filter:blur(10px);
-    padding:30px;
-    border-radius:20px;
-
-    box-shadow:0 10px 25px rgba(255,182,193,.15);
-}
-
-.card h2{
-    color:#d889a7;
-    margin-bottom:18px;
-    font-size:22px;
-    letter-spacing:.5px;
-}
-
-.card p{
-    font-size:16px;
-    color:#8f6c79;
-    margin-bottom:14px;
-    text-align:justify;
-}
-
-strong{
-font-weight: normal;
-    background:rgb(255, 236, 243);
-    padding:2px 6px;
-}
-
-/* IMAGENS */
-.main img,
-.sidebar img{
-    width:100%;
-    border-radius:15px;
-}
-
-/* GALERIA */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-    gap:15px;
-    
-}
-
-.gallery img{
-    width:100%;
-    object-fit:cover;
-    border-radius:15px;
-    transition:.3s;
-}
-
-/* MOBILE */
-@media(max-width:900px){
-
-    .gallery img{
-        height:auto;
-        aspect-ratio: 4 / 3; /* mantém proporção bonita */
-        object-fit:cover;
-    }
-
-}
-
-.gallery img:hover{
-    transform:scale(1.03);
-}
-
-/* ANIMAÇÃO */
-@keyframes fadeUp{
-    from{opacity:0;transform:translateY(15px);}
-    to{opacity:1;transform:translateY(0);}
-}
-
-/* FOOTER */
-footer{
-    text-align:center;
-    padding:40px;
-    color:#b68e9d;
-}
-
-/* RESPONSIVO */
-@media(max-width:900px){
-
-    .menu-btn{
-        display:block;
-    }
-
-    .menu{
-        display:none;
-        position:absolute;
-        top:80px;
-        left:15px;
-        right:15px;
-
-        flex-direction:column;
-        background:white;
-        padding:15px;
-        border-radius:15px;
-    }
-
-    .menu.active{
-        display:flex;
-    }
-
-    .content{
-        grid-template-columns:1fr;
-    }
-
-    .sidebar{
-        display:none;
-    }
-
-    .banner{
-        height:300px;
-    }
-
-    .header h1{
-        font-size:32px;
-    }
-}
+/* ABOUT */
 .about{
     padding:30px;
     border-radius:25px;
-   
-    background-size:30px 30px;
-
-  
-}
-.about h2{
-    color:#d08aa4;
-    margin-bottom:20px;
 }
 
 .about p{
     line-height:1.9;
     font-size:17px;
 }
+
+strong{
+    background:rgb(255,236,243);
+    padding:2px 6px;
+    font-weight:normal;
+}
+
+/* RESPONSIVO */
+@media(max-width:900px){
+
+    .header h1{
+        font-size:32px;
+    }
+
+    .banner{
+        height:300px;
+    }
+}
+
 </style>
 </head>
 
@@ -348,55 +244,86 @@ footer{
 <div class="flower f3">🌸</div>
 <div class="flower f4">🌸</div>
 
-<!-- NAV -->
+<!-- NAVBAR -->
 <div class="navbar">
 
     <div class="logo"></div>
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-    <div class="menu" id="menu">
-        <a href="#">Home</a>
-        <a href="./profile.html">Profile</a>
-        <a href="#">Textos</a>
-        <a href="#">Galeria</a>
-    </div>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <span class="material-symbols-outlined" id="icon">menu</span>
+    </button>
 
 </div>
 
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
+
+<!-- MENU LATERAL -->
+<div class="side-menu" id="menu">
+
+    <a href="#" style="--i:1">
+        <span class="material-symbols-outlined">home</span>
+        Home
+    </a>
+
+    <a href="./profile.html" style="--i:2">
+        <span class="material-symbols-outlined">person</span>
+        Profile
+    </a>
+
+    <a href="#" style="--i:3">
+        <span class="material-symbols-outlined">article</span>
+        Textos
+    </a>
+
+    <a href="#" style="--i:4">
+        <span class="material-symbols-outlined">photo_library</span>
+        Galeria
+    </a>
+
+</div>
+
+<!-- CONTEÚDO -->
 <div class="site">
 
-    <!-- BANNER -->
+
     <div class="banner">
         <img src="./img/EC763593-32FE-4BD5-A438-7F02DDD53DDF.webp">
     </div>
 
-      <div class="about">
+    <div class="about">
 
-           <p>
-do seu nome até a sua voz, 
-do seu jeito até a sua aparência, <strong> eu sou completamente apaixonado por você.</strong>
-</p>
-<br>
-<p>
-eu fico muito feliz e grato por a gente ter voltado a ficar juntos,
- eu não sei como aguentei ficar sem você aquele tempo que afastamos :(
-</p>
-<br>
-<p>
-<strong>eu te amo muito e quero que isso seja apenas o começo de tudo!</strong></p>
+      <p> do seu nome até a sua voz, do seu jeito até a sua aparência, <strong> eu sou completamente apaixonado por você.</strong> </p> 
+      <br>
+       <p> eu fico muito feliz e grato por a gente ter voltado a ficar juntos, eu não sei
+    como aguentei ficar sem você aquele tempo que afastamos :( </p>
 
-<p>
-    eu pretendo passar o resto da minha vida 
-    ao seu lado pra ter sempre a alegria que eu sinto com você :)
-</p>
-</div>
+      <br> 
+      <p> <strong>eu te amo muito e quero que isso seja apenas o começo de tudo!</strong></p> 
+      <p> eu pretendo passar o resto da minha vida ao seu lado pra ter sempre a <strong>alegria que eu sinto com você :)</strong></p>
+
+    </div>
+
 </div>
 
 <script>
+
 function toggleMenu(){
-    document.getElementById("menu").classList.toggle("active");
+
+    const menu = document.getElementById("menu");
+    const overlay = document.getElementById("overlay");
+    const icon = document.getElementById("icon");
+
+    menu.classList.toggle("active");
+    overlay.classList.toggle("active");
+
+    if(menu.classList.contains("active")){
+        icon.textContent = "close";
+    } else {
+        icon.textContent = "menu";
+    }
 }
+
 </script>
 
 </body>
