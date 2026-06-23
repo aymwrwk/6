@@ -98,53 +98,74 @@ body{
 }
 
 /* MENU LATERAL */
-.side-menu{
+
+/* MENU LATERAL */
+   .side-menu{
+    
+    font-family: 'Plus Jakarta Sans', sans-serif;
+
     position:fixed;
     top:0;
     left:0;
     height:100%;
     width:280px;
 
-    background:rgba(255,255,255,.95);
-    backdrop-filter:blur(18px);
+    background:
+        linear-gradient(
+            rgba(255,255,255,.05),
+            rgba(255,255,255,.05)
+        ),
+        url("./side.png");
 
-    border-right:1px solid #eee;
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    backdrop-filter:blur(10px);
+
+    border-right:1px solid rgba(255,255,255,.3);
 
     padding:25px;
 
     display:flex;
     flex-direction:column;
-    gap:8px;
+
+    justify-content:flex-end; /* ⭐ empurra pra baixo */
+    padding-bottom:120px;      /* ⭐ controla altura do bloco */
+
+    gap:14px;
 
     transform:translateX(-105%);
     transition:.35s cubic-bezier(.4,0,.2,1);
 
     z-index:1000;
 }
-
 .side-menu.active{
     transform:translateX(0);
 }
 
-/* LINKS */
 .side-menu a{
     display:flex;
     align-items:center;
+    justify-content:center;
+
     gap:10px;
 
     text-decoration:none;
-    color:#333;
 
-    padding:12px;
-    border-radius:12px;
+    color:#ff7aa2;
 
-    font-size:14px;
+    font-size:18px;
+    font-weight:500;
+
+    padding:16px 18px;
+
+    border-radius:16px;
 
     opacity:0;
     transform:translateX(-10px);
-    transition:.25s;
+    transition:.3s ease;
 }
-
 /* ANIMAÇÃO STAGGER */
 .side-menu.active a{
     opacity:1;
@@ -157,10 +178,10 @@ body{
     background:#f3f3f3;
 }
 
-/* ÍCONES */
 .material-symbols-outlined{
-    font-size:20px;
-    color:#555;
+    font-size:22px;
+    color:#ff9bb8;
+    text-shadow:0 0 10px rgba(255,182,193,.4);
 }
 /* MAIN */
 .main{
