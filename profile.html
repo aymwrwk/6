@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>♡ Nosso Cantinho ♡</title>
+<title>Bunny's Paradise ♡</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
 <style>
 
@@ -17,17 +18,22 @@
 }
 
 body{
-    background:#f8f1f4;
     font-family:'Quicksand',sans-serif;
-    color:#9c7f89;
-    padding:30px;
+
+    background:
+        linear-gradient(90deg, rgba(255,192,203,.12) 1px, transparent 1px),
+        linear-gradient(rgba(255,192,203,.12) 1px, transparent 1px);
+
+    background-size:30px 30px;
+
+    color:#8f6c79;
 }
 
 /* FLORES */
 .flower{
     position:fixed;
-    font-size:50px;
-    opacity:.3;
+    font-size:45px;
+    opacity:.25;
     pointer-events:none;
 }
 
@@ -40,79 +46,122 @@ body{
 .navbar{
     position:sticky;
     top:0;
-    z-index:9999;
+    z-index:998;
+
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:15px 20px;
-    margin-bottom:20px;
+
+    padding:14px 20px;
+    margin:15px;
+
+    background:rgba(255,255,255,.85);
     backdrop-filter:blur(12px);
-    box-shadow:0 10px 30px rgba(255,182,193,.25);
+}
+
+#icon{
+    font-size:34px;
+    color: #f3b4cc;
 }
 
 .logo{
-    font-size:22px;
-    font-weight:700;
-    color:#d889a7;
+    font-size:18px;
+    font-weight:600;
+    color:#222;
 }
 
-.menu{
-    display:flex;
-    gap:10px;
-}
-
-.menu a{
-    text-decoration:none;
-    color:#8f7f89;
-    padding:10px 14px;
-    border-radius:12px;
-    transition:.3s;
-}
-
-.menu a:hover{
-    background:#ffd9e6;
-}
-
+/* BOTÃO MENU */
 .menu-btn{
-    display:none;
-    font-size:30px;
     background:none;
     border:none;
-    color:#ffc0d8;
     cursor:pointer;
+    color:#222;
 }
 
-/* CONTEÚDO */
-.content{
-    max-width:1100px;
-    margin:auto;
-    display:grid;
-    grid-template-columns:260px 1fr;
-    gap:30px;
+/* OVERLAY */
+.overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.25);
+    backdrop-filter:blur(3px);
+
+    opacity:0;
+    pointer-events:none;
+    transition:.25s ease;
+
+    z-index:999;
 }
 
-/* SIDEBAR */
-.sidebar{
-    background:#fdeef4;
-    padding:20px;
-    border-radius:20px;
-    height:fit-content;
+.overlay.active{
+    opacity:1;
+    pointer-events:auto;
 }
 
-.sidebar a{
-    display:block;
+/* MENU LATERAL */
+.side-menu{
+    position:fixed;
+    top:0;
+    left:0;
+    height:100%;
+    width:280px;
+
+    background:rgba(255,255,255,.95);
+    backdrop-filter:blur(18px);
+
+    border-right:1px solid #eee;
+
+    padding:25px;
+
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+
+    transform:translateX(-105%);
+    transition:.35s cubic-bezier(.4,0,.2,1);
+
+    z-index:1000;
+}
+
+.side-menu.active{
+    transform:translateX(0);
+}
+
+/* LINKS */
+.side-menu a{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
     text-decoration:none;
-    color:#8f7f89;
-    padding:10px;
-    margin-bottom:8px;
+    color:#333;
+
+    padding:12px;
     border-radius:12px;
-    transition:.3s;
+
+    font-size:14px;
+
+    opacity:0;
+    transform:translateX(-10px);
+    transition:.25s;
 }
 
-.sidebar a:hover{
-    background:#ffd9e6;
+/* ANIMAÇÃO STAGGER */
+.side-menu.active a{
+    opacity:1;
+    transform:translateX(0);
+    transition-delay: calc(var(--i) * 0.08s);
 }
 
+/* HOVER */
+.side-menu a:hover{
+    background:#f3f3f3;
+}
+
+/* ÍCONES */
+.material-symbols-outlined{
+    font-size:20px;
+    color:#555;
+}
 /* MAIN */
 .main{
     display:flex;
@@ -177,22 +226,10 @@ body{
     background:#d986a7;
 }
 
-/* TEXTO */
+/* ABOUT */
 .about{
     padding:30px;
     border-radius:25px;
-    background:
-        linear-gradient(
-            90deg,
-            rgba(255,192,203,.12) 1px,
-            transparent 1px
-        ),
-        linear-gradient(
-            rgba(255,192,203,.12) 1px,
-            transparent 1px
-        );
-
-    background-size:30px 30px;
 }
 
 .about p{
@@ -200,37 +237,21 @@ body{
     font-size:17px;
 }
 
+strong{
+    background:rgb(255,236,243);
+    padding:2px 6px;
+    font-weight:normal;
+}
+
 /* RESPONSIVO */
 @media(max-width:900px){
 
-    .content{
-        grid-template-columns:1fr;
+    .header h1{
+        font-size:32px;
     }
 
-    .sidebar{
-        display:none;
-    }
-
-    .menu-btn{
-        display:block;
-    }
-
-    .menu{
-        display:none;
-        position:absolute;
-        top:80px;
-        left:15px;
-        right:15px;
-
-        flex-direction:column;
-        background:white;
-        padding:15px;
-        border-radius:15px;
-        box-shadow:0 10px 25px rgba(0,0,0,.08);
-    }
-
-    .menu.active{
-        display:flex;
+    .banner{
+        height:300px;
     }
 }
 
@@ -239,39 +260,52 @@ body{
 
 <body>
 
+<!-- FLORES -->
+<div class="flower f1">🌸</div>
+<div class="flower f2">🌸</div>
 <div class="flower f3">🌸</div>
 <div class="flower f4">🌸</div>
 
-<!-- NAVBAR (CORRETO AGORA FORA DA SIDEBAR) -->
+<!-- NAVBAR -->
 <div class="navbar">
 
     <div class="logo"></div>
 
-    <button class="menu-btn" onclick="toggleMenu()">☰</button>
-
-    <div class="menu" id="menu">
-        <a href="./dgmdtjjyrenm.html">Home</a>
-        <a href="./profile.html">Profile</a>
-        <a href="#">Textos</a>
-        <a href="#">Galeria</a>
-    </div>
+    <button class="menu-btn" onclick="toggleMenu()">
+        <span class="material-symbols-outlined" id="icon">menu</span>
+    </button>
 
 </div>
 
-<!-- CONTEÚDO -->
-<div class="content">
+<!-- OVERLAY -->
+<div class="overlay" id="overlay" onclick="toggleMenu()"></div>
 
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
+<!-- MENU LATERAL -->
+<div class="side-menu" id="menu">
 
-        <a href="#">Home</a>
-        <a href="./profile.html">Profile</a>
-        <a href="#">Textos</a>
-        <a href="#">Galeria</a>
+    <a href="./dgmdtjjyrenm.html" style="--i:1">
+        <span class="material-symbols-outlined">home</span>
+        Home
+    </a>
 
-    </aside>
+    <a href="./profile.html" style="--i:2">
+        <span class="material-symbols-outlined">person</span>
+        Profile
+    </a>
 
-    <!-- MAIN -->
+    <a href="textos.html" style="--i:3">
+        <span class="material-symbols-outlined">article</span>
+        Textos
+    </a>
+
+    <a href="#" style="--i:4">
+        <span class="material-symbols-outlined">photo_library</span>
+        Galeria
+    </a>
+
+</div>
+
+<!-- MAIN -->
     <main class="main">
 
         <div>
@@ -301,13 +335,10 @@ body{
                 você ainda não sabe o quanto eu te acho bonita,
                 ao ponto de querer criar essa página só para te ver :)
             </p>
-
+<br><br>
         </div>
 
     </main>
-
-</div>
-
 <script>
 
 /* MENU MOBILE */
@@ -353,6 +384,25 @@ function irPara(i){
 }
 
 setInterval(()=> trocarFoto(1), 5000);
+
+</script>
+<script>
+
+function toggleMenu(){
+
+    const menu = document.getElementById("menu");
+    const overlay = document.getElementById("overlay");
+    const icon = document.getElementById("icon");
+
+    menu.classList.toggle("active");
+    overlay.classList.toggle("active");
+
+    if(menu.classList.contains("active")){
+        icon.textContent = "close";
+    } else {
+        icon.textContent = "menu";
+    }
+}
 
 </script>
 
