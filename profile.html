@@ -1,9 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>♡ Nosso Cantinho ♡</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet">
@@ -36,6 +36,59 @@ body{
 .f3{bottom:10px;left:50%;}
 .f4{bottom:10px;right:10px;}
 
+/* NAVBAR */
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:9999;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    padding:15px 20px;
+    margin-bottom:20px;
+
+    background:rgba(255,255,255,.75);
+    backdrop-filter:blur(12px);
+
+    border-radius:18px;
+
+    box-shadow:0 10px 30px rgba(255,182,193,.25);
+}
+
+.logo{
+    font-size:22px;
+    font-weight:700;
+    color:#d889a7;
+}
+
+.menu{
+    display:flex;
+    gap:10px;
+}
+
+.menu a{
+    text-decoration:none;
+    color:#8f7f89;
+    padding:10px 14px;
+    border-radius:12px;
+    transition:.3s;
+}
+
+.menu a:hover{
+    background:#ffd9e6;
+}
+
+.menu-btn{
+    display:none;
+    font-size:30px;
+    background:none;
+    border:none;
+    color:#d889a7;
+    cursor:pointer;
+}
+
 /* CONTEÚDO */
 .content{
     max-width:1100px;
@@ -45,7 +98,7 @@ body{
     gap:30px;
 }
 
-/* MENU */
+/* SIDEBAR */
 .sidebar{
     background:#fdeef4;
     padding:20px;
@@ -53,42 +106,21 @@ body{
     height:fit-content;
 }
 
-.menu{
-    background:
-    repeating-linear-gradient(
-        90deg,
-        #ffeaf2,
-        #ffeaf2 8px,
-        #fff4f8 8px,
-        #fff4f8 16px
-    );
-
-    border-radius:20px;
-    padding:30px;
-    border:2px solid #ffd9e6;
-}
-
-.menu h3{
-    text-align:center;
-    margin-bottom:25px;
-    color:#c77293;
-}
-
-.menu a{
+.sidebar a{
     display:block;
     text-decoration:none;
-    color:#a06f80;
-    padding:12px;
-    border-radius:10px;
+    color:#8f7f89;
+    padding:10px;
     margin-bottom:8px;
-    transition:.2s;
+    border-radius:12px;
+    transition:.3s;
 }
 
-.menu a:hover{
+.sidebar a:hover{
     background:#ffd9e6;
 }
 
-/* ÁREA DIREITA */
+/* MAIN */
 .main{
     display:flex;
     flex-direction:column;
@@ -105,7 +137,6 @@ body{
     display:flex;
     justify-content:center;
     align-items:center;
-    box-shadow:0 0 20px rgba(255,192,203,.2);
 }
 
 .carousel img{
@@ -115,6 +146,7 @@ body{
     border-radius:18px;
 }
 
+/* BOTÕES */
 .btn{
     position:absolute;
     top:50%;
@@ -127,23 +159,12 @@ body{
     color:#c77293;
     cursor:pointer;
     font-size:22px;
-    font-weight:bold;
-    transition:.2s;
 }
 
-.btn:hover{
-    background:#ffc7d8;
-}
+.prev{left:20px;}
+.next{right:20px;}
 
-.prev{
-    left:20px;
-}
-
-.next{
-    right:20px;
-}
-
-/* BOLINHAS */
+/* DOTS */
 .dots{
     display:flex;
     justify-content:center;
@@ -179,13 +200,6 @@ body{
         );
 
     background-size:30px 30px;
-
-  
-}
-
-.about h2{
-    color:#d08aa4;
-    margin-bottom:20px;
 }
 
 .about p{
@@ -200,52 +214,82 @@ body{
         grid-template-columns:1fr;
     }
 
+    .sidebar{
+        display:none;
+    }
+
+    .menu-btn{
+        display:block;
+    }
+
+    .menu{
+        display:none;
+        position:absolute;
+        top:80px;
+        left:15px;
+        right:15px;
+
+        flex-direction:column;
+        background:white;
+        padding:15px;
+        border-radius:15px;
+        box-shadow:0 10px 25px rgba(0,0,0,.08);
+    }
+
+    .menu.active{
+        display:flex;
+    }
 }
 
 </style>
 </head>
+
 <body>
 
-<div class="flower f1">🌸</div>
-<div class="flower f2">🌸</div>
 <div class="flower f3">🌸</div>
 <div class="flower f4">🌸</div>
 
+<!-- NAVBAR (CORRETO AGORA FORA DA SIDEBAR) -->
+<div class="navbar">
+
+    <div class="logo"></div>
+
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+
+    <div class="menu" id="menu">
+        <a href="./dgmdtjjyrenm.html">Home</a>
+        <a href="./profile.html">Profile</a>
+        <a href="#">Textos</a>
+        <a href="#">Galeria</a>
+    </div>
+
+</div>
+
+<!-- CONTEÚDO -->
 <div class="content">
 
-    <!-- MENU -->
+    <!-- SIDEBAR -->
     <aside class="sidebar">
 
-        <div class="menu">
-
-            <h3>navigate my world ♡</h3>
-
-                <a href="./dgmdtjjyrenm.html">🏠 homepage</a>
-                <a href="./profile.html">👤 profile</a>
-                <a href="#">📝 textos</a>
-                <a href="#">🔗 links</a>
-                <a href="#">🎮 game log</a>
-
-        </div>
+        <a href="#">Home</a>
+        <a href="./profile.html">Profile</a>
+        <a href="#">Textos</a>
+        <a href="#">Galeria</a>
 
     </aside>
 
-    <!-- CONTEÚDO -->
+    <!-- MAIN -->
     <main class="main">
 
         <div>
 
             <div class="carousel">
 
-                <button class="btn prev" onclick="trocarFoto(-1)">
-                    ❮
-                </button>
+                <button class="btn prev" onclick="trocarFoto(-1)">❮</button>
 
                 <img id="foto" src="./Lara1.png">
 
-                <button class="btn next" onclick="trocarFoto(1)">
-                    ❯
-                </button>
+                <button class="btn next" onclick="trocarFoto(1)">❯</button>
 
             </div>
 
@@ -265,7 +309,6 @@ body{
                 ao ponto de querer criar essa página só para te ver :)
             </p>
 
-
         </div>
 
     </main>
@@ -274,6 +317,12 @@ body{
 
 <script>
 
+/* MENU MOBILE */
+function toggleMenu(){
+    document.getElementById("menu").classList.toggle("active");
+}
+
+/* CARROSSEL */
 const fotos = [
     "./lara2.jpg",
     "./lara1.png",
@@ -287,7 +336,6 @@ const imagem = document.getElementById("foto");
 const dots = document.querySelectorAll(".dot");
 
 function atualizar(){
-
     imagem.src = fotos[atual];
 
     dots.forEach(dot=>{
@@ -297,35 +345,23 @@ function atualizar(){
     dots[atual].classList.add("active");
 }
 
-function trocarFoto(direcao){
+function trocarFoto(d){
+    atual += d;
 
-    atual += direcao;
-
-    if(atual < 0){
-        atual = fotos.length - 1;
-    }
-
-    if(atual >= fotos.length){
-        atual = 0;
-    }
+    if(atual < 0) atual = fotos.length - 1;
+    if(atual >= fotos.length) atual = 0;
 
     atualizar();
 }
 
-function irPara(indice){
-
-    atual = indice;
+function irPara(i){
+    atual = i;
     atualizar();
-
 }
 
-/* troca automática */
-setInterval(()=>{
-    trocarFoto(1);
-}, 5000);
+setInterval(()=> trocarFoto(1), 5000);
 
 </script>
 
 </body>
 </html>
-
